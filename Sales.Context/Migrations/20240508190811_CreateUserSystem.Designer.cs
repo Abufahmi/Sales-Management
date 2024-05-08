@@ -12,7 +12,7 @@ using Sales.Context.Data;
 namespace Sales.Context.Migrations
 {
     [DbContext(typeof(ApplicationDb))]
-    [Migration("20240503174352_CreateUserSystem")]
+    [Migration("20240508190811_CreateUserSystem")]
     partial class CreateUserSystem
     {
         /// <inheritdoc />
@@ -57,11 +57,14 @@ namespace Sales.Context.Migrations
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("PhoneConfirmed")
                         .HasColumnType("bit");
 
                     b.Property<string>("PhoneNumber")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserName")
