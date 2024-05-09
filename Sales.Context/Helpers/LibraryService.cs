@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sales.Context.Helpers
 {
-    internal class LibraryService
+    public class LibraryService
     {
         public static string? User => nameof(User);
         public static string? Visor => nameof(Visor);

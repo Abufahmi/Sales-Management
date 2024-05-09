@@ -36,7 +36,7 @@ namespace Sales.API.Controllers
         public async Task<IActionResult> Login(Login login)
         {
             if (login == null)
-                return BadRequest();
+                return BadRequest("Model is empty");
 
             var result = await accountService.LoginAsync(login);
             if (result != null && result.Flag)

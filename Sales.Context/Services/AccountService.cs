@@ -24,16 +24,19 @@ namespace Sales.Context.Services
 
         public async Task<LoginResponse> LoginAsync(Login login)
         {
-            if (login == null || login.UserName == null || login.Password == null)
+            if (login == null || login.Password == null || (login.Email == null && login.UserName == null))
             {
-                return new LoginResponse(false,  "Model is empty");
+                return new LoginResponse(false, "Model is empty");
             }
 
             var user = await db.Users.FirstOrDefaultAsync(x => x.UserName == login.UserName);
             if (user == null || user.Password == null)
             {
-                return new LoginResponse(false, "There is no such account");
+                user = await db.Users.FirstOrDefaultAsync(x => x.Email == login.Email);
+                if (user == null)
+                    return new LoginResponse(false, "There is no such account");
             }
+
             if (user.EmailConfirmed == false)
             {
                 return new LoginResponse(false, "Registration account not confired yet");
@@ -43,7 +46,7 @@ namespace Sales.Context.Services
                 return new LoginResponse(false, "User name or password is incorrect");
             }
 
-            if (!await db.Roles.AnyAsync())
+            if (await db.Roles.AnyAsync() == false)
             {
                 bool result = await dbService.CreateRolesAsync();
                 if (!result)
@@ -52,9 +55,9 @@ namespace Sales.Context.Services
                 }
             }
 
-            if (!await db.UserRoles.AnyAsync(x => x.UserId == user.Id))
+            if (await db.UserRoles.AnyAsync(x => x.UserId == user.Id) == false)
             {
-                bool result = await dbService.CreateUserRoleIfNotExistsAsync(user);
+                await dbService.CreateUserRoleIfNotExistsAsync(user);
             }
 
             string? roleName = await dbService.GetRoleNameByUserIdAsync(user.Id!);
@@ -71,7 +74,7 @@ namespace Sales.Context.Services
             {
                 return new LoginResponse(false, "Could not set user login, Please try later");
             }
-            return new LoginResponse (true, "Ok", token, refreshToken);
+            return new LoginResponse(true, "Ok", token, refreshToken);
         }
 
         public async Task<DefaultResponse> RegisterAsync(Register register)
@@ -103,7 +106,7 @@ namespace Sales.Context.Services
 
             await db.AddAsync(user);
             await db.SaveChangesAsync();
-            return new DefaultResponse(true, "OK");
+            return new DefaultResponse(true, "Account Created.");
         }
     }
 }
