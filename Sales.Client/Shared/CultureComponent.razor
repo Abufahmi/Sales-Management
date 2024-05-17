@@ -1,0 +1,30 @@
+﻿<select class="form-control" @bind="Culture">
+    @foreach (var culture in cultures)
+    {
+        <option value="@culture.Name">@Localizer[culture.Name]</option>
+    }
+</select>
+
+
+@code {
+    CultureInfo[] cultures = 
+    {
+        new CultureInfo("en-US"),
+        new CultureInfo("ar-JO")
+    };
+
+
+    CultureInfo Culture
+    {
+        get => CultureInfo.CurrentCulture;
+        set
+        {
+            if (CultureInfo.CurrentCulture != value)
+            {
+                var jsProcess = (IJSInProcessRuntime)Js;
+                jsProcess.InvokeVoid("blazorCulture.set", value.Name);
+                NavManager.NavigateTo(NavManager.Uri, forceLoad: true);
+            }
+        }
+    }
+}
