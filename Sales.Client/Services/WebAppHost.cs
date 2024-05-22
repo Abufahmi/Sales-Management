@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+﻿using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.JSInterop;
 using System.Globalization;
 
@@ -18,6 +19,14 @@ namespace Sales.Client.Services
 
             CultureInfo.DefaultThreadCurrentCulture = culture;
             CultureInfo.DefaultThreadCurrentUICulture = culture;
+        }
+
+        public static IServiceCollection ConfigureRepositoryServices(this IServiceCollection services)
+        {
+            services.AddTransient<LocalStorageService>();
+            services.AddTransient<ClientService>();
+            services.AddTransient<AuthenticationStateProvider, AppAuthenticationStateProvider>();
+            return services;
         }
     }
 }

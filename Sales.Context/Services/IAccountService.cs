@@ -1,4 +1,4 @@
-﻿using Sales.Context.Models;
+﻿using Sales.Library.Models;
 using static Sales.Context.Helpers.Responses;
 
 namespace Sales.Context.Services

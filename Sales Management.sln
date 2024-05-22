@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sales.Context", "Sales.Cont
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sales.API", "Sales.API\Sales.API.csproj", "{A85BBA10-EEA3-4260-8D4A-05FCBA5D58C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sales.Client", "Sales.Client\Sales.Client.csproj", "{69E00ED1-05D2-42C4-95F8-8AE7763B507B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sales.Client", "Sales.Client\Sales.Client.csproj", "{69E00ED1-05D2-42C4-95F8-8AE7763B507B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

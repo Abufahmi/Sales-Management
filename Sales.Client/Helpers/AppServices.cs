@@ -8,5 +8,7 @@ namespace Sales.Client.Helpers
         public static bool IsEnglish => CultureInfo.CurrentCulture.Name.Contains("en");
 
         public static string Direction => IsArabic ? "ar" : "en";
+
+        public static string BaseAddress => "https://localhost:7063/api/";
     }
 }

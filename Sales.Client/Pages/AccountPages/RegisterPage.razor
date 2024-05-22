@@ -1,0 +1,99 @@
+﻿@using Sales.Client.Models
+
+@page "/Register"
+<div class="p-0">
+    <div class="row m-0">
+        <div class="col-lg-6 col-md-5 col-sm-12 p-0 container-img">
+            <img class="full-img" src="images/main/register.jpg" alt="" />
+        </div> 
+        <div class="col-lg-6 col-md-7 col-sm-12">
+            <div class="col-lg-7 col-md-9 col-sm-11 mx-auto bg-white p-4 my-4 shadow">
+                @if (ErrorMessage != null)
+                {
+                    <div class="alert alert-danger alert-dismissible fade show popup @(AppServices.IsArabic ? "text-right" : "text-left")"
+                         @onclick="HideMessage" role="alert">
+                        @ErrorMessage
+                        <button type="button" class="btn-close"></button>
+                    </div>
+                }
+
+                <div class="text-center">
+                    <img src="images/main/Register.png" class="img-fluid" style="max-width:125px" />
+                    <h5 class="text-secondary">
+                        @Localizer[nameof(Strings.RegisterNewAccount)]
+                    </h5>
+                </div>
+
+                <EditForm Model="Register" OnValidSubmit="OnValidSubmit" FormName="RegisterForm">
+                    <DataAnnotationsValidator />
+
+                    <!-- User name -->
+                    <div class="mt-4 mb-3">
+                        <label class="form-label">
+                            @Localizer[nameof(Strings.UserName)]
+                        </label>
+                        <InputText type="text" @bind-Value="Register.UserName" class="form-control" />
+                        <ValidationMessage For="()=> Register.UserName" />
+                    </div>
+
+                    <!-- User name -->
+                    <div class="mb-3">
+                        <label class="form-label">
+                            @Localizer[nameof(Strings.EmailAddress)]
+                        </label>
+                        <InputText type="text" @bind-Value="Register.Email" class="form-control" />
+                        <ValidationMessage For="()=> Register.Email" />
+                    </div>
+
+                    <!-- Password input -->
+                    <div class="mb-3">
+                        <label class="form-label">
+                            @Localizer[nameof(Strings.Password)]
+                        </label>
+                        <InputText type="password" class="form-control" @bind-Value="Register.Password" />
+                        <ValidationMessage For="()=> Register.Password" />
+                    </div>
+
+                    <!-- Password Confirm input -->
+                    <div class="mb-3">
+                        <label class="form-label">
+                            @Localizer[nameof(Strings.PasswordConfirm)]
+                        </label>
+                        <InputText type="password" class="form-control" @bind-Value="Register.PasswordConfirm" />
+                        <ValidationMessage For="()=> Register.PasswordConfirm" />
+                    </div>
+
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-primary w-100 mb-4">
+                        @Localizer[nameof(Strings.Register)]
+                    </button>
+
+                    <!-- Login -->
+                    <div class="mb-3 text-center">
+                        <span class="text-secondary">@Localizer[nameof(Strings.HaveAccount)]</span>
+                        <a href="/Login" class="btn-link text-decoration-none">
+                            <span>@Localizer[nameof(Strings.Login)]</span>
+                        </a>
+                    </div>
+
+                </EditForm>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@code {
+    string? ErrorMessage = null;
+    RegisterModel Register = new RegisterModel();
+
+    async Task OnValidSubmit()
+    {
+        await Task.Delay(100);
+    }
+
+    void HideMessage()
+    {
+        ErrorMessage = null;
+    }
+}

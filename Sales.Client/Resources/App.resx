@@ -120,10 +120,76 @@
   <data name="ar-JO" xml:space="preserve">
     <value>Arabic</value>
   </data>
+  <data name="EmailAddress" xml:space="preserve">
+    <value>Email Address</value>
+  </data>
   <data name="en-US" xml:space="preserve">
     <value>English</value>
   </data>
+  <data name="ForgetPassword" xml:space="preserve">
+    <value>Forget Password</value>
+  </data>
+  <data name="ForgetPasswordQustion" xml:space="preserve">
+    <value>Forget Password?</value>
+  </data>
+  <data name="ForgetPasswordRecovery" xml:space="preserve">
+    <value>Account Recovery</value>
+  </data>
+  <data name="HaveAccount" xml:space="preserve">
+    <value>Already have account?</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="NoAccount" xml:space="preserve">
+    <value>Dont have account?</value>
+  </data>
+  <data name="NotFound" xml:space="preserve">
+    <value>Page Not Found</value>
+  </data>
+  <data name="NotFoundTip" xml:space="preserve">
+    <value>Oops! This Page Could Not Be Found</value>
+  </data>
+  <data name="NotFoundTip1" xml:space="preserve">
+    <value>Sorry but the page you are looking for does not exist, have been removed. name changed or is temporarily unavailable</value>
+  </data>
+  <data name="NotFoundTip2" xml:space="preserve">
+    <value>Go To Homepage</value>
+  </data>
+  <data name="Notifications" xml:space="preserve">
+    <value>Notifications</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="PasswordConfirm" xml:space="preserve">
+    <value>Confirm password</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="RegisterNewAccount" xml:space="preserve">
+    <value>Register New Account</value>
+  </data>
   <data name="SelectLanguage" xml:space="preserve">
     <value>Select Language</value>
+  </data>
+  <data name="SiteName" xml:space="preserve">
+    <value>Sales Management</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>User Name</value>
+  </data>
+  <data name="UserNameOrEmail" xml:space="preserve">
+    <value>User name or email address</value>
   </data>
 </root>

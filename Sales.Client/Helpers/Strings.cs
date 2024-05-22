@@ -3,5 +3,27 @@
     public enum Strings
     {
         SelectLanguage,
+        SiteName,
+        Home,
+        Login,
+        Register,
+        Logout,
+        Profile,
+        Notifications,
+        NotFound,
+        NotFoundTip,
+        NotFoundTip1,
+        NotFoundTip2,
+        UserName,
+        EmailAddress,
+        Password,
+        PasswordConfirm,
+        ForgetPassword,
+        ForgetPasswordQustion,
+        ForgetPasswordRecovery,
+        NoAccount,
+        HaveAccount,
+        UserNameOrEmail,
+        RegisterNewAccount,
     }
 }

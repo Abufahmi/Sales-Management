@@ -3,7 +3,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Sales.Context.Data;
 using Sales.Context.Helpers;
-using Sales.Context.Models;
+using Sales.Library.Models;
 using Sales.Library;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;

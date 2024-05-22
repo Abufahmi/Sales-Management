@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Sales.Context.Data;
 using Sales.Context.Helpers;
-using Sales.Context.Models;
+using Sales.Library.Models;
 using Sales.Context.Services;
 using System.Text;
 

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Sales.Context.Data;
-using Sales.Context.Models;
+using Sales.Library.Models;
 using Sales.Library;
 using System;
 using System.Collections.Generic;
@@ -24,7 +24,7 @@ namespace Sales.Context.Services
 
         public async Task<LoginResponse> LoginAsync(Login login)
         {
-            if (login == null || login.Password == null || (login.Email == null && login.UserName == null))
+            if (login == null || login.Password == null || login.UserName == null)
             {
                 return new LoginResponse(false, "Model is empty");
             }
@@ -32,7 +32,7 @@ namespace Sales.Context.Services
             var user = await db.Users.FirstOrDefaultAsync(x => x.UserName == login.UserName);
             if (user == null || user.Password == null)
             {
-                user = await db.Users.FirstOrDefaultAsync(x => x.Email == login.Email);
+                user = await db.Users.FirstOrDefaultAsync(x => x.Email == login.UserName);
                 if (user == null)
                     return new LoginResponse(false, "There is no such account");
             }

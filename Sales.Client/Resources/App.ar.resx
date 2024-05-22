@@ -120,10 +120,76 @@
   <data name="ar-JO" xml:space="preserve">
     <value>العربية</value>
   </data>
+  <data name="EmailAddress" xml:space="preserve">
+    <value> البريد الالكتروني</value>
+  </data>
   <data name="en-US" xml:space="preserve">
     <value>الانجليزية</value>
   </data>
+  <data name="ForgetPassword" xml:space="preserve">
+    <value>نسيت كلمة المرور</value>
+  </data>
+  <data name="ForgetPasswordQustion" xml:space="preserve">
+    <value>نسيت كلمة المرور؟</value>
+  </data>
+  <data name="ForgetPasswordRecovery" xml:space="preserve">
+    <value>طلب استعادة الحساب</value>
+  </data>
+  <data name="HaveAccount" xml:space="preserve">
+    <value> لديك حساب؟</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>الرئيسية</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>تسجيل الدخول</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>تسجيل الخروج</value>
+  </data>
+  <data name="NoAccount" xml:space="preserve">
+    <value>لا يوجد لديك حساب؟</value>
+  </data>
+  <data name="NotFound" xml:space="preserve">
+    <value>الصفحة غير موجودة</value>
+  </data>
+  <data name="NotFoundTip" xml:space="preserve">
+    <value>عفوا! تعذر العثور على هذه الصفحة</value>
+  </data>
+  <data name="NotFoundTip1" xml:space="preserve">
+    <value>نأسف ولكن الصفحة التي تبحث عنها غير موجودة ، تمت إزالتها. تم تغيير الاسم أو غير متاح مؤقتا</value>
+  </data>
+  <data name="NotFoundTip2" xml:space="preserve">
+    <value>اذهب إلى الصفحة الرئيسية</value>
+  </data>
+  <data name="Notifications" xml:space="preserve">
+    <value>التنبيهات</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>كلمة المرور</value>
+  </data>
+  <data name="PasswordConfirm" xml:space="preserve">
+    <value>تاكيد كلمة المرور</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>الملف الشخصي</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>التسجيل</value>
+  </data>
+  <data name="RegisterNewAccount" xml:space="preserve">
+    <value>تسجيل حساب جديد</value>
+  </data>
   <data name="SelectLanguage" xml:space="preserve">
     <value>اختر اللغة</value>
+  </data>
+  <data name="SiteName" xml:space="preserve">
+    <value>المبيعات</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>اسم المستخدم</value>
+  </data>
+  <data name="UserNameOrEmail" xml:space="preserve">
+    <value>اسم المستخدم او البريد الالكتروني</value>
   </data>
 </root>

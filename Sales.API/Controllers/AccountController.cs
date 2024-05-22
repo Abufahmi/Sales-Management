@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Win32;
-using Sales.Context.Models;
+using Sales.Library.Models;
 using Sales.Context.Services;
 
 namespace Sales.API.Controllers

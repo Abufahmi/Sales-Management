@@ -1,5 +1,23 @@
+/*fonts*/
+@font-face {
+    font-family: 'DroidKufi-Bold';
+    src: url('../fonts/DroidKufi-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'DroidKufi-Regular';
+    src: url('../fonts/DroidKufi-Regular.ttf') format('truetype');
+}
+/*fonts*/
+
 html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    font-family: "DroidKufi-Regular", sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.5;
+    background-color: #f1f4f7;
 }
 
 .ar {
@@ -110,4 +128,19 @@ a, .btn-link {
 
 code {
     color: #c02d76;
+}
+
+/*register*/
+.full-img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+/*register*/
+
+
+@media (max-width: 768px) {
+    .container-img {
+        display: none;
+    }
 }
