@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.JSInterop;
+using Sales.Client.Repositories;
 using System.Globalization;
 
 namespace Sales.Client.Services
@@ -26,6 +27,7 @@ namespace Sales.Client.Services
             services.AddTransient<LocalStorageService>();
             services.AddTransient<ClientService>();
             services.AddTransient<AuthenticationStateProvider, AppAuthenticationStateProvider>();
+            services.AddTransient<IAccountRepository, AccountRepository>();
             return services;
         }
     }

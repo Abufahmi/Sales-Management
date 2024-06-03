@@ -24,7 +24,7 @@ namespace Sales.Client.Models
             ErrorMessageResourceType = typeof(ErrorResourceMessage))]
         public string? Password { get; set; }
 
-        [Compare("Password", ErrorMessageResourceName = nameof(ErrorResourceMessage.PasswordNotMatch),
+        [Compare(nameof(Password), ErrorMessageResourceName = nameof(ErrorResourceMessage.PasswordNotMatch),
             ErrorMessageResourceType = typeof(ErrorResourceMessage)), DataType(DataType.Password)]
         [Required(ErrorMessageResourceName = nameof(ErrorResourceMessage.PasswordConfirmRequired),
             ErrorMessageResourceType = typeof(ErrorResourceMessage))]

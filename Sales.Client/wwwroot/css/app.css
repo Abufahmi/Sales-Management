@@ -138,6 +138,13 @@ code {
 }
 /*register*/
 
+.lbl-error {
+    font-size: 16px;
+    color: red;
+    display: block;
+    margin-top: 5px;
+}
+
 
 @media (max-width: 768px) {
     .container-img {

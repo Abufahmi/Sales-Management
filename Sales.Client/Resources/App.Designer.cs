@@ -79,6 +79,24 @@ namespace Sales.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email address already exists.
+        /// </summary>
+        public static string EmailAddressExists {
+            get {
+                return ResourceManager.GetString("EmailAddressExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email address already exists.
+        /// </summary>
+        public static string EmailExists {
+            get {
+                return ResourceManager.GetString("EmailExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to English.
         /// </summary>
         public static string en_US {
@@ -268,11 +286,29 @@ namespace Sales.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An unknown error has occurred. Please try again..
+        /// </summary>
+        public static string UnknowError {
+            get {
+                return ResourceManager.GetString("UnknowError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User Name.
         /// </summary>
         public static string UserName {
             get {
                 return ResourceManager.GetString("UserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User name already exists.
+        /// </summary>
+        public static string UserNameExists {
+            get {
+                return ResourceManager.GetString("UserNameExists", resourceCulture);
             }
         }
         

@@ -123,6 +123,12 @@
   <data name="EmailAddress" xml:space="preserve">
     <value>Email Address</value>
   </data>
+  <data name="EmailAddressExists" xml:space="preserve">
+    <value>Email address already exists</value>
+  </data>
+  <data name="EmailExists" xml:space="preserve">
+    <value>Email address already exists</value>
+  </data>
   <data name="en-US" xml:space="preserve">
     <value>English</value>
   </data>
@@ -186,8 +192,14 @@
   <data name="SiteName" xml:space="preserve">
     <value>Sales Management</value>
   </data>
+  <data name="UnknowError" xml:space="preserve">
+    <value>An unknown error has occurred. Please try again.</value>
+  </data>
   <data name="UserName" xml:space="preserve">
     <value>User Name</value>
+  </data>
+  <data name="UserNameExists" xml:space="preserve">
+    <value>User name already exists</value>
   </data>
   <data name="UserNameOrEmail" xml:space="preserve">
     <value>User name or email address</value>

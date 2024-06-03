@@ -22,6 +22,11 @@ namespace Sales.Context.Services
             this.dbService = dbService;
         }
 
+        public async Task<IEnumerable<User>> GetUsersAsync()
+        {
+            return await db.Users.ToListAsync();
+        }
+
         public async Task<LoginResponse> LoginAsync(Login login)
         {
             if (login == null || login.Password == null || login.UserName == null)

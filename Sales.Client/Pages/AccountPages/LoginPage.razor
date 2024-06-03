@@ -1,6 +1,9 @@
 ﻿@using Sales.Client.Models
+@using Sales.Client.Repositories
 
 @page "/Login"
+@inject IAccountRepository repo
+
 <div class="container">
     <div class="col-lg-4 col-md-6 col-sm-8 mx-auto bg-white p-4 mt-4 shadow">
         @if (ErrorMessage != null)
@@ -68,7 +71,25 @@
 
     async Task OnValidSubmit()
     {
-        await Task.Delay(100);
+        if (Login == null || Login.UserName == null || Login.Password == null || Login.Password.Length < 6)
+            return;
+
+        bool result = await repo.LoginAsync(Login);
+        if (result)
+        {
+            NavManager.NavigateTo("/", true);
+        }
+        else
+        {
+            if (AppServices.Error != null)
+            {
+                ErrorMessage = AppServices.Error;
+            }
+            else
+            {
+                ErrorMessage = Localizer[nameof(Strings.UnknowError)]?.Value;
+            }
+        }
     }
 
     void HideMessage()

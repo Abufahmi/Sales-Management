@@ -10,5 +10,6 @@ namespace Sales.Client.Helpers
         public static string Direction => IsArabic ? "ar" : "en";
 
         public static string BaseAddress => "https://localhost:7063/api/";
+        public static string? Error { get; set; }
     }
 }

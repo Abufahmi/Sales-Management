@@ -45,6 +45,18 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
+// register Cors policy
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("SalesManagement", policy =>
+    {
+        policy.WithOrigins("http://localhost:5219", "https://localhost:7175")
+        .AllowAnyMethod()
+        .AllowCredentials()
+        .AllowAnyHeader();
+    });
+});
+
 // register services
 builder.Services.AddTransient<IDbService, DbService>();
 builder.Services.AddTransient<IAccountService, AccountService>();
@@ -60,7 +72,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseCors("SalesManagement");
 app.UseAuthentication();
 app.UseAuthorization();
 

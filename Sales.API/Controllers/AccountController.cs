@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Win32;
 using Sales.Library.Models;
 using Sales.Context.Services;
+using Sales.Context.Helpers;
+using Sales.Library;
 
 namespace Sales.API.Controllers
 {
@@ -28,7 +30,7 @@ namespace Sales.API.Controllers
             if (result.Flag)
                 return Ok(result);
 
-            return BadRequest(result);
+            return BadRequest(result.message);
         }
 
         [HttpPost]
@@ -44,7 +46,24 @@ namespace Sales.API.Controllers
                 return Ok(result);
             }
 
-            return BadRequest(result);
+            return BadRequest(result?.message);
+        }
+
+        [ApiExplorerSettings(IgnoreApi = true)]
+        [HttpGet]
+        [Route("GetUsers")]
+        public async Task<ActionResult<List<User>>> GetUsers()
+        {
+            var users = await accountService.GetUsersAsync();
+            if (users != null)
+            {
+                return Ok(users);
+            }
+
+            if (LibraryService.Error != null)
+                return BadRequest(LibraryService.Error);
+
+            return BadRequest();
         }
     }
 }

@@ -1,11 +1,15 @@
 ﻿@using Sales.Client.Models
+@using Sales.Client.Repositories
+@using Sales.Library
 
 @page "/Register"
+@inject IAccountRepository repo
+
 <div class="p-0">
     <div class="row m-0">
         <div class="col-lg-6 col-md-5 col-sm-12 p-0 container-img">
             <img class="full-img" src="images/main/register.jpg" alt="" />
-        </div> 
+        </div>
         <div class="col-lg-6 col-md-7 col-sm-12">
             <div class="col-lg-7 col-md-9 col-sm-11 mx-auto bg-white p-4 my-4 shadow">
                 @if (ErrorMessage != null)
@@ -32,8 +36,12 @@
                         <label class="form-label">
                             @Localizer[nameof(Strings.UserName)]
                         </label>
-                        <InputText type="text" @bind-Value="Register.UserName" class="form-control" />
-                        <ValidationMessage For="()=> Register.UserName" />
+                        <InputText @bind-Value="Register.UserName" class="form-control" @oninput="OnUserNameChange" />
+                        <ValidationMessage class="lbl-error" For="()=> Register.UserName" />
+                        @if (UserNameError != null)
+                        {
+                            <span class="lbl-error">@UserNameError</span>
+                        }
                     </div>
 
                     <!-- User name -->
@@ -41,8 +49,12 @@
                         <label class="form-label">
                             @Localizer[nameof(Strings.EmailAddress)]
                         </label>
-                        <InputText type="text" @bind-Value="Register.Email" class="form-control" />
-                        <ValidationMessage For="()=> Register.Email" />
+                        <InputText type="email" @bind-Value="Register.Email" class="form-control" @oninput="OnEmailChange" />
+                        <ValidationMessage class="lbl-error" For="()=> Register.Email" />
+                        @if (EmailError != null)
+                        {
+                            <span class="lbl-error">@EmailError</span>
+                        }
                     </div>
 
                     <!-- Password input -->
@@ -51,7 +63,7 @@
                             @Localizer[nameof(Strings.Password)]
                         </label>
                         <InputText type="password" class="form-control" @bind-Value="Register.Password" />
-                        <ValidationMessage For="()=> Register.Password" />
+                        <ValidationMessage class="lbl-error" For="()=> Register.Password" />
                     </div>
 
                     <!-- Password Confirm input -->
@@ -60,7 +72,7 @@
                             @Localizer[nameof(Strings.PasswordConfirm)]
                         </label>
                         <InputText type="password" class="form-control" @bind-Value="Register.PasswordConfirm" />
-                        <ValidationMessage For="()=> Register.PasswordConfirm" />
+                        <ValidationMessage class="lbl-error" For="()=> Register.PasswordConfirm" />
                     </div>
 
                     <!-- Submit button -->
@@ -85,15 +97,70 @@
 
 @code {
     string? ErrorMessage = null;
+    string? UserNameError = null;
+    string? EmailError = null;
     RegisterModel Register = new RegisterModel();
+    IEnumerable<User> Users = Enumerable.Empty<User>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var users = await repo.GetUsersAsync();
+        if (users != null)
+            Users = users;
+
+        await base.OnInitializedAsync();
+    }
 
     async Task OnValidSubmit()
     {
-        await Task.Delay(100);
+        if (Register == null || Register.UserName == null || Register.Password == null || Register.Email == null ||
+            Register.PasswordConfirm == null || UserNameError != null || EmailError != null)
+            return;
+
+        bool result = await repo.RegisterAsync(Register);
+        if (result)
+        {
+            NavManager.NavigateTo("/Login", true);
+        }
+        else
+        {
+            if (AppServices.Error != null)
+            {
+                ErrorMessage = AppServices.Error;
+            }
+            else
+            {
+                ErrorMessage = Localizer[nameof(Strings.UnknowError)]?.Value;
+            }
+        }
     }
 
     void HideMessage()
     {
         ErrorMessage = null;
+    }
+
+    void OnUserNameChange(ChangeEventArgs args)
+    {
+        UserNameError = null;
+        if (args?.Value == null) return;
+        var txt = args.Value as string;
+        if (string.IsNullOrWhiteSpace(txt))
+            return;
+
+        if (Users.Any(x => x.UserName!.ToLower() == txt.ToLower()))
+            UserNameError = Localizer[nameof(Strings.UserNameExists)]?.Value;
+    }
+
+    void OnEmailChange(ChangeEventArgs args)
+    {
+        EmailError = null;
+        if (args?.Value == null) return;
+        var txt = args.Value as string;
+        if (string.IsNullOrWhiteSpace(txt))
+            return;
+
+        if (Users.Any(x => x.Email!.ToLower() == txt.ToLower()))
+            EmailError = Localizer[nameof(Strings.EmailAddressExists)]?.Value;
     }
 }

@@ -123,6 +123,12 @@
   <data name="EmailAddress" xml:space="preserve">
     <value> البريد الالكتروني</value>
   </data>
+  <data name="EmailAddressExists" xml:space="preserve">
+    <value>البريد الالكتروني مستعمل</value>
+  </data>
+  <data name="EmailExists" xml:space="preserve">
+    <value> البريد الالكتروني مستعمل</value>
+  </data>
   <data name="en-US" xml:space="preserve">
     <value>الانجليزية</value>
   </data>
@@ -186,8 +192,14 @@
   <data name="SiteName" xml:space="preserve">
     <value>المبيعات</value>
   </data>
+  <data name="UnknowError" xml:space="preserve">
+    <value>حدث خطأ غير معلوم. الرجاء المحاولة لاحقا.</value>
+  </data>
   <data name="UserName" xml:space="preserve">
     <value>اسم المستخدم</value>
+  </data>
+  <data name="UserNameExists" xml:space="preserve">
+    <value>اسم المستخدم مستعمل</value>
   </data>
   <data name="UserNameOrEmail" xml:space="preserve">
     <value>اسم المستخدم او البريد الالكتروني</value>

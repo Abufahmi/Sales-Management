@@ -21,10 +21,17 @@ namespace Sales.Client.Services
             client.BaseAddress = new Uri(AppServices.BaseAddress);
             var stringToken = await localStorageService.GetToken();
             if (stringToken == null || string.IsNullOrEmpty(stringToken))
+            {
+                client.DefaultRequestHeaders.Remove(HeaderKey);
                 return client;
+            }
 
             var deserializeToken = Serialization.DeSerializeJsonString<TokenModel>(stringToken);
-            if (deserializeToken == null) return client;
+            if (deserializeToken == null)
+            {
+                client.DefaultRequestHeaders.Remove(HeaderKey);
+                return client;
+            }
 
             client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers
                 .AuthenticationHeaderValue("Bearer", deserializeToken.Token);

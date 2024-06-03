@@ -25,5 +25,9 @@
         HaveAccount,
         UserNameOrEmail,
         RegisterNewAccount,
+        UserNameExists,
+        EmailExists,
+        UnknowError,
+        EmailAddressExists,
     }
 }
