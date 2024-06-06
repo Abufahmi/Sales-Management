@@ -120,6 +120,12 @@
   <data name="ar-JO" xml:space="preserve">
     <value>Arabic</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>Dashboard</value>
+  </data>
   <data name="EmailAddress" xml:space="preserve">
     <value>Email Address</value>
   </data>
@@ -153,6 +159,9 @@
   <data name="Logout" xml:space="preserve">
     <value>Logout</value>
   </data>
+  <data name="LogoutMsg" xml:space="preserve">
+    <value>You're about to check out. Do you want to continue?</value>
+  </data>
   <data name="NoAccount" xml:space="preserve">
     <value>Dont have account?</value>
   </data>
@@ -170,6 +179,9 @@
   </data>
   <data name="Notifications" xml:space="preserve">
     <value>Notifications</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>OK</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>

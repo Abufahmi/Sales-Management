@@ -38,12 +38,19 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="/Logout">
-                                        <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                                    <a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                                        <i class="fa fa-sign-in-alt"></i>
                                         <span>@Localizer[nameof(Strings.Logout)]</span>
                                     </a>
                                 </li>
                             </ul>
+                        </li>
+                    </Authorized>
+                </AuthorizeView>
+                <AuthorizeView Roles="@nameof(AppServices.Admin)">
+                    <Authorized>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Dashboard">@Localizer[nameof(Strings.Dashboard)]</a>
                         </li>
                     </Authorized>
                 </AuthorizeView>

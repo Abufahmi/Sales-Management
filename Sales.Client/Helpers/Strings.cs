@@ -29,5 +29,9 @@
         EmailExists,
         UnknowError,
         EmailAddressExists,
+        LogoutMsg,
+        Cancel,
+        Ok,
+        Dashboard,
     }
 }

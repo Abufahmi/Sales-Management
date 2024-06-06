@@ -1,0 +1,35 @@
+﻿@using Sales.Client.Repositories
+
+@inject IAccountRepository repo
+
+<!-- Modal -->
+<div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header en">
+                <h5 class="modal-title" id="logoutModalLabel">@Localizer[nameof(Strings.Logout)]</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @Localizer[nameof(Strings.LogoutMsg)]
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    @Localizer[nameof(Strings.Cancel)]
+                </button>
+                <a class="btn btn-danger" @onclick="LogoutClicked">@Localizer[nameof(Strings.Ok)]</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+@code {
+    private async Task LogoutClicked()
+    {
+        if (await repo.LogoutAsync())
+        {
+            NavManager?.NavigateTo("/", forceLoad: true);
+        }
+    }
+}

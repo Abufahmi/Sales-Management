@@ -1,5 +1,6 @@
 using Sales.Client.Helpers;
 using Sales.Client.Models;
+using Sales.Library.Models;
 
 namespace Sales.Client.Services
 {

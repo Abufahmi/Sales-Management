@@ -5,6 +5,7 @@ using Sales.Library.Models;
 using Sales.Context.Services;
 using Sales.Context.Helpers;
 using Sales.Library;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Sales.API.Controllers
 {
@@ -58,6 +59,33 @@ namespace Sales.API.Controllers
             if (users != null)
             {
                 return Ok(users);
+            }
+
+            if (LibraryService.Error != null)
+                return BadRequest(LibraryService.Error);
+
+            return BadRequest();
+        }
+
+        [Authorize(Roles = nameof(LibraryService.Admin))]
+        [HttpGet]
+        [Route("TestAuthentication")]
+        public IActionResult TestAuthentication()
+        {
+            return Ok("Welcome admin you are authenticated"); ;
+        }
+
+        [HttpPost]
+        [Route("RefreshToken")]
+        public async Task<IActionResult> RefreshToken(RefreshTokenModel? refreshToken)
+        {
+            if (refreshToken?.RefreshToken == null)
+                return BadRequest();
+
+            var token = await accountService.RefreshTokenAsync(refreshToken.RefreshToken);
+            if (token != null)
+            {
+                return Ok(token);
             }
 
             if (LibraryService.Error != null)

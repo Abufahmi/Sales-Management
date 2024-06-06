@@ -17,8 +17,9 @@ builder.Services.AddCascadingAuthenticationState();
 builder.Services.AddBlazoredLocalStorage();
 
 // In your Program.cs or Startup.cs
-builder.Services.AddHttpClient("ApiClient", 
-    client => client.BaseAddress = new Uri(AppServices.BaseAddress));
+builder.Services.AddHttpClient("ApiClient",
+    client => client.BaseAddress = new Uri(AppServices.BaseAddress))
+    .AddHttpMessageHandler<CustomHttpHandler>();
 
 
 // Add localization

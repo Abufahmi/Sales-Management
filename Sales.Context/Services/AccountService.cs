@@ -2,12 +2,8 @@
 using Sales.Context.Data;
 using Sales.Library.Models;
 using Sales.Library;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static Sales.Context.Helpers.Responses;
+using Sales.Context.Helpers;
 
 namespace Sales.Context.Services
 {
@@ -29,6 +25,7 @@ namespace Sales.Context.Services
 
         public async Task<LoginResponse> LoginAsync(Login login)
         {
+            await dbService.CreateAdminAsync();
             if (login == null || login.Password == null || login.UserName == null)
             {
                 return new LoginResponse(false, "Model is empty");
@@ -82,8 +79,61 @@ namespace Sales.Context.Services
             return new LoginResponse(true, "Ok", token, refreshToken);
         }
 
+        public async Task<TokenModel?> RefreshTokenAsync(string refreshToken)
+        {
+            LibraryService.Error = null;
+            if (refreshToken == null || refreshToken == string.Empty)
+            {
+                LibraryService.Error = "Model is empty";
+                return null;
+            }
+
+            var userLogin = await db.UserLogins
+                .FirstOrDefaultAsync(x => x.RefreshToken == refreshToken);
+            if (userLogin == null)
+            {
+                LibraryService.Error = "Refresh token is invalid";
+                return null;
+            }
+
+            var user = await db.Users.FirstOrDefaultAsync(x => x.Id == userLogin.UserId);
+            if (user == null)
+            {
+                LibraryService.Error = "Refresh token could not generated. User not found";
+                return null;
+            }
+
+            string? roleName = await dbService.GetRoleNameByUserIdAsync(user.Id!);
+            if (roleName == null)
+            {
+                LibraryService.Error = "Could not fetch user authurazation";
+                return null;
+            }
+
+            try
+            {
+                string token = dbService.GenerateToken(user, roleName);
+                refreshToken = dbService.GenerateRefreshToken();
+
+                bool loged = await dbService.CreateLoginAsync(user.Id!, refreshToken);
+                if (!loged)
+                {
+                    LibraryService.Error = "Could not set user login, Please try later";
+                    return null;
+                }
+
+                return new TokenModel { Token = token, RefreshToken = refreshToken };
+            }
+            catch (Exception ex)
+            {
+                LibraryService.Error = ex.Message;
+                return null;
+            }
+        }
+
         public async Task<DefaultResponse> RegisterAsync(Register register)
         {
+            await dbService.CreateAdminAsync();
             if (register == null || register.UserName == null || register.Email == null || register.Password == null)
             {
                 return new DefaultResponse(false, "Model is empty");

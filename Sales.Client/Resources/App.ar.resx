@@ -120,6 +120,12 @@
   <data name="ar-JO" xml:space="preserve">
     <value>العربية</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>تراجع</value>
+  </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>لوحة التحكم</value>
+  </data>
   <data name="EmailAddress" xml:space="preserve">
     <value> البريد الالكتروني</value>
   </data>
@@ -153,6 +159,9 @@
   <data name="Logout" xml:space="preserve">
     <value>تسجيل الخروج</value>
   </data>
+  <data name="LogoutMsg" xml:space="preserve">
+    <value>انت علي وشك تسجيل الخروج. هل تريد الاستمرار؟</value>
+  </data>
   <data name="NoAccount" xml:space="preserve">
     <value>لا يوجد لديك حساب؟</value>
   </data>
@@ -170,6 +179,9 @@
   </data>
   <data name="Notifications" xml:space="preserve">
     <value>التنبيهات</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>موافق</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>كلمة المرور</value>

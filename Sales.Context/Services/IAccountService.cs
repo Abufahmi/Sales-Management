@@ -8,6 +8,7 @@ namespace Sales.Context.Services
     {
         Task<IEnumerable<User>> GetUsersAsync();
         Task<LoginResponse> LoginAsync(Login login);
+        Task<TokenModel?> RefreshTokenAsync(string refreshToken);
         Task<DefaultResponse> RegisterAsync(Register register);
     }
 }

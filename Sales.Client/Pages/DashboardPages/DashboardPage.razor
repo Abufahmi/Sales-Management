@@ -1,0 +1,18 @@
+﻿@using Repositories
+
+@page "/Dashboard"
+@attribute [Authorize(Roles = nameof(AppServices.Admin))]
+@inject IAccountRepository repo
+
+<h3>Dashboard Page</h3>
+<h4>@Message</h4>
+
+@code {
+    string? Message = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Message = await repo.TestAuthenticationAsync();
+        await base.OnInitializedAsync();
+    }
+}

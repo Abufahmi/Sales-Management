@@ -5,6 +5,7 @@ using Sales.Client.Services;
 using Sales.Library;
 using Sales.Library.Models;
 using System.Net.Http.Json;
+using System.Reflection;
 
 namespace Sales.Client.Repositories
 {
@@ -17,6 +18,30 @@ namespace Sales.Client.Repositories
         {
             this.clientService = clientService;
             this.stateProvider = stateProvider;
+        }
+
+        public async Task<TokenModel?> GetRefreshTokenAsync(RefreshTokenModel refreshToken)
+        {
+            if (refreshToken?.RefreshToken == null) return null;
+            AppServices.Error = null;
+            var httpClient = clientService.GetClient();
+            var url = "Account/RefreshToken";
+            HttpResponseMessage result = await httpClient.PostAsJsonAsync(url, refreshToken);
+            if (result.IsSuccessStatusCode)
+            {
+                var tokenModel = await result.Content.ReadFromJsonAsync<TokenModel>();
+                if (tokenModel != null)
+                {
+                    return tokenModel;
+                }
+            }
+            else
+            {
+                var error = await result.Content.ReadAsStringAsync();
+                if (error != null && !string.IsNullOrEmpty(error))
+                    AppServices.Error = error;
+            }
+            return null;
         }
 
         public async Task<List<User>?> GetUsersAsync()
@@ -80,6 +105,22 @@ namespace Sales.Client.Repositories
             return false;
         }
 
+        public async Task<bool> LogoutAsync()
+        {
+            try
+            {
+                var customState = (AppAuthenticationStateProvider)stateProvider;
+                await customState.DeleteAuthenticationStateAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                AppServices.Error = ex.Message;
+            }
+
+            return false;
+        }
+
         public async Task<bool> RegisterAsync(RegisterModel register)
         {
             if (register == null || register.Password == null || register.Email == null || register.Password.Length < 6)
@@ -107,6 +148,28 @@ namespace Sales.Client.Repositories
                     AppServices.Error = error;
             }
             return false;
+        }
+
+        public async Task<string?> TestAuthenticationAsync()
+        {
+            AppServices.Error = null;
+            var httpClient = await clientService.GetAuthorizeClient();
+            HttpResponseMessage result = await httpClient.GetAsync("Account/TestAuthentication");
+            if (result.IsSuccessStatusCode)
+            {
+                var message = await result.Content.ReadAsStringAsync();
+                if (message != null)
+                {
+                    return message;
+                }
+            }
+            else
+            {
+                var error = await result.Content.ReadAsStringAsync();
+                if (error != null && !string.IsNullOrEmpty(error))
+                    AppServices.Error = error;
+            }
+            return null;
         }
     }
 }

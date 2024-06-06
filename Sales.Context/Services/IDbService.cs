@@ -4,6 +4,7 @@ namespace Sales.Context.Services
 {
     public interface IDbService
     {
+        Task CreateAdminAsync();
         Task<bool> CreateLoginAsync(string userId, string refreshToken);
         Task<bool> CreateRolesAsync();
         Task<bool> CreateUserRoleIfNotExistsAsync(User user);

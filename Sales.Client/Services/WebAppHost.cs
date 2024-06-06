@@ -24,6 +24,7 @@ namespace Sales.Client.Services
 
         public static IServiceCollection ConfigureRepositoryServices(this IServiceCollection services)
         {
+            services.AddTransient<CustomHttpHandler>();
             services.AddTransient<LocalStorageService>();
             services.AddTransient<ClientService>();
             services.AddTransient<AuthenticationStateProvider, AppAuthenticationStateProvider>();

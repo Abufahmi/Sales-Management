@@ -12,7 +12,7 @@ using System.Text;
 
 namespace Sales.Context.Services
 {
-    public class DbService: IDbService
+    public class DbService : IDbService
     {
         private readonly ApplicationDb db;
         private readonly IOptions<JwtSection> options;
@@ -21,6 +21,42 @@ namespace Sales.Context.Services
         {
             this.db = db;
             this.options = options;
+        }
+
+        public async Task CreateAdminAsync()
+        {
+            var user = await db.Users
+                .FirstOrDefaultAsync(x => x.UserName == nameof(LibraryService.Admin));
+            if (user != null || !db.Roles.Any()) return;
+
+            user = new User
+            {
+                Id = Guid.NewGuid().ToString(),
+                UserName = nameof(LibraryService.Admin),
+                Email = "admin@admin.com",
+                CreatedDate = DateTime.UtcNow,
+                EmailConfirmed = true,
+                PhoneConfirmed = true,
+                PhoneNumber = "0999999999",
+                Password = BCrypt.Net.BCrypt.HashPassword("@Admin#"),
+            };
+
+            await db.AddAsync(user);
+            await db.SaveChangesAsync();
+
+            var adminRole = await db.Roles
+                .FirstOrDefaultAsync(x => x.RoleName == nameof(LibraryService.Admin));
+            if (adminRole == null) return;
+
+            var userRole = new UserRole
+            {
+                Id = Guid.NewGuid().ToString(),
+                UserId = user.Id,
+                RoleId = adminRole.Id
+            };
+
+            await db.AddAsync(userRole);
+            await db.SaveChangesAsync();
         }
 
         public async Task<bool> CreateLoginAsync(string userId, string refreshToken)
@@ -106,7 +142,7 @@ namespace Sales.Context.Services
                 issuer: options.Value.Issuer,
                 audience: options.Value.Audience,
                 claims: claims,
-                expires: DateTime.UtcNow.AddMinutes(5),
+                expires: DateTime.Now.AddSeconds(10),
                 signingCredentials: credentials
             );
 
