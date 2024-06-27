@@ -20,6 +20,52 @@ namespace Sales.Client.Repositories
             this.stateProvider = stateProvider;
         }
 
+        public async Task<string?> ForgetPasswordAsync(ForgetPassword forgetPassword)
+        {
+            if (forgetPassword?.EmailAddress == null || forgetPassword?.EmailModel?.Subject == null ||
+                forgetPassword?.EmailModel?.Body == null)
+                return null;
+
+            AppServices.Error = null;
+            var httpClient = clientService.GetClient();
+            var url = "Account/ForgetPassword";
+            HttpResponseMessage result = await httpClient.PostAsJsonAsync(url, forgetPassword);
+            if (result.IsSuccessStatusCode)
+            {
+                var token = await result.Content.ReadAsStringAsync();
+                if (token != null)
+                    return token;
+            }
+            else
+            {
+                var error = await result.Content.ReadAsStringAsync();
+                if (error != null && !string.IsNullOrEmpty(error))
+                    AppServices.Error = error;
+            }
+            return null;
+        }
+
+        public async Task<MainSetting?> GetMainSettingAsync()
+        {
+            AppServices.Error = null;
+            var httpClient = clientService.GetClient();
+            var url = "Account/GetMainSetting";
+            HttpResponseMessage result = await httpClient.GetAsync(url);
+            if (result.IsSuccessStatusCode)
+            {
+                var main = await result.Content.ReadFromJsonAsync<MainSetting>();
+                if (main != null)
+                    return main;
+            }
+            else
+            {
+                var error = await result.Content.ReadAsStringAsync();
+                if (error != null && !string.IsNullOrEmpty(error))
+                    AppServices.Error = error;
+            }
+            return null;
+        }
+
         public async Task<TokenModel?> GetRefreshTokenAsync(RefreshTokenModel refreshToken)
         {
             if (refreshToken?.RefreshToken == null) return null;
@@ -71,6 +117,26 @@ namespace Sales.Client.Repositories
 
             }
             return null;
+        }
+
+        public async Task<bool> IsTokenExistsAsync(string token)
+        {
+            if (token == null) return false;
+            AppServices.Error = null;
+            var httpClient = await clientService.GetAuthorizeClient();
+            HttpResponseMessage result = await httpClient
+                .GetAsync($"Account/IsTokenExists/{token}");
+            if (result.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else
+            {
+                var error = await result.Content.ReadAsStringAsync();
+                if (error != null && !string.IsNullOrEmpty(error))
+                    AppServices.Error = error;
+            }
+            return false;
         }
 
         public async Task<bool> LoginAsync(LoginModel loginModel)
@@ -150,6 +216,25 @@ namespace Sales.Client.Repositories
             return false;
         }
 
+        public async Task<bool> ResetPasswordAsync(ResetAccount reset)
+        {
+            AppServices.Error = null;
+            var httpClient = clientService.GetClient();
+            HttpResponseMessage result = await httpClient
+                .PostAsJsonAsync("Account/ResetAccount", reset);
+            if (result.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else
+            {
+                var error = await result.Content.ReadAsStringAsync();
+                if (error != null && !string.IsNullOrEmpty(error))
+                    AppServices.Error = error;
+            }
+            return false;
+        }
+
         public async Task<string?> TestAuthenticationAsync()
         {
             AppServices.Error = null;
@@ -161,6 +246,30 @@ namespace Sales.Client.Repositories
                 if (message != null)
                 {
                     return message;
+                }
+            }
+            else
+            {
+                var error = await result.Content.ReadAsStringAsync();
+                if (error != null && !string.IsNullOrEmpty(error))
+                    AppServices.Error = error;
+            }
+            return null;
+        }
+
+        public async Task<string?> VerifyCodeAsync(string? verificationCode)
+        {
+            if (verificationCode == null) return null;
+            AppServices.Error = null;
+            var httpClient = clientService.GetClient();
+            HttpResponseMessage result = await httpClient
+                .GetAsync($"Account/VerifyCode/{verificationCode}");
+            if (result.IsSuccessStatusCode)
+            {
+                var id = await result.Content.ReadAsStringAsync();
+                if (id != null)
+                {
+                    return id;
                 }
             }
             else

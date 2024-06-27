@@ -138,4 +138,7 @@
   <data name="UserNameRequired" xml:space="preserve">
     <value>User name is required</value>
   </data>
+  <data name="VerificationCodeRequired" xml:space="preserve">
+    <value> Verification code is required</value>
+  </data>
 </root>

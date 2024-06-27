@@ -27,7 +27,9 @@ namespace Sales.Context.Services
         {
             var user = await db.Users
                 .FirstOrDefaultAsync(x => x.UserName == nameof(LibraryService.Admin));
-            if (user != null || !db.Roles.Any()) return;
+            if (user != null) return;
+            if (!db.Roles.Any())
+                await CreateRolesAsync();
 
             user = new User
             {

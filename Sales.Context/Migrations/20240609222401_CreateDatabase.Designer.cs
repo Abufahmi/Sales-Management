@@ -12,18 +12,34 @@ using Sales.Context.Data;
 namespace Sales.Context.Migrations
 {
     [DbContext(typeof(ApplicationDb))]
-    [Migration("20240508190811_CreateUserSystem")]
-    partial class CreateUserSystem
+    [Migration("20240609222401_CreateDatabase")]
+    partial class CreateDatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.4")
+                .HasAnnotation("ProductVersion", "8.0.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("Sales.Library.MainSetting", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("TokenExpireMinutes")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MainSettings");
+                });
 
             modelBuilder.Entity("Sales.Library.Role", b =>
                 {
@@ -124,6 +140,29 @@ namespace Sales.Context.Migrations
                     b.ToTable("UserRoles");
                 });
 
+            modelBuilder.Entity("Sales.Library.Verification", b =>
+                {
+                    b.Property<string>("Token")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("VerificationCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Token");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Verifications");
+                });
+
             modelBuilder.Entity("Sales.Library.UserLogin", b =>
                 {
                     b.HasOne("Sales.Library.User", "User")
@@ -150,6 +189,17 @@ namespace Sales.Context.Migrations
                         .IsRequired();
 
                     b.Navigation("Role");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Sales.Library.Verification", b =>
+                {
+                    b.HasOne("Sales.Library.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });

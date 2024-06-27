@@ -18,9 +18,75 @@ namespace Sales.Context.Services
             this.dbService = dbService;
         }
 
+        public async Task<LoginResponse> ForgetPasswordAsync(string email)
+        {
+            if (email == null || string.IsNullOrWhiteSpace(email))
+            {
+                return new LoginResponse(false, "Email address required");
+            }
+
+            var user = await db.Users.FirstOrDefaultAsync(x => x.Email == email);
+            if (user == null)
+            {
+                return new LoginResponse(false, "Email address required");
+            }
+
+            string verifyCode = LibraryService.GeneratePassword(6).ToUpper();
+            while (db.Verifications.Any(x => x.VerificationCode == verifyCode))
+            {
+                verifyCode = LibraryService.GeneratePassword(6).ToUpper();
+            }
+
+            string token = LibraryService.GeneratePassword(60).ToUpper();
+
+            var verification = new Verification
+            {
+                VerificationCode = verifyCode,
+                CreatedDate = DateTime.Now,
+                Token = token,
+                UserId = user.Id,
+            };
+
+            await db.AddAsync(verification);
+            await db.SaveChangesAsync();
+            return new LoginResponse(true, "OK", token, verifyCode);
+        }
+
+        public async Task<MainSetting?> GetMainSettingAsync()
+        {
+            return await db.MainSettings.FirstOrDefaultAsync();
+        }
+
         public async Task<IEnumerable<User>> GetUsersAsync()
         {
             return await db.Users.ToListAsync();
+        }
+
+        public async Task<DefaultResponse> IsTokenExistsAsync(string token)
+        {
+            LibraryService.Error = null;
+            if (token == null || token.Length == 0)
+                return new DefaultResponse(false, "Token is required");
+
+            var verification = await db.Verifications
+                .FirstOrDefaultAsync(x => x.Token == token);
+            if (verification == null)
+            {
+                return new DefaultResponse(false, "Token not found");
+            }
+
+            var minutes = await db.MainSettings
+                .Select(x => x.TokenExpireMinutes).FirstOrDefaultAsync();
+            if (minutes == 0)
+                minutes = 5;
+
+            if (verification.CreatedDate.AddMinutes(minutes) < DateTime.Now)
+            {
+                db.Remove(verification);
+                await db.SaveChangesAsync();
+                return new DefaultResponse(false, "Token is expired");
+            }
+            return new DefaultResponse(true);
         }
 
         public async Task<LoginResponse> LoginAsync(Login login)
@@ -162,6 +228,41 @@ namespace Sales.Context.Services
             await db.AddAsync(user);
             await db.SaveChangesAsync();
             return new DefaultResponse(true, "Account Created.");
+        }
+
+        public async Task<bool> ResetAccountAsync(ResetAccount resetAccount)
+        {
+            var user = await db.Users.FirstOrDefaultAsync(x => x.Id == resetAccount.UserId);
+            if (user == null) return false;
+
+            user.Password = BCrypt.Net.BCrypt.HashPassword(resetAccount.Password);
+            db.Entry(user).Property(x => x.Password).IsModified = true;
+            await db.SaveChangesAsync();
+
+            var verifications = await db.Verifications
+                .Where(x => x.UserId == user.Id).ToListAsync();
+
+            if (verifications != null)
+            {
+                db.RemoveRange(verifications);
+                await db.SaveChangesAsync();
+            }
+            return true;
+        }
+
+        public async Task<string?> VerifyCodeAsync(string verificationCode)
+        {
+            LibraryService.Error = null;
+            if (verificationCode == null || verificationCode.Length == 0)
+                return null;
+
+            var verification = await db.Verifications
+                .FirstOrDefaultAsync(x => x.VerificationCode == verificationCode);
+            if (verification == null)
+            {
+                return null;
+            }
+            return verification.UserId;
         }
     }
 }

@@ -138,4 +138,7 @@
   <data name="UserNameRequired" xml:space="preserve">
     <value>اسم المستخدم مطلوب</value>
   </data>
+  <data name="VerificationCodeRequired" xml:space="preserve">
+    <value>كود التفعيل مطلوب</value>
+  </data>
 </root>

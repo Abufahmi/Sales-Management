@@ -122,5 +122,14 @@ namespace Sales.Client.Resources {
                 return ResourceManager.GetString("UserNameRequired", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Verification code is required.
+        /// </summary>
+        public static string VerificationCodeRequired {
+            get {
+                return ResourceManager.GetString("VerificationCodeRequired", resourceCulture);
+            }
+        }
     }
 }

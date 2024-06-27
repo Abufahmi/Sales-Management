@@ -61,6 +61,51 @@ namespace Sales.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to We have received a request from you to restore the account. Please use the code generated below to complete the account recovery process..
+        /// </summary>
+        public static string AccountRecoveryBody {
+            get {
+                return ResourceManager.GetString("AccountRecoveryBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account Recovery Request.
+        /// </summary>
+        public static string AccountRecoveryRequest {
+            get {
+                return ResourceManager.GetString("AccountRecoveryRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account Recovery Confirmation.
+        /// </summary>
+        public static string AccountRecoverySubject {
+            get {
+                return ResourceManager.GetString("AccountRecoverySubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The activation link has been sent to the entered mail successfully. Please go to your email and complete the account recovery process using the activation code sent and paste it in the dialog box below..
+        /// </summary>
+        public static string AccountRecoverySuccess {
+            get {
+                return ResourceManager.GetString("AccountRecoverySuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter the email address you registered for.
+        /// </summary>
+        public static string AccountRecoveryTip {
+            get {
+                return ResourceManager.GetString("AccountRecoveryTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Arabic.
         /// </summary>
         public static string ar_JO {
@@ -304,6 +349,24 @@ namespace Sales.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The expired validation of this page is {0} minutes..
+        /// </summary>
+        public static string ResetExpireAt {
+            get {
+                return ResourceManager.GetString("ResetExpireAt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset Password.
+        /// </summary>
+        public static string ResetPassword {
+            get {
+                return ResourceManager.GetString("ResetPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select Language.
         /// </summary>
         public static string SelectLanguage {
@@ -354,6 +417,15 @@ namespace Sales.Client.Resources {
         public static string UserNameOrEmail {
             get {
                 return ResourceManager.GetString("UserNameOrEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verify Code.
+        /// </summary>
+        public static string VerifyCode {
+            get {
+                return ResourceManager.GetString("VerifyCode", resourceCulture);
             }
         }
     }

@@ -117,6 +117,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AccountRecoveryBody" xml:space="preserve">
+    <value>لقد تلقينا منك طلب لاستعادة الحساب. يرجي استعمال الكود المولد ادناه لاستكمال عملية استعادة الحساب.</value>
+  </data>
+  <data name="AccountRecoveryRequest" xml:space="preserve">
+    <value>طلب استعادة الحساب</value>
+  </data>
+  <data name="AccountRecoverySubject" xml:space="preserve">
+    <value>تاكيد استعادة الحساب</value>
+  </data>
+  <data name="AccountRecoverySuccess" xml:space="preserve">
+    <value>تم ارسال رابط التفعيل الي البريد المدخل بنجاح. الررجاء الذهاب الي بريدك الالكتروني واستكمال عملية استعادة الحساب عن طريق كود التفعيل المرسل ولصقه في مربع الحوار ادناه.</value>
+  </data>
+  <data name="AccountRecoveryTip" xml:space="preserve">
+    <value>الرجاء ادخال البريد الالكتروني الذي قمت بالتسجيل فيه</value>
+  </data>
   <data name="ar-JO" xml:space="preserve">
     <value>العربية</value>
   </data>
@@ -198,6 +213,12 @@
   <data name="RegisterNewAccount" xml:space="preserve">
     <value>تسجيل حساب جديد</value>
   </data>
+  <data name="ResetExpireAt" xml:space="preserve">
+    <value>مدة صلاحية هذه الصفجة هي {0} دقائق.</value>
+  </data>
+  <data name="ResetPassword" xml:space="preserve">
+    <value>استعادة الحساب</value>
+  </data>
   <data name="SelectLanguage" xml:space="preserve">
     <value>اختر اللغة</value>
   </data>
@@ -215,5 +236,8 @@
   </data>
   <data name="UserNameOrEmail" xml:space="preserve">
     <value>اسم المستخدم او البريد الالكتروني</value>
+  </data>
+  <data name="VerifyCode" xml:space="preserve">
+    <value>كود التفعيل</value>
   </data>
 </root>

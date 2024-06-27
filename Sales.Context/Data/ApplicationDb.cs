@@ -13,5 +13,7 @@ namespace Sales.Context.Data
         public DbSet<Role> Roles { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
         public DbSet<UserLogin> UserLogins { get; set; }
+        public DbSet<Verification> Verifications { get; set; }
+        public DbSet<MainSetting> MainSettings { get; set; }
     }
 }

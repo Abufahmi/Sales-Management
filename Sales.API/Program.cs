@@ -18,7 +18,7 @@ builder.Services.AddSwaggerGen();
 
 // Configue dbContext
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<ApplicationDb>(options => options.UseSqlServer(connectionString), 
+builder.Services.AddDbContext<ApplicationDb>(options => options.UseSqlServer(connectionString),
     ServiceLifetime.Transient);
 
 // Configure Jwt Section

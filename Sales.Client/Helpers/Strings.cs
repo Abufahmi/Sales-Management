@@ -33,5 +33,13 @@
         Cancel,
         Ok,
         Dashboard,
+        AccountRecoveryBody,
+        AccountRecoveryRequest,
+        AccountRecoverySubject,
+        AccountRecoveryTip,
+        AccountRecoverySuccess,
+        VerifyCode,
+        ResetPassword,
+        ResetExpireAt,
     }
 }

@@ -1,0 +1,93 @@
+﻿@using Sales.Client.Repositories
+@using Sales.Client.Models
+@using Sales.Library.Models
+
+@page "/ForgetPassword"
+@inject IAccountRepository repo
+
+<PageTitle>@Localizer[nameof(Strings.SiteName)] | @Localizer[nameof(Strings.AccountRecoveryRequest)]</PageTitle>
+<NavbarComponent />
+
+<div class="container">
+    <div class="col-lg-6 col-md-8 col-sm-12">
+        @if (ErrorMessage != null)
+        {
+            <div class="alert alert-danger alert-dismissible mt-4 fade show popup @(AppServices.IsArabic ? "text-right" : "text-left")"
+                 @onclick="HideMessage" role="alert">
+                @ErrorMessage
+                <button type="button" class="btn-close"></button>
+            </div>
+        }
+
+        <div class="alert alert-primary fade show popup my-5" role="alert">
+            <strong>@Localizer[nameof(Strings.AccountRecoveryRequest)]</strong>
+            <h6 class="mt-2">@Localizer[nameof(Strings.AccountRecoveryTip)]</h6>
+        </div>
+
+        <EditForm Model="ForgetPassword" OnValidSubmit="OnValidSubmit" FormName="ForgetPassword">
+            <DataAnnotationsValidator />
+            <!-- Email Address -->
+            <div class="mb-3">
+                <label class="form-label">
+                    @Localizer[nameof(Strings.EmailAddress)]
+                </label>
+                <InputText type="email" @bind-Value="ForgetPassword.Email" class="form-control" />
+                <ValidationMessage class="lbl-error" For="()=> ForgetPassword.Email" />
+            </div>
+
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-outline-primary mb-4" disabled="@IsBusy">
+                @Localizer[nameof(Strings.AccountRecoveryRequest)]
+            </button>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    string? ErrorMessage = null;
+    bool IsBusy = false;
+    ForgetPasswordModel ForgetPassword = new();
+
+    protected override void OnInitialized()
+    {
+        var emailModel = new EmailModel
+        {
+            Subject = Localizer[nameof(Strings.AccountRecoverySubject)].Value,
+            Body = Localizer[nameof(Strings.AccountRecoveryBody)].Value,
+            VerifyCode = Localizer[nameof(Strings.VerifyCode)].Value,
+        };
+
+        ForgetPassword.EmailModel = emailModel;
+        base.OnInitialized();
+    }
+
+    async Task OnValidSubmit()
+    {
+        IsBusy = true;
+        var forgetAccount = new ForgetPassword
+        {
+            EmailAddress = ForgetPassword.Email,
+            EmailModel = ForgetPassword.EmailModel
+        };
+
+        var result = await repo.ForgetPasswordAsync(forgetAccount);
+        if (result != null && !string.IsNullOrWhiteSpace(result))
+        {
+            NavManager.NavigateTo($"ResetPassword/{result}", true);
+        }
+        else
+        {
+            if (AppServices.Error != null)
+                ErrorMessage = AppServices.Error;
+            else
+                ErrorMessage = Localizer[nameof(Strings.UnknowError)]?.Value;
+        }
+
+        IsBusy = false;
+    }
+
+    void HideMessage()
+    {
+        ErrorMessage = null;
+    }
+}

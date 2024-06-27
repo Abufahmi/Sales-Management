@@ -117,6 +117,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AccountRecoveryBody" xml:space="preserve">
+    <value>We have received a request from you to restore the account. Please use the code generated below to complete the account recovery process.</value>
+  </data>
+  <data name="AccountRecoveryRequest" xml:space="preserve">
+    <value>Account Recovery Request</value>
+  </data>
+  <data name="AccountRecoverySubject" xml:space="preserve">
+    <value>Account Recovery Confirmation</value>
+  </data>
+  <data name="AccountRecoverySuccess" xml:space="preserve">
+    <value>The activation link has been sent to the entered mail successfully. Please go to your email and complete the account recovery process using the activation code sent and paste it in the dialog box below.</value>
+  </data>
+  <data name="AccountRecoveryTip" xml:space="preserve">
+    <value>Please enter the email address you registered for</value>
+  </data>
   <data name="ar-JO" xml:space="preserve">
     <value>Arabic</value>
   </data>
@@ -198,6 +213,12 @@
   <data name="RegisterNewAccount" xml:space="preserve">
     <value>Register New Account</value>
   </data>
+  <data name="ResetExpireAt" xml:space="preserve">
+    <value>The expired validation of this page is {0} minutes.</value>
+  </data>
+  <data name="ResetPassword" xml:space="preserve">
+    <value>Reset Password</value>
+  </data>
   <data name="SelectLanguage" xml:space="preserve">
     <value>Select Language</value>
   </data>
@@ -215,5 +236,8 @@
   </data>
   <data name="UserNameOrEmail" xml:space="preserve">
     <value>User name or email address</value>
+  </data>
+  <data name="VerifyCode" xml:space="preserve">
+    <value>Verify Code</value>
   </data>
 </root>
