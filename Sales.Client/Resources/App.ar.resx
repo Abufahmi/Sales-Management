@@ -138,14 +138,47 @@
   <data name="Cancel" xml:space="preserve">
     <value>تراجع</value>
   </data>
+  <data name="Categories" xml:space="preserve">
+    <value>التصنيفات</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>التصنيف الاساسي</value>
+  </data>
+  <data name="CategoryList" xml:space="preserve">
+    <value>قائمة التصنيفات الأساسية</value>
+  </data>
+  <data name="CopyRight" xml:space="preserve">
+    <value>جميع الحقوق محفوظة</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>انشاء</value>
+  </data>
+  <data name="CreateNew" xml:space="preserve">
+    <value>انشاء جديد</value>
+  </data>
   <data name="Dashboard" xml:space="preserve">
     <value>لوحة التحكم</value>
+  </data>
+  <data name="DashMain" xml:space="preserve">
+    <value>الأساسية</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>التاريخ</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>حذف</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>تعديل</value>
   </data>
   <data name="EmailAddress" xml:space="preserve">
     <value> البريد الالكتروني</value>
   </data>
   <data name="EmailAddressExists" xml:space="preserve">
     <value>البريد الالكتروني مستعمل</value>
+  </data>
+  <data name="EmailConfirmed" xml:space="preserve">
+    <value>البريد مفعل</value>
   </data>
   <data name="EmailExists" xml:space="preserve">
     <value> البريد الالكتروني مستعمل</value>
@@ -168,6 +201,9 @@
   <data name="Home" xml:space="preserve">
     <value>الرئيسية</value>
   </data>
+  <data name="Image" xml:space="preserve">
+    <value>الصورة</value>
+  </data>
   <data name="Login" xml:space="preserve">
     <value>تسجيل الدخول</value>
   </data>
@@ -177,8 +213,20 @@
   <data name="LogoutMsg" xml:space="preserve">
     <value>انت علي وشك تسجيل الخروج. هل تريد الاستمرار؟</value>
   </data>
+  <data name="MainPage" xml:space="preserve">
+    <value>الصفحة الرئيسية</value>
+  </data>
+  <data name="MainSettings" xml:space="preserve">
+    <value>الاعدادات الاساسية</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>أخري</value>
+  </data>
   <data name="NoAccount" xml:space="preserve">
     <value>لا يوجد لديك حساب؟</value>
+  </data>
+  <data name="NoData" xml:space="preserve">
+    <value>لم يتم العثور علي بيانات</value>
   </data>
   <data name="NotFound" xml:space="preserve">
     <value>الصفحة غير موجودة</value>
@@ -192,6 +240,12 @@
   <data name="NotFoundTip2" xml:space="preserve">
     <value>اذهب إلى الصفحة الرئيسية</value>
   </data>
+  <data name="Notification" xml:space="preserve">
+    <value>التنبيهات</value>
+  </data>
+  <data name="NotificationList" xml:space="preserve">
+    <value>قائمة التنبيهات</value>
+  </data>
   <data name="Notifications" xml:space="preserve">
     <value>التنبيهات</value>
   </data>
@@ -203,6 +257,21 @@
   </data>
   <data name="PasswordConfirm" xml:space="preserve">
     <value>تاكيد كلمة المرور</value>
+  </data>
+  <data name="PhoneConfirmed" xml:space="preserve">
+    <value>الهاتف مفعل</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>رقم الهاتف</value>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>المنتج</value>
+  </data>
+  <data name="ProductList" xml:space="preserve">
+    <value>قائمة المنتجات</value>
+  </data>
+  <data name="Products" xml:space="preserve">
+    <value>المنتجات</value>
   </data>
   <data name="Profile" xml:space="preserve">
     <value>الملف الشخصي</value>
@@ -219,14 +288,38 @@
   <data name="ResetPassword" xml:space="preserve">
     <value>استعادة الحساب</value>
   </data>
+  <data name="Search" xml:space="preserve">
+    <value>البحث ...</value>
+  </data>
   <data name="SelectLanguage" xml:space="preserve">
     <value>اختر اللغة</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>الاعدادات</value>
   </data>
   <data name="SiteName" xml:space="preserve">
     <value>المبيعات</value>
   </data>
+  <data name="SubCategories" xml:space="preserve">
+    <value>التصنيفات الفرعية</value>
+  </data>
+  <data name="SubCategory" xml:space="preserve">
+    <value>التصنيف الفرعي</value>
+  </data>
+  <data name="SubCategoryList" xml:space="preserve">
+    <value>قائمة التصنيفات الفرعية</value>
+  </data>
+  <data name="System" xml:space="preserve">
+    <value>النظام</value>
+  </data>
   <data name="UnknowError" xml:space="preserve">
     <value>حدث خطأ غير معلوم. الرجاء المحاولة لاحقا.</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>المستخدم</value>
+  </data>
+  <data name="UserList" xml:space="preserve">
+    <value>قائمة المستخدمين</value>
   </data>
   <data name="UserName" xml:space="preserve">
     <value>اسم المستخدم</value>
@@ -236,6 +329,18 @@
   </data>
   <data name="UserNameOrEmail" xml:space="preserve">
     <value>اسم المستخدم او البريد الالكتروني</value>
+  </data>
+  <data name="UserRole" xml:space="preserve">
+    <value>صلاحية المستخدم</value>
+  </data>
+  <data name="UserRoleList" xml:space="preserve">
+    <value>قائمة صلاحيات المستخدمين</value>
+  </data>
+  <data name="UserRoles" xml:space="preserve">
+    <value>صلاحيات المستخدمين</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>المستخدمين</value>
   </data>
   <data name="VerifyCode" xml:space="preserve">
     <value>كود التفعيل</value>

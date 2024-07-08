@@ -1,0 +1,36 @@
+﻿<div class="cromb d-inline">
+    <a href="Dashboard" class="d-inline-block dashlink @(AppServices.IsArabic ? "ms-1" : "me-1")">
+        @Localizer[nameof(Strings.Dashboard)]
+    </a>
+    @if (RouteName != null && RouteLink != null)
+    {
+        <div class="greater d-inline-block">@Greater</div>
+        <a href="@RouteLink" class="d-inline-block dashlink @(AppServices.IsArabic ? "ms-1" : "me-1")">
+            @RouteName
+        </a>
+    }
+    @if (RouteName1 != null && RouteLink1 != null)
+    {
+        <div class="greater d-inline-block">@Greater</div>
+        <a href="@RouteLink1" class="d-inline-block dashlink @(AppServices.IsArabic ? "ms-1" : "me-1")">
+            @RouteName1
+        </a>
+    }
+    @if (RouteName2 != null && RouteLink2 != null)
+    {
+        <div class="greater d-inline-block">@Greater</div>
+        <a href="@RouteLink2" class="d-inline-block dashlink @(AppServices.IsArabic ? "ms-1" : "me-1")">
+            @RouteName2
+        </a>
+    }
+</div>
+
+@code {
+    [Parameter] public string? RouteName { get; set; }
+    [Parameter] public string? RouteLink { get; set; }
+    [Parameter] public string? RouteName1 { get; set; }
+    [Parameter] public string? RouteLink1 { get; set; }
+    [Parameter] public string? RouteName2 { get; set; }
+    [Parameter] public string? RouteLink2 { get; set; }
+    string? Greater = ">";
+}

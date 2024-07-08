@@ -1,4 +1,4 @@
-﻿<nav class="navbar navbar-expand-lg bg-body-tertiary p-2" data-bs-theme="dark">
+﻿<nav class="navbar navbar-expand-md bg-body-tertiary p-2" data-bs-theme="dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">@Localizer[nameof(Strings.SiteName)]</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -24,7 +24,7 @@
                                 <i class="fa-solid fa-user"></i>
                                 <span>@context?.User?.Identity?.Name</span>
                             </a>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu @AppServices.Direction @(AppServices.IsArabic ? "dropdown-menu-end" : "dropdown-menu-start")">
                                 <li>
                                     <a class="dropdown-item" href="/Profile">
                                         <i class="fa-regular fa-user"></i>
@@ -33,7 +33,7 @@
                                 </li>
                                 <li>
                                     <a class="dropdown-item" href="/Notifications">
-                                        <i class="fa-solid fa-bell-o"></i>
+                                        <i class="fa-regular fa-bell"></i>
                                         <span>@Localizer[nameof(Strings.Notifications)]</span>
                                     </a>
                                 </li>

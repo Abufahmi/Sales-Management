@@ -1,0 +1,76 @@
+﻿@page "/Users"
+@layout DashLayout
+@inherits Bases.SettingBases.UserListBase
+@attribute [Authorize(Roles = nameof(AppServices.Admin))]
+
+<PageTitle>@Localizer[nameof(Strings.SiteName)] | @Localizer[nameof(Strings.UserList)]</PageTitle>
+<DashCrumbComponent RouteLink="Users" RouteName="@Localizer[nameof(Strings.UserList)]" />
+
+<div class="d-block mt-4">
+    <a href="user/create" class="btn btn-outline-success px-4 mb-3" style="min-width:150px">
+        @Localizer[nameof(Strings.CreateNew)]
+    </a>
+</div>
+
+@if (UserModels != null)
+{
+    <div class="col-lg-4 col-md-6 col-sm-12">
+        <input type="search" class="form-control mb-3" @oninput="OnUserChanged" 
+        placeholder="@Localizer[nameof(Strings.Search)]" />
+    </div>
+    <div class="table-responsive">
+        <QuickGrid Items="UserModels.AsQueryable()" Pagination="Pagination" Class="table">
+            <PropertyColumn Property="x=> x.UserName" Sortable="true" Title="@Localizer[nameof(Strings.UserName)]" />
+            <PropertyColumn Property="x=> x.Email" Sortable="true" Title="@Localizer[nameof(Strings.EmailAddress)]" />
+            <TemplateColumn Title="@Localizer[nameof(Strings.EmailConfirmed)]">
+                <input type="checkbox" class="form-check-input" @bind="@context.EmailConfirmed" />
+            </TemplateColumn>
+            <PropertyColumn Property="x=> x.PhoneNumber" Title="@Localizer[nameof(Strings.PhoneNumber)]" />
+            <TemplateColumn Title="@Localizer[nameof(Strings.PhoneConfirmed)]">
+                <input type="checkbox" class="form-check-input" @bind="@context.PhoneConfirmed" />
+            </TemplateColumn>
+            <PropertyColumn Property="x=> x.CreatedDate" Format="yyyy-MM-dd" Sortable="true" 
+                Title="@Localizer[nameof(Strings.Date)]" />
+            <TemplateColumn>
+                <a href="user/edit" title="@Localizer[nameof(Strings.Edit)]">
+                    <i class="fa fa-pen text-primary" />
+                </a>
+            </TemplateColumn>
+            <TemplateColumn>
+                <a href="user/edit" title="@Localizer[nameof(Strings.Delete)]">
+                    <i class="fa fa-trash text-danger" />
+                </a>
+            </TemplateColumn>
+        </QuickGrid>
+
+        <Paginator State="Pagination">
+            <SummaryTemplate>
+                @if (AppServices.IsArabic)
+                {
+                    <span>@UserModels.Count عناصر</span>
+                }
+                else
+                {
+                    <span>@UserModels.Count items</span>
+                }
+            </SummaryTemplate>
+        </Paginator>
+    </div>
+}
+else
+{
+    if (IsBusy)
+    {
+        <div class="text-center">
+            <div class="spinner-border text-primary mt-5" style="width: 3rem; height: 3rem;" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="text-center my-5">
+            <h5 class="text-secondary">@Localizer[nameof(Strings.NoData)]</h5>
+        </div>
+    }
+}

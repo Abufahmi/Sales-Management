@@ -1,18 +1,16 @@
 ﻿@using Repositories
 
 @page "/Dashboard"
+@layout DashLayout
 @attribute [Authorize(Roles = nameof(AppServices.Admin))]
 @inject IAccountRepository repo
 
-<h3>Dashboard Page</h3>
-<h4>@Message</h4>
+<PageTitle>@Localizer[nameof(Strings.SiteName)] | @Localizer[nameof(Strings.Dashboard)]</PageTitle>
+<DashCrumbComponent />
 
 @code {
-    string? Message = null;
-
     protected override async Task OnInitializedAsync()
     {
-        Message = await repo.TestAuthenticationAsync();
         await base.OnInitializedAsync();
     }
 }

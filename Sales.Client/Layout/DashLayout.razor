@@ -1,0 +1,176 @@
+﻿@inherits LayoutComponentBase
+
+<link href="css/dashboard.css" rel="stylesheet" />
+
+<div class="wrapper @AppServices.Direction">
+    <aside id="sidebar" class="js-sidebar @Collapsed">
+        <!-- Content For Sidebar -->
+        <div class="h-100">
+            <div class="sidebar-logo">
+                <a href="/"> @Localizer[nameof(Strings.MainPage)]</a>
+            </div>
+            <ul class="@ArabicList">
+                <li class="sidebar-item">
+                    <a href="/Dashboard" class="sidebar-link">
+                        <i class="fa-solid fa-list @(AppServices.IsArabic ? "ps-2" : "pe-2")"></i>
+                        @Localizer[nameof(Strings.Dashboard)]
+                    </a>
+                </li>
+                <li class="sidebar-header">
+                    @Localizer[nameof(Strings.DashMain)]
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link @ArabicLink collapsed" data-bs-target="#Categories" data-bs-toggle="collapse"
+                       aria-expanded="false">
+                        <i class="fa-solid fa-file-lines @(AppServices.IsArabic ? "ps-2" : "pe-2")"></i>
+                        @Localizer[nameof(Strings.Categories)]
+                    </a>
+                    <ul id="Categories" class="sidebar-dropdown list-unstyled collapse @ArabicList" data-bs-parent="#sidebar">
+                        <li class="sidebar-item">
+                            <a href="Categories" class="sidebar-link item @ArabicLink">
+                                @Localizer[nameof(Strings.CategoryList)]
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="SubCategories" class="sidebar-link item @ArabicLink">
+                                @Localizer[nameof(Strings.SubCategoryList)]
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link @ArabicLink collapsed" data-bs-target="#Products" data-bs-toggle="collapse"
+                       aria-expanded="false">
+                        <i class="fa-solid fa-sliders @(AppServices.IsArabic ? "ps-2" : "pe-2")"></i>
+                        @Localizer[nameof(Strings.Products)]
+                    </a>
+                    <ul id="Products" class="sidebar-dropdown list-unstyled collapse @ArabicList" data-bs-parent="#sidebar">
+                        <li class="sidebar-item">
+                            <a href="Products" class="sidebar-link item @ArabicLink">
+                                @Localizer[nameof(Strings.ProductList)]
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link @ArabicLink collapsed" data-bs-target="#More" data-bs-toggle="collapse"
+                       aria-expanded="false">
+                        <i class="fa-solid fa-share-nodes @(AppServices.IsArabic ? "ps-2" : "pe-2")"></i>
+                        @Localizer[nameof(Strings.More)]
+                    </a>
+                    <ul id="More" class="sidebar-dropdown list-unstyled collapse @ArabicList" data-bs-parent="#sidebar">
+                        <li class="sidebar-item">
+                            <a href="Notifications" class="sidebar-link item @ArabicLink">
+                                @Localizer[nameof(Strings.NotificationList)]
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-header">
+                    @Localizer[nameof(Strings.System)]
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link @ArabicLink collapsed" data-bs-target="#Settings" data-bs-toggle="collapse"
+                       aria-expanded="false">
+                        <i class="fa fa-gear @(AppServices.IsArabic ? "ps-2" : "pe-2")"></i>
+                        @Localizer[nameof(Strings.Settings)]
+                    </a>
+                    <ul id="Settings" class="sidebar-dropdown list-unstyled collapse @ArabicList" data-bs-parent="#sidebar">
+                        <li class="sidebar-item">
+                            <a href="Users" class="sidebar-link item @ArabicLink">
+                                @Localizer[nameof(Strings.UserList)]
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="UserRoles" class="sidebar-link item @ArabicLink">
+                                @Localizer[nameof(Strings.UserRoleList)]
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="MainSettings" class="sidebar-link item @ArabicLink">
+                                @Localizer[nameof(Strings.MainSettings)]
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+    </aside>
+    <div class="main">
+        <nav class="navbar navbar-expand px-3 border-bottom">
+            <button class="btn" id="sidebar-toggle" type="button" @onclick="OnToggle">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse navbar">
+                <ul class="@ArabicList @(AppServices.IsArabic ? " me-auto" : " ms-auto")">
+                    <li class="nav-item dropdown">
+                        <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
+                            <img src="images/main/user.png" class="avatar img-fluid rounded" alt="">
+                        </a>
+                        <div class="dropdown-menu @AppServices.Direction @(AppServices.IsArabic ? "dropdown-menu-start" : "dropdown-menu-end")">
+                            <a class="dropdown-item" href="/Notifications">
+                                <i class="fa-regular fa-bell"></i>
+                                <span>@Localizer[nameof(Strings.Notifications)]</span>
+                            </a>
+                            <a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                                <i class="fa fa-sign-in-alt"></i>
+                                <span>@Localizer[nameof(Strings.Logout)]</span>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <main class="content px-3 py-2">
+            <div class="container-fluid">
+                @Body
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="container-fluid text-muted p-2 border-top">
+                <div class="copyright my-auto">
+                    @Localizer[nameof(Strings.CopyRight)] © @DateTime.Now.Year <a href="/">@Localizer[nameof(Strings.SiteName)]</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <LogoutComponent />
+</div>
+
+@code {
+    string? Collapsed = null;
+    bool Toggle = false;
+    string? ArabicList = null;
+    string? ArabicLink = null;
+
+    protected override void OnInitialized()
+    {
+        if (AppServices.IsArabic)
+        {
+            ArabicList = "ul-ar";
+            ArabicLink = "sidebar-link-ar";
+        }
+        else
+        {
+            ArabicList = "sidebar-nav";
+        }
+        base.OnInitialized();
+    }
+
+    void OnToggle()
+    {
+        Toggle = !Toggle;
+        if (Toggle)
+        {
+            Collapsed = "collapsed";
+        }
+        else
+        {
+            Collapsed = null;
+        }
+    }
+}

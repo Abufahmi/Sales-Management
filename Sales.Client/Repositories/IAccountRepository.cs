@@ -15,7 +15,6 @@ namespace Sales.Client.Repositories
         Task<bool> LogoutAsync();
         Task<bool> RegisterAsync(RegisterModel register);
         Task<bool> ResetPasswordAsync(ResetAccount reset);
-        Task<string?> TestAuthenticationAsync();
         Task<string?> VerifyCodeAsync(string? verificationCode);
     }
 }

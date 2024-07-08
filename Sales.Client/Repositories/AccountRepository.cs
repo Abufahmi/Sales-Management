@@ -235,28 +235,6 @@ namespace Sales.Client.Repositories
             return false;
         }
 
-        public async Task<string?> TestAuthenticationAsync()
-        {
-            AppServices.Error = null;
-            var httpClient = await clientService.GetAuthorizeClient();
-            HttpResponseMessage result = await httpClient.GetAsync("Account/TestAuthentication");
-            if (result.IsSuccessStatusCode)
-            {
-                var message = await result.Content.ReadAsStringAsync();
-                if (message != null)
-                {
-                    return message;
-                }
-            }
-            else
-            {
-                var error = await result.Content.ReadAsStringAsync();
-                if (error != null && !string.IsNullOrEmpty(error))
-                    AppServices.Error = error;
-            }
-            return null;
-        }
-
         public async Task<string?> VerifyCodeAsync(string? verificationCode)
         {
             if (verificationCode == null) return null;

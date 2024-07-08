@@ -138,14 +138,47 @@
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="Categories" xml:space="preserve">
+    <value>Categories</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="CategoryList" xml:space="preserve">
+    <value>Category List</value>
+  </data>
+  <data name="CopyRight" xml:space="preserve">
+    <value>All Rights Reserved</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="CreateNew" xml:space="preserve">
+    <value>Create New</value>
+  </data>
   <data name="Dashboard" xml:space="preserve">
     <value>Dashboard</value>
+  </data>
+  <data name="DashMain" xml:space="preserve">
+    <value>Main</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
   </data>
   <data name="EmailAddress" xml:space="preserve">
     <value>Email Address</value>
   </data>
   <data name="EmailAddressExists" xml:space="preserve">
     <value>Email address already exists</value>
+  </data>
+  <data name="EmailConfirmed" xml:space="preserve">
+    <value>Email Confirmed</value>
   </data>
   <data name="EmailExists" xml:space="preserve">
     <value>Email address already exists</value>
@@ -168,6 +201,9 @@
   <data name="Home" xml:space="preserve">
     <value>Home</value>
   </data>
+  <data name="Image" xml:space="preserve">
+    <value>Image</value>
+  </data>
   <data name="Login" xml:space="preserve">
     <value>Login</value>
   </data>
@@ -177,8 +213,20 @@
   <data name="LogoutMsg" xml:space="preserve">
     <value>You're about to check out. Do you want to continue?</value>
   </data>
+  <data name="MainPage" xml:space="preserve">
+    <value>Main Page</value>
+  </data>
+  <data name="MainSettings" xml:space="preserve">
+    <value>Main Settings</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>More</value>
+  </data>
   <data name="NoAccount" xml:space="preserve">
     <value>Dont have account?</value>
+  </data>
+  <data name="NoData" xml:space="preserve">
+    <value>No data found</value>
   </data>
   <data name="NotFound" xml:space="preserve">
     <value>Page Not Found</value>
@@ -192,6 +240,12 @@
   <data name="NotFoundTip2" xml:space="preserve">
     <value>Go To Homepage</value>
   </data>
+  <data name="Notification" xml:space="preserve">
+    <value>Notification</value>
+  </data>
+  <data name="NotificationList" xml:space="preserve">
+    <value>Notification List</value>
+  </data>
   <data name="Notifications" xml:space="preserve">
     <value>Notifications</value>
   </data>
@@ -203,6 +257,21 @@
   </data>
   <data name="PasswordConfirm" xml:space="preserve">
     <value>Confirm password</value>
+  </data>
+  <data name="PhoneConfirmed" xml:space="preserve">
+    <value>Phone Confirmed</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Phone Number</value>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>Product</value>
+  </data>
+  <data name="ProductList" xml:space="preserve">
+    <value>Product List</value>
+  </data>
+  <data name="Products" xml:space="preserve">
+    <value>Products</value>
   </data>
   <data name="Profile" xml:space="preserve">
     <value>Profile</value>
@@ -219,14 +288,38 @@
   <data name="ResetPassword" xml:space="preserve">
     <value>Reset Password</value>
   </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search ...</value>
+  </data>
   <data name="SelectLanguage" xml:space="preserve">
     <value>Select Language</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
   </data>
   <data name="SiteName" xml:space="preserve">
     <value>Sales Management</value>
   </data>
+  <data name="SubCategories" xml:space="preserve">
+    <value>Sub Categories</value>
+  </data>
+  <data name="SubCategory" xml:space="preserve">
+    <value>Sub Category</value>
+  </data>
+  <data name="SubCategoryList" xml:space="preserve">
+    <value>Sub Category List</value>
+  </data>
+  <data name="System" xml:space="preserve">
+    <value>System</value>
+  </data>
   <data name="UnknowError" xml:space="preserve">
     <value>An unknown error has occurred. Please try again.</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="UserList" xml:space="preserve">
+    <value>User List</value>
   </data>
   <data name="UserName" xml:space="preserve">
     <value>User Name</value>
@@ -236,6 +329,18 @@
   </data>
   <data name="UserNameOrEmail" xml:space="preserve">
     <value>User name or email address</value>
+  </data>
+  <data name="UserRole" xml:space="preserve">
+    <value>User Role</value>
+  </data>
+  <data name="UserRoleList" xml:space="preserve">
+    <value>User Role List</value>
+  </data>
+  <data name="UserRoles" xml:space="preserve">
+    <value>User Roles</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Users</value>
   </data>
   <data name="VerifyCode" xml:space="preserve">
     <value>Verify Code</value>

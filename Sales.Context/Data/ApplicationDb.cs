@@ -15,5 +15,9 @@ namespace Sales.Context.Data
         public DbSet<UserLogin> UserLogins { get; set; }
         public DbSet<Verification> Verifications { get; set; }
         public DbSet<MainSetting> MainSettings { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<SubCategory> SubCategories { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
     }
 }
