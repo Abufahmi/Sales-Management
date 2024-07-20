@@ -12,5 +12,6 @@ namespace Sales.Client.Helpers
         public static string User => nameof(User);
         public static string Visor => nameof(Visor);
         public static string Admin => nameof(Admin);
+        public static int ItemPerPage { get; set; }
     }
 }

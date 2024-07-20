@@ -156,6 +156,12 @@
   <data name="CreateNew" xml:space="preserve">
     <value>Create New</value>
   </data>
+  <data name="CreateSuccessMessage" xml:space="preserve">
+    <value>Data has been created successfully</value>
+  </data>
+  <data name="CreateUser" xml:space="preserve">
+    <value>Create User</value>
+  </data>
   <data name="Dashboard" xml:space="preserve">
     <value>Dashboard</value>
   </data>
@@ -168,8 +174,17 @@
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <data name="DeleteMessage" xml:space="preserve">
+    <value>You are about to delete a record from the list. The deletion process will be final and you will not be able to undo it. Do you want to continue?</value>
+  </data>
+  <data name="DeletionAlert" xml:space="preserve">
+    <value>Deletion alert</value>
+  </data>
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
+  </data>
+  <data name="EditUser" xml:space="preserve">
+    <value>Edit User</value>
   </data>
   <data name="EmailAddress" xml:space="preserve">
     <value>Email Address</value>
@@ -291,8 +306,17 @@
   <data name="Search" xml:space="preserve">
     <value>Search ...</value>
   </data>
+  <data name="Select" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Select All</value>
+  </data>
   <data name="SelectLanguage" xml:space="preserve">
     <value>Select Language</value>
+  </data>
+  <data name="SelectUser" xml:space="preserve">
+    <value>Select User</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>
@@ -344,5 +368,8 @@
   </data>
   <data name="VerifyCode" xml:space="preserve">
     <value>Verify Code</value>
+  </data>
+  <data name="WantContinue" xml:space="preserve">
+    <value>Do you want to continue?</value>
   </data>
 </root>

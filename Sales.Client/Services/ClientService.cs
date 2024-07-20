@@ -16,7 +16,7 @@ namespace Sales.Client.Services
             this.localStorageService = localStorageService;
         }
 
-        public async Task<HttpClient> GetAuthorizeClient()
+        public async Task<HttpClient> GetAuthorizeClientAsync()
         {
             var client = httpClientFactory.CreateClient("ApiClient");
             client.BaseAddress = new Uri(AppServices.BaseAddress);

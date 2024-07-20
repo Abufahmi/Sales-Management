@@ -5,6 +5,23 @@ namespace Sales.Client.Services
 {
     public class ModelConverter
     {
+        internal static UserModel GetUserModel(User user)
+        {
+            return new UserModel
+            {
+                Id = user.Id,
+                UserName = user.UserName,
+                Email = user.Email,
+                Password = user.Password,
+                PhoneNumber = user.PhoneNumber,
+                EmailConfirmed = user.EmailConfirmed,
+                PhoneConfirmed = user.PhoneConfirmed,
+                CreatedDate = user.CreatedDate,
+                Image = user.Image,
+                IsSelected = false,
+            };
+        }
+
         internal static List<UserModel>? GetUserModels(List<User> users)
         {
             var models = new List<UserModel>();

@@ -1,0 +1,44 @@
+﻿<!-- Modal -->
+<div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="messageModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header en">
+                <h5 class="modal-title" id="messageModalLabel">
+                    @Title
+                </h5>
+                <button type="button" class="btn-close" @onclick="CancelAsync"
+                        data-bs-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                @Message
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" @onclick="CancelAsync"
+                        data-bs-dismiss="modal">
+                    @Localizer[nameof(Strings.Cancel)]
+                </button>
+                <a class="btn btn-danger" @onclick="ApproveAsync" data-bs-dismiss="modal">
+                    @Localizer[nameof(Strings.Ok)]
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+@code {
+    [Parameter] public string? Title { get; set; }
+    [Parameter] public string? Message { get; set; }
+    [Parameter] public EventCallback<bool> ApproveEvent { get; set; }
+
+    async Task ApproveAsync()
+    {
+        await ApproveEvent.InvokeAsync(true);
+    }
+
+    async Task CancelAsync()
+    {
+        await ApproveEvent.InvokeAsync(false);
+    }
+}

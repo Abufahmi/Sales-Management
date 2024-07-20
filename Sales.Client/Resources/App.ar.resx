@@ -156,6 +156,12 @@
   <data name="CreateNew" xml:space="preserve">
     <value>انشاء جديد</value>
   </data>
+  <data name="CreateSuccessMessage" xml:space="preserve">
+    <value>عملية اضافة البيانات تمت بنجاح</value>
+  </data>
+  <data name="CreateUser" xml:space="preserve">
+    <value>انشاء مستخدم</value>
+  </data>
   <data name="Dashboard" xml:space="preserve">
     <value>لوحة التحكم</value>
   </data>
@@ -168,8 +174,17 @@
   <data name="Delete" xml:space="preserve">
     <value>حذف</value>
   </data>
+  <data name="DeleteMessage" xml:space="preserve">
+    <value>انت علي وشك حذف سطر من القائمة. عملية الحذف ستكون نهائية ولن تستطيع التراجع عنها. هل تريد الاستمرار؟</value>
+  </data>
+  <data name="DeletionAlert" xml:space="preserve">
+    <value>تنبيه بالحذف</value>
+  </data>
   <data name="Edit" xml:space="preserve">
     <value>تعديل</value>
+  </data>
+  <data name="EditUser" xml:space="preserve">
+    <value>تعديل بيانات مستخدم</value>
   </data>
   <data name="EmailAddress" xml:space="preserve">
     <value> البريد الالكتروني</value>
@@ -291,8 +306,17 @@
   <data name="Search" xml:space="preserve">
     <value>البحث ...</value>
   </data>
+  <data name="Select" xml:space="preserve">
+    <value>اختر</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>اختر الجميع</value>
+  </data>
   <data name="SelectLanguage" xml:space="preserve">
     <value>اختر اللغة</value>
+  </data>
+  <data name="SelectUser" xml:space="preserve">
+    <value>اختيار مستخدم</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>الاعدادات</value>
@@ -344,5 +368,8 @@
   </data>
   <data name="VerifyCode" xml:space="preserve">
     <value>كود التفعيل</value>
+  </data>
+  <data name="WantContinue" xml:space="preserve">
+    <value>هل تريد الاستمرار؟</value>
   </data>
 </root>

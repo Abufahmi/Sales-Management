@@ -76,5 +76,14 @@
         Edit,
         NoData,
         Search,
+        Select,
+        SelectAll,
+        DeletionAlert,
+        DeleteMessage,
+        WantContinue,
+        CreateUser,
+        EditUser,
+        SelectUser,
+        CreateSuccessMessage,
     }
 }

@@ -15,10 +15,10 @@
 @if (UserModels != null)
 {
     <div class="col-lg-4 col-md-6 col-sm-12">
-        <input type="search" class="form-control mb-3" @oninput="OnUserChanged" 
-        placeholder="@Localizer[nameof(Strings.Search)]" />
+        <input type="search" class="form-control mb-3" @oninput="OnUserChanged"
+               placeholder="@Localizer[nameof(Strings.Search)]" />
     </div>
-    <div class="table-responsive">
+    <div class="table-responsive-lg">
         <QuickGrid Items="UserModels.AsQueryable()" Pagination="Pagination" Class="table">
             <PropertyColumn Property="x=> x.UserName" Sortable="true" Title="@Localizer[nameof(Strings.UserName)]" />
             <PropertyColumn Property="x=> x.Email" Sortable="true" Title="@Localizer[nameof(Strings.EmailAddress)]" />
@@ -29,16 +29,17 @@
             <TemplateColumn Title="@Localizer[nameof(Strings.PhoneConfirmed)]">
                 <input type="checkbox" class="form-check-input" @bind="@context.PhoneConfirmed" />
             </TemplateColumn>
-            <PropertyColumn Property="x=> x.CreatedDate" Format="yyyy-MM-dd" Sortable="true" 
-                Title="@Localizer[nameof(Strings.Date)]" />
+            <PropertyColumn Property="x=> x.CreatedDate" Format="yyyy-MM-dd" Sortable="true"
+                            Title="@Localizer[nameof(Strings.Date)]" />
             <TemplateColumn>
-                <a href="user/edit" title="@Localizer[nameof(Strings.Edit)]">
+                <a href="@($"user/edit/{context.Id}")" title="@Localizer[nameof(Strings.Edit)]">
                     <i class="fa fa-pen text-primary" />
                 </a>
             </TemplateColumn>
             <TemplateColumn>
-                <a href="user/edit" title="@Localizer[nameof(Strings.Delete)]">
-                    <i class="fa fa-trash text-danger" />
+                <a @onclick="async()=> await DeleteConfirmAsync(context.Id)" 
+                   title="@Localizer[nameof(Strings.Delete)]">
+                    <i class="fa fa-trash-alt fs-6 text-danger" />
                 </a>
             </TemplateColumn>
         </QuickGrid>
@@ -56,6 +57,10 @@
             </SummaryTemplate>
         </Paginator>
     </div>
+
+    <MessageComponent ApproveEvent="ApproveResultAsync"
+                      Title="@Localizer[nameof(Strings.DeletionAlert)]"
+                      Message="@Localizer[nameof(Strings.DeleteMessage)]" />
 }
 else
 {

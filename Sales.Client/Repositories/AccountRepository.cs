@@ -123,7 +123,7 @@ namespace Sales.Client.Repositories
         {
             if (token == null) return false;
             AppServices.Error = null;
-            var httpClient = await clientService.GetAuthorizeClient();
+            var httpClient = await clientService.GetAuthorizeClientAsync();
             HttpResponseMessage result = await httpClient
                 .GetAsync($"Account/IsTokenExists/{token}");
             if (result.IsSuccessStatusCode)

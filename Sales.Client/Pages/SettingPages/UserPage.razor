@@ -1,0 +1,118 @@
+﻿@page "/user/create"
+@page "/user/edit/{id}"
+
+@layout DashLayout
+@inherits Bases.SettingBases.UserBase
+@attribute [Authorize(Roles = nameof(AppServices.Admin))]
+
+<PageTitle>@Localizer[nameof(Strings.SiteName)] | @Localizer[nameof(Strings.CreateUser)]</PageTitle>
+@if (Id == null)
+{
+    <DashCrumbComponent RouteLink="Users" RouteName="@Localizer[nameof(Strings.Users)]"
+                        RouteLink1="user/create" RouteName1="@Localizer[nameof(Strings.CreateUser)]" />
+}
+
+else
+{
+    <DashCrumbComponent RouteLink="Users" RouteName="@Localizer[nameof(Strings.Users)]"
+                        RouteLink1="user/edit" RouteName1="@Localizer[nameof(Strings.EditUser)]" />
+}
+
+<div class="col-lg-4 col-md-6 col-sm-8">
+    @if (Error != null)
+    {
+        <div class="alert alert-danger alert-dismissible mt-3 fade show popup @(AppServices.IsArabic ? "text-right" : "text-left")"
+             @onclick="HideMessage" role="alert">
+            @Error
+            <button type="button" class="btn-close"></button>
+        </div>
+    }
+
+    @if (Message != null)
+    {
+        <div class="alert alert-success alert-dismissible mt-3 fade show popup @(AppServices.IsArabic ? "text-right" : "text-left")"
+             @onclick="HideMessage" role="alert">
+            @Message
+            <button type="button" class="btn-close"></button>
+        </div>
+    }
+
+    <EditForm Model="UserModel" FormName="UserForm" OnValidSubmit="OnValidSubmit">
+        <DataAnnotationsValidator />
+        <!-- User name -->
+        <div class="mt-4 mb-3">
+            <label class="form-label">
+                @Localizer[nameof(Strings.UserName)]
+            </label>
+            <InputText @bind-Value="UserModel.UserName" class="form-control" @oninput="OnUserNameChange" />
+            <ValidationMessage class="lbl-error" For="()=> UserModel.UserName" />
+            @if (UserNameError != null)
+            {
+                <span class="lbl-error">@UserNameError</span>
+            }
+        </div>
+
+        <!-- Email Address -->
+        <div class="mb-3">
+            <label class="form-label">
+                @Localizer[nameof(Strings.EmailAddress)]
+            </label>
+            <InputText type="email" @bind-Value="UserModel.Email" class="form-control" @oninput="OnEmailChange" />
+            <ValidationMessage class="lbl-error" For="()=> UserModel.Email" />
+            @if (EmailError != null)
+            {
+                <span class="lbl-error">@EmailError</span>
+            }
+        </div>
+
+        <!-- Password input -->
+        <div class="mb-3">
+            <label class="form-label">
+                @Localizer[nameof(Strings.Password)]
+            </label>
+            <InputText type="password" class="form-control" @bind-Value="UserModel.Password" />
+            <ValidationMessage class="lbl-error" For="()=> UserModel.Password" />
+        </div>
+
+        <!-- PhoneNumber input -->
+        <div class="mb-3">
+            <label class="form-label">
+                @Localizer[nameof(Strings.PhoneNumber)]
+            </label>
+            <InputText class="form-control" @bind-Value="UserModel.PhoneNumber" />
+        </div>
+
+        <!-- Email Confirm -->
+        <div class="form-check mb-2">
+            <input type="checkbox" class="form-check-input @(AppServices.IsArabic ? "float-end" : "")"
+                   @bind="UserModel.EmailConfirmed" id="EmailConfirmed">
+            <label class="form-check-label @(AppServices.IsArabic ? "me-4" : "")" for="EmailConfirmed">
+                @Localizer[nameof(Strings.EmailConfirmed)]
+            </label>
+        </div>
+
+        <!-- Phone Confirm -->
+        <div class="form-check mb-3">
+            <input type="checkbox" class="form-check-input @(AppServices.IsArabic ? "float-end" : "")"
+                   @bind="UserModel.PhoneConfirmed" id="PhoneConfirmed">
+            <label class="form-check-label @(AppServices.IsArabic ? "me-4" : "")" for="PhoneConfirmed">
+                @Localizer[nameof(Strings.PhoneConfirmed)]
+            </label>
+        </div>
+
+        <!-- Submit button -->
+        @if (Id == null)
+        {
+            <button type="submit" class="btn btn-success w-100 mb-4" disabled="@IsBusy">
+                @Localizer[nameof(Strings.Create)]
+            </button>
+        }
+        else
+        {
+            <button type="submit" class="btn btn-primary w-100 mb-4" disabled="@IsBusy">
+                @Localizer[nameof(Strings.Edit)]
+            </button>
+        }
+
+    </EditForm>
+</div>
