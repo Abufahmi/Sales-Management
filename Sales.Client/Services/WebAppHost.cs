@@ -29,6 +29,7 @@ namespace Sales.Client.Services
             services.AddTransient<ClientService>();
             services.AddTransient<AuthenticationStateProvider, AppAuthenticationStateProvider>();
             services.AddTransient<IAccountRepository, AccountRepository>();
+            services.AddTransient<ISiteRepository, SiteRepository>();
             return services;
         }
     }

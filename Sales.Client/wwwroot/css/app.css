@@ -145,6 +145,14 @@ code {
     margin-top: 5px;
 }
 
+.icon-delete {
+    color: red;
+}
+
+    .icon-delete:hover {
+        color: #ad0202;
+        transition: all 0.2ms ease;
+    }
 
 @media (max-width: 768px) {
     .container-img {

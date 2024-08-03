@@ -103,13 +103,13 @@ else
         <!-- Submit button -->
         @if (Id == null)
         {
-            <button type="submit" class="btn btn-success w-100 mb-4" disabled="@IsBusy">
+            <button type="submit" class="btn btn-outline-secondary w-100 mb-4" disabled="@IsBusy">
                 @Localizer[nameof(Strings.Create)]
             </button>
         }
         else
         {
-            <button type="submit" class="btn btn-primary w-100 mb-4" disabled="@IsBusy">
+            <button type="submit" class="btn btn-outline-secondary w-100 mb-4" disabled="@IsBusy">
                 @Localizer[nameof(Strings.Edit)]
             </button>
         }

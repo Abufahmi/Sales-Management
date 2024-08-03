@@ -132,6 +132,9 @@
   <data name="AccountRecoveryTip" xml:space="preserve">
     <value>الرجاء ادخال البريد الالكتروني الذي قمت بالتسجيل فيه</value>
   </data>
+  <data name="AddUserRole" xml:space="preserve">
+    <value>انشاء صلاحية مستخدم</value>
+  </data>
   <data name="ar-JO" xml:space="preserve">
     <value>العربية</value>
   </data>
@@ -185,6 +188,9 @@
   </data>
   <data name="EditUser" xml:space="preserve">
     <value>تعديل بيانات مستخدم</value>
+  </data>
+  <data name="EditUserRole" xml:space="preserve">
+    <value>تعديل صلاحية مستخدم</value>
   </data>
   <data name="EmailAddress" xml:space="preserve">
     <value> البريد الالكتروني</value>
@@ -303,6 +309,9 @@
   <data name="ResetPassword" xml:space="preserve">
     <value>استعادة الحساب</value>
   </data>
+  <data name="RoleName" xml:space="preserve">
+    <value>اسم الصلاحية</value>
+  </data>
   <data name="Search" xml:space="preserve">
     <value>البحث ...</value>
   </data>
@@ -314,6 +323,9 @@
   </data>
   <data name="SelectLanguage" xml:space="preserve">
     <value>اختر اللغة</value>
+  </data>
+  <data name="SelectRole" xml:space="preserve">
+    <value>اختر الصلاحية</value>
   </data>
   <data name="SelectUser" xml:space="preserve">
     <value>اختيار مستخدم</value>
@@ -357,11 +369,17 @@
   <data name="UserRole" xml:space="preserve">
     <value>صلاحية المستخدم</value>
   </data>
+  <data name="UserRoleExists" xml:space="preserve">
+    <value> اسم المستخدم  {0} لديه صلاحية سابقة باسم {1}</value>
+  </data>
   <data name="UserRoleList" xml:space="preserve">
     <value>قائمة صلاحيات المستخدمين</value>
   </data>
   <data name="UserRoles" xml:space="preserve">
     <value>صلاحيات المستخدمين</value>
+  </data>
+  <data name="UserRolesExists" xml:space="preserve">
+    <value>اسم الصلاحية موجود مسبقا</value>
   </data>
   <data name="Users" xml:space="preserve">
     <value>المستخدمين</value>

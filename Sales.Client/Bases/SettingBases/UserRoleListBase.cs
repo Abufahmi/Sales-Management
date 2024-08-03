@@ -10,13 +10,13 @@ using System.Net.Http.Json;
 
 namespace Sales.Client.Bases.SettingBases
 {
-    public class UserListBase : ComponentBase
+    public class UserRoleListBase : ComponentBase
     {
         [Inject] public ClientService ClientService { get; set; } = default!;
         [Inject] IJSRuntime Js { get; set; } = default!;
-        [Inject] IAccountRepository Repository { get; set; } = default!;
-        public List<UserModel>? UserModels { get; set; }
-        List<UserModel>? AllUsers { get; set; }
+        [Inject] ISiteRepository SiteRepository { get; set; } = default!;
+        public List<UserRoleModel>? UserRoleModels { get; set; }
+        List<UserRoleModel>? AllUserRole { get; set; }
         public bool IsBusy { get; set; }
         public PaginationState Pagination { get; set; } = new();
 
@@ -24,43 +24,28 @@ namespace Sales.Client.Bases.SettingBases
         protected override async Task OnInitializedAsync()
         {
             IsBusy = true;
-            var users = await GetUsersAsync();
-            if (users != null)
+            var userRoles = await GetUserRolesAsync();
+            if (userRoles != null)
             {
-                UserModels = ModelConverter.GetUserModels(users);
-                AllUsers = UserModels;
-                if (AppServices.ItemPerPage == 0)
-                {
-                    var main = await Repository.GetMainSettingAsync();
-                    if (main != null && main.ItemPerPage != 0)
-                    {
-                        Pagination.ItemsPerPage = main.ItemPerPage;
-                    }
-                    else
-                    {
-                        Pagination.ItemsPerPage = 10;
-                    }
-                }
-                else
-                {
-                    Pagination.ItemsPerPage = AppServices.ItemPerPage;
-                }
+                UserRoleModels = ModelConverter.GetUserRoleModels(userRoles);
+                AllUserRole = UserRoleModels;
+                Pagination.ItemsPerPage = await SiteRepository.GetItemPerPageAsync();
             }
             IsBusy = false;
             await base.OnInitializedAsync();
         }
 
-        private async Task<List<User>?> GetUsersAsync()
+        private async Task<List<UserRole>?> GetUserRolesAsync()
         {
             AppServices.Error = null;
             var httpClient = await ClientService.GetAuthorizeClientAsync();
-            HttpResponseMessage result = await httpClient.GetAsync("Settings/GetUsers");
+            HttpResponseMessage result = await httpClient.GetAsync("Settings/GetUserRoles");
             if (result.IsSuccessStatusCode)
             {
-                var users = await result.Content.ReadFromJsonAsync<List<User>>();
-                if (users != null)
+                var userRoles = await result.Content.ReadFromJsonAsync<List<UserRole>>();
+                if (userRoles != null)
                 {
-                    return users;
+                    return userRoles;
                 }
             }
             else
@@ -72,31 +57,30 @@ namespace Sales.Client.Bases.SettingBases
             return null;
         }
 
-        protected void OnUserChanged(ChangeEventArgs args)
+        protected void OnSearchChanged(ChangeEventArgs args)
         {
             if (args?.Value == null)
             {
-                UserModels = AllUsers;
+                UserRoleModels = AllUserRole;
             }
             else
             {
                 var txt = args.Value as string;
-                if (txt != null && AllUsers != null)
+                if (txt != null && AllUserRole != null)
                 {
                     txt = txt.Trim().ToLower();
-                    var models = AllUsers
-                        .Where(x => x.UserName!.ToLower().Contains(txt) ||
-                        x.Email!.ToLower().Contains(txt) ||
-                        x.PhoneNumber != null && x.PhoneNumber!.ToLower().Contains(txt))
+                    var models = AllUserRole
+                        .Where(x => x.User!.UserName!.ToLower().Contains(txt) ||
+                        x.Role!.RoleName!.ToLower().Contains(txt))
                         .ToList();
 
                     if (models != null)
                     {
-                        UserModels = models;
+                        UserRoleModels = models;
                     }
                     else
                     {
-                        UserModels = AllUsers;
+                        UserRoleModels = AllUserRole;
                     }
                 }
             }
@@ -112,7 +96,7 @@ namespace Sales.Client.Bases.SettingBases
             var result = await Js.InvokeAsync<bool>("openMessageComponent");
             if (result == true)
             {
-                foreach (var item in UserModels!)
+                foreach (var item in UserRoleModels!)
                 {
                     if (item.Id == id)
                     {
@@ -130,28 +114,28 @@ namespace Sales.Client.Bases.SettingBases
         {
             if (args == true)
             {
-                var userModel = UserModels!.FirstOrDefault(x => x.IsSelected == true);
+                var userModel = UserRoleModels!.FirstOrDefault(x => x.IsSelected == true);
                 if (userModel != null)
                 {
-                    bool result = await DeleteUserByIdAsync(userModel.Id!);
+                    bool result = await DeleteUserRoleByIdAsync(userModel.Id!);
                     if (result)
                     {
-                        UserModels?.Remove(userModel);
+                        UserRoleModels?.Remove(userModel);
                     }
                 }
             }
 
-            foreach (var item in UserModels!)
+            foreach (var item in UserRoleModels!)
             {
                 item.IsSelected = false;
             }
         }
 
-        private async Task<bool> DeleteUserByIdAsync(string id)
+        private async Task<bool> DeleteUserRoleByIdAsync(string id)
         {
             AppServices.Error = null;
             var httpClient = await ClientService.GetAuthorizeClientAsync();
-            HttpResponseMessage result = await httpClient.GetAsync($"Settings/DeleteUserById/{id}");
+            HttpResponseMessage result = await httpClient.DeleteAsync($"Settings/DeleteUserRoleById/{id}");
             if (result.IsSuccessStatusCode)
             {
                 return true;

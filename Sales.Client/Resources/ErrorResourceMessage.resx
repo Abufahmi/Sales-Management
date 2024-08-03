@@ -135,8 +135,14 @@
   <data name="PasswordRequired" xml:space="preserve">
     <value>Password is required</value>
   </data>
+  <data name="RoleRequired" xml:space="preserve">
+    <value>Role is required</value>
+  </data>
   <data name="UserNameRequired" xml:space="preserve">
     <value>User name is required</value>
+  </data>
+  <data name="UserRequired" xml:space="preserve">
+    <value>User is required</value>
   </data>
   <data name="VerificationCodeRequired" xml:space="preserve">
     <value> Verification code is required</value>

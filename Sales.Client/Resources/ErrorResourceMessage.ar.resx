@@ -135,8 +135,14 @@
   <data name="PasswordRequired" xml:space="preserve">
     <value>كلمة المرور مطلوبة</value>
   </data>
+  <data name="RoleRequired" xml:space="preserve">
+    <value>الصلاحية مطلوبة</value>
+  </data>
   <data name="UserNameRequired" xml:space="preserve">
     <value>اسم المستخدم مطلوب</value>
+  </data>
+  <data name="UserRequired" xml:space="preserve">
+    <value>المستخدم مطلوب</value>
   </data>
   <data name="VerificationCodeRequired" xml:space="preserve">
     <value>كود التفعيل مطلوب</value>

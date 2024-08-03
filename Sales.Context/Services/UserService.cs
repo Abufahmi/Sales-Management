@@ -20,6 +20,17 @@ namespace Sales.Context.Services
             LibraryService.Error = null;
             try
             {
+                if (db.Users.Any(x => x.UserName == user.UserName))
+                {
+                    LibraryService.Error = "User name already exists";
+                    return false;
+                }
+                if (db.Users.Any(x => x.Email == user.Email))
+                {
+                    LibraryService.Error = "Email address already exists";
+                    return false;
+                }
+
                 user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
                 await db.AddAsync(user);
                 await db.SaveChangesAsync();
@@ -58,6 +69,17 @@ namespace Sales.Context.Services
             if (user == null) throw new ArgumentNullException("user");
             try
             {
+                if (db.Users.Any(x => x.UserName == user.UserName && x.Id != user.Id))
+                {
+                    LibraryService.Error = "User name already exists";
+                    return false;
+                }
+                if (db.Users.Any(x => x.Email == user.Email && x.Id != user.Id))
+                {
+                    LibraryService.Error = "Email address already exists";
+                    return false;
+                }
+
                 var entity = await db.Users.FirstOrDefaultAsync(x => x.Id == user.Id);
                 if (entity == null) return false;
 

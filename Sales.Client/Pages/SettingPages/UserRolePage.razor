@@ -1,0 +1,81 @@
+﻿@page "/UserRole/Create"
+@page "/UserRole/Edit/{id}"
+@layout DashLayout
+@inherits Bases.SettingBases.UserRoleBase
+@attribute [Authorize(Roles = nameof(AppServices.Admin))]
+
+@if (Id != null)
+{
+    <PageTitle>@Localizer[nameof(Strings.SiteName)] | @Localizer[nameof(Strings.EditUserRole)]</PageTitle>
+    <DashCrumbComponent RouteLink="UserRoles" RouteName="@Localizer[nameof(Strings.UserRoles)]"
+                        RouteLink1="/UserRole/Create" RouteName1="@Localizer[nameof(Strings.EditUserRole)]" />
+}
+else
+{
+    <PageTitle>@Localizer[nameof(Strings.SiteName)] | @Localizer[nameof(Strings.AddUserRole)]</PageTitle>
+    <DashCrumbComponent RouteLink="UserRoles" RouteName="@Localizer[nameof(Strings.UserRoles)]"
+                        RouteLink1="/UserRole/Create" RouteName1="@Localizer[nameof(Strings.AddUserRole)]" />
+}
+
+<div class="d-block">
+    @if (Error != null)
+    {
+        <div class="alert alert-danger alert-dismissible d-inline-block mt-3 fade show popup @(AppServices.IsArabic ? "text-right" : "text-left")"
+             @onclick="HideMessage" role="alert">
+            @Error
+            <button type="button" class="btn-close"></button>
+        </div>
+    }
+
+    @if (Message != null)
+    {
+        <div class="alert alert-success alert-dismissible mt-3 d-inline-block fade show popup @(AppServices.IsArabic ? "text-right" : "text-left")"
+             @onclick="HideMessage" role="alert">
+            @Message
+            <button type="button" class="btn-close"></button>
+        </div>
+    }
+</div>
+
+<div class="col-lg-4 col-md-6 col-sm-12 mt-3">
+    <EditForm Model="UserRoleModel" OnValidSubmit="OnValidSubmit" FormName="UserRoleForm">
+        <DataAnnotationsValidator />
+
+        <div class="mb-3">
+            <InputSelect @bind-Value="UserRoleModel.UserId" class="form-select">
+                <option value="-1">@Localizer[nameof(Strings.SelectUser)]</option>
+                @foreach (var user in Users)
+                {
+                    <option value="@user.Id">@user.UserName</option>
+                }
+            </InputSelect>
+            <ValidationMessage class="lbl-error" For="()=> UserRoleModel.UserId" />
+        </div>
+        <div class="mb-3">
+            <InputSelect @bind-Value="UserRoleModel.RoleId" class="form-select">
+                <option value="-1">@Localizer[nameof(Strings.SelectRole)]</option>
+                @foreach (var role in Roles)
+                {
+                    <option value="@role.Id">@role.RoleName</option>
+                }
+            </InputSelect>
+            <ValidationMessage class="lbl-error" For="()=> UserRoleModel.RoleId" />
+        </div>
+
+        <!-- Submit button -->
+        @if (Id == null)
+        {
+            <button type="submit" class="btn btn-outline-secondary w-100 mb-4" disabled="@IsBusy">
+                @Localizer[nameof(Strings.Create)]
+            </button>
+        }
+        else
+        {
+            <button type="submit" class="btn btn-outline-secondary w-100 mb-4" disabled="@IsBusy">
+                @Localizer[nameof(Strings.Edit)]
+            </button>
+        }
+
+    </EditForm>
+</div>
+

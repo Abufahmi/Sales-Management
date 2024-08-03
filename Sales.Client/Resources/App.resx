@@ -132,6 +132,9 @@
   <data name="AccountRecoveryTip" xml:space="preserve">
     <value>Please enter the email address you registered for</value>
   </data>
+  <data name="AddUserRole" xml:space="preserve">
+    <value>Create user role</value>
+  </data>
   <data name="ar-JO" xml:space="preserve">
     <value>Arabic</value>
   </data>
@@ -185,6 +188,9 @@
   </data>
   <data name="EditUser" xml:space="preserve">
     <value>Edit User</value>
+  </data>
+  <data name="EditUserRole" xml:space="preserve">
+    <value>Edit user role</value>
   </data>
   <data name="EmailAddress" xml:space="preserve">
     <value>Email Address</value>
@@ -303,6 +309,9 @@
   <data name="ResetPassword" xml:space="preserve">
     <value>Reset Password</value>
   </data>
+  <data name="RoleName" xml:space="preserve">
+    <value>Role Name</value>
+  </data>
   <data name="Search" xml:space="preserve">
     <value>Search ...</value>
   </data>
@@ -314,6 +323,9 @@
   </data>
   <data name="SelectLanguage" xml:space="preserve">
     <value>Select Language</value>
+  </data>
+  <data name="SelectRole" xml:space="preserve">
+    <value>Select Role</value>
   </data>
   <data name="SelectUser" xml:space="preserve">
     <value>Select User</value>
@@ -357,11 +369,17 @@
   <data name="UserRole" xml:space="preserve">
     <value>User Role</value>
   </data>
+  <data name="UserRoleExists" xml:space="preserve">
+    <value>The username {(0)} has a previous a role in the name of {(1)}</value>
+  </data>
   <data name="UserRoleList" xml:space="preserve">
     <value>User Role List</value>
   </data>
   <data name="UserRoles" xml:space="preserve">
     <value>User Roles</value>
+  </data>
+  <data name="UserRolesExists" xml:space="preserve">
+    <value>User role already exists</value>
   </data>
   <data name="Users" xml:space="preserve">
     <value>Users</value>

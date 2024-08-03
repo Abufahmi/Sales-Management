@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
-using Microsoft.JSInterop;
 using Sales.Client.Helpers;
 using Sales.Client.Models.SettingModels;
 using Sales.Client.Services;
@@ -62,7 +61,7 @@ namespace Sales.Client.Bases.SettingBases
             }
             return null;
         }
-        
+
         private async Task<List<User>?> GetUsersAsync()
         {
             AppServices.Error = null;
@@ -90,6 +89,11 @@ namespace Sales.Client.Bases.SettingBases
 
         protected async Task OnValidSubmit()
         {
+            if (UserNameError != null || EmailError != null)
+            {
+                return;
+            }
+
             IsBusy = true;
             var user = new User
             {

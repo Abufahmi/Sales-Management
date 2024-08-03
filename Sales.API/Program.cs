@@ -62,6 +62,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddTransient<IDbService, DbService>();
 builder.Services.AddTransient<IAccountService, AccountService>();
 builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<IUserRoleService, UserRoleService>();
 builder.Services.AddTransient<Responses>();
 
 var app = builder.Build();

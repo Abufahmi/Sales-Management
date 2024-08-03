@@ -106,6 +106,15 @@ namespace Sales.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create user role.
+        /// </summary>
+        public static string AddUserRole {
+            get {
+                return ResourceManager.GetString("AddUserRole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Arabic.
         /// </summary>
         public static string ar_JO {
@@ -264,6 +273,15 @@ namespace Sales.Client.Resources {
         public static string EditUser {
             get {
                 return ResourceManager.GetString("EditUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit user role.
+        /// </summary>
+        public static string EditUserRole {
+            get {
+                return ResourceManager.GetString("EditUserRole", resourceCulture);
             }
         }
         
@@ -619,6 +637,15 @@ namespace Sales.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Role Name.
+        /// </summary>
+        public static string RoleName {
+            get {
+                return ResourceManager.GetString("RoleName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search ....
         /// </summary>
         public static string Search {
@@ -651,6 +678,15 @@ namespace Sales.Client.Resources {
         public static string SelectLanguage {
             get {
                 return ResourceManager.GetString("SelectLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Role.
+        /// </summary>
+        public static string SelectRole {
+            get {
+                return ResourceManager.GetString("SelectRole", resourceCulture);
             }
         }
         
@@ -781,6 +817,15 @@ namespace Sales.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The username {(0)} has a previous a role in the name of {(1)}.
+        /// </summary>
+        public static string UserRoleExists {
+            get {
+                return ResourceManager.GetString("UserRoleExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User Role List.
         /// </summary>
         public static string UserRoleList {
@@ -795,6 +840,15 @@ namespace Sales.Client.Resources {
         public static string UserRoles {
             get {
                 return ResourceManager.GetString("UserRoles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User role already exists.
+        /// </summary>
+        public static string UserRolesExists {
+            get {
+                return ResourceManager.GetString("UserRolesExists", resourceCulture);
             }
         }
         

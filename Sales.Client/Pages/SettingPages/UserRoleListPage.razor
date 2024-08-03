@@ -1,38 +1,33 @@
-﻿@page "/Users"
+﻿@page "/UserRoles"
 @layout DashLayout
-@inherits Bases.SettingBases.UserListBase
+@inherits Bases.SettingBases.UserRoleListBase
 @attribute [Authorize(Roles = nameof(AppServices.Admin))]
 
-<PageTitle>@Localizer[nameof(Strings.SiteName)] | @Localizer[nameof(Strings.UserList)]</PageTitle>
-<DashCrumbComponent RouteLink="Users" RouteName="@Localizer[nameof(Strings.UserList)]" />
+<PageTitle>@Localizer[nameof(Strings.SiteName)] | @Localizer[nameof(Strings.UserRoleList)]</PageTitle>
+<DashCrumbComponent RouteLink="UserRoles" RouteName="@Localizer[nameof(Strings.UserRoleList)]" />
 
 <div class="d-block mt-4">
-    <a href="user/create" class="btn btn-outline-success px-4 mb-3" style="min-width:150px">
+    <a href="UserRole/Create" class="btn btn-outline-success px-4 mb-3" style="min-width:150px">
         @Localizer[nameof(Strings.CreateNew)]
     </a>
 </div>
 
-@if (UserModels != null)
+@if (UserRoleModels != null)
 {
     <div class="col-lg-4 col-md-6 col-sm-12">
-        <input type="search" class="form-control mb-3" @oninput="OnUserChanged"
+        <input type="search" class="form-control mb-3" @oninput="OnSearchChanged"
                placeholder="@Localizer[nameof(Strings.Search)]" />
     </div>
     <div class="table-responsive-lg">
-        <QuickGrid Items="UserModels.AsQueryable()" Pagination="Pagination" Class="table">
-            <PropertyColumn Property="x=> x.UserName" Sortable="true" Title="@Localizer[nameof(Strings.UserName)]" />
-            <PropertyColumn Property="x=> x.Email" Sortable="true" Title="@Localizer[nameof(Strings.EmailAddress)]" />
-            <TemplateColumn Title="@Localizer[nameof(Strings.EmailConfirmed)]">
-                <input type="checkbox" class="form-check-input" @bind="@context.EmailConfirmed" />
+        <QuickGrid Items="UserRoleModels.AsQueryable()" Pagination="Pagination" Class="table">
+            <TemplateColumn Title="@Localizer[nameof(Strings.UserName)]">
+                <div>@context.User?.UserName</div>
             </TemplateColumn>
-            <PropertyColumn Property="x=> x.PhoneNumber" Title="@Localizer[nameof(Strings.PhoneNumber)]" />
-            <TemplateColumn Title="@Localizer[nameof(Strings.PhoneConfirmed)]">
-                <input type="checkbox" class="form-check-input" @bind="@context.PhoneConfirmed" />
+            <TemplateColumn Title="@Localizer[nameof(Strings.RoleName)]">
+                <div>@context.Role?.RoleName</div>
             </TemplateColumn>
-            <PropertyColumn Property="x=> x.CreatedDate" Format="yyyy-MM-dd" Sortable="true"
-                            Title="@Localizer[nameof(Strings.Date)]" />
             <TemplateColumn>
-                <a href="@($"user/edit/{context.Id}")" title="@Localizer[nameof(Strings.Edit)]">
+                <a href="@($"UserRole/Edit/{context.Id}")" title="@Localizer[nameof(Strings.Edit)]">
                     <i class="fa fa-pen text-primary" />
                 </a>
             </TemplateColumn>
@@ -48,11 +43,11 @@
             <SummaryTemplate>
                 @if (AppServices.IsArabic)
                 {
-                    <span>@UserModels.Count عناصر</span>
+                    <span>@UserRoleModels.Count عناصر</span>
                 }
                 else
                 {
-                    <span>@UserModels.Count items</span>
+                    <span>@UserRoleModels.Count items</span>
                 }
             </SummaryTemplate>
         </Paginator>

@@ -85,5 +85,11 @@
         EditUser,
         SelectUser,
         CreateSuccessMessage,
+        RoleName,
+        AddUserRole,
+        EditUserRole,
+        SelectRole,
+        UserRoleExists,
+        UserRolesExists,
     }
 }

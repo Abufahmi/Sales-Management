@@ -45,5 +45,35 @@ namespace Sales.Client.Services
             }
             return models;
         }
+
+        internal static UserRoleModel GetUserRoleModel(UserRole userRole)
+        {
+            return new UserRoleModel
+            {
+                Id = userRole.Id,
+                User = userRole.User,
+                Role = userRole.Role,
+                RoleId = userRole.RoleId,
+                UserId = userRole.UserId,
+            };
+        }
+
+        internal static List<UserRoleModel>? GetUserRoleModels(List<UserRole> userRoles)
+        {
+           var roles = new List<UserRoleModel>();
+            foreach(var item in userRoles)
+            {
+                var model = new UserRoleModel
+                {
+                    Id = item.Id,
+                    User = item.User,
+                    Role = item.Role,
+                    RoleId = item.RoleId,
+                    UserId = item.UserId,
+                };
+                roles.Add(model);
+            }
+            return roles;
+        }
     }
 }

@@ -20,7 +20,6 @@ body {
     font-family: "DroidKufi-Regular", sans-serif;
     font-size: 0.875rem;
     opacity: 1;
-    overflow-y: scroll;
     margin: 0;
 }
 
@@ -158,7 +157,6 @@ a.sidebar-link {
 
 #sidebar.collapsed {
     margin-left: -290px;
-    z-index: -1;
 }
 
 /* Footer and Nav */
@@ -171,11 +169,9 @@ a.sidebar-link {
 
     #sidebar.collapsed {
         margin-left: 0;
-        z-index: 1;
     }
 
-    .navbar,
-    footer {
+    .navbar, footer {
         width: 100vw;
     }
 }
