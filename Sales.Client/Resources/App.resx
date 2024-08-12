@@ -156,6 +156,9 @@
   <data name="Create" xml:space="preserve">
     <value>Create</value>
   </data>
+  <data name="CreateMainSetting" xml:space="preserve">
+    <value>Create main setting</value>
+  </data>
   <data name="CreateNew" xml:space="preserve">
     <value>Create New</value>
   </data>
@@ -185,6 +188,9 @@
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
+  </data>
+  <data name="EditMainSetting" xml:space="preserve">
+    <value>Edit main setting</value>
   </data>
   <data name="EditUser" xml:space="preserve">
     <value>Edit User</value>
@@ -224,6 +230,9 @@
   </data>
   <data name="Image" xml:space="preserve">
     <value>Image</value>
+  </data>
+  <data name="ItemPerPage" xml:space="preserve">
+    <value>Items per page</value>
   </data>
   <data name="Login" xml:space="preserve">
     <value>Login</value>
@@ -348,8 +357,14 @@
   <data name="System" xml:space="preserve">
     <value>System</value>
   </data>
+  <data name="TokenExpireMinutes" xml:space="preserve">
+    <value>Token expiry time in minutes</value>
+  </data>
   <data name="UnknowError" xml:space="preserve">
     <value>An unknown error has occurred. Please try again.</value>
+  </data>
+  <data name="UpdateSuccessMessage" xml:space="preserve">
+    <value>Data has been successfully modified</value>
   </data>
   <data name="User" xml:space="preserve">
     <value>User</value>

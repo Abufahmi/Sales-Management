@@ -156,6 +156,9 @@
   <data name="Create" xml:space="preserve">
     <value>انشاء</value>
   </data>
+  <data name="CreateMainSetting" xml:space="preserve">
+    <value>انشاء اعداد اساسي</value>
+  </data>
   <data name="CreateNew" xml:space="preserve">
     <value>انشاء جديد</value>
   </data>
@@ -185,6 +188,9 @@
   </data>
   <data name="Edit" xml:space="preserve">
     <value>تعديل</value>
+  </data>
+  <data name="EditMainSetting" xml:space="preserve">
+    <value>تعديل اعداد اساسي</value>
   </data>
   <data name="EditUser" xml:space="preserve">
     <value>تعديل بيانات مستخدم</value>
@@ -224,6 +230,9 @@
   </data>
   <data name="Image" xml:space="preserve">
     <value>الصورة</value>
+  </data>
+  <data name="ItemPerPage" xml:space="preserve">
+    <value>عدد العناصر لكل جدول</value>
   </data>
   <data name="Login" xml:space="preserve">
     <value>تسجيل الدخول</value>
@@ -348,8 +357,14 @@
   <data name="System" xml:space="preserve">
     <value>النظام</value>
   </data>
+  <data name="TokenExpireMinutes" xml:space="preserve">
+    <value>مدة انتهاء صلاحية الرمز المميز بالدقائق</value>
+  </data>
   <data name="UnknowError" xml:space="preserve">
     <value>حدث خطأ غير معلوم. الرجاء المحاولة لاحقا.</value>
+  </data>
+  <data name="UpdateSuccessMessage" xml:space="preserve">
+    <value>تم تعديل البيانات بنجاح</value>
   </data>
   <data name="User" xml:space="preserve">
     <value>المستخدم</value>

@@ -4,6 +4,7 @@
 
 @page "/Register"
 @inject IAccountRepository repo
+@inject ISiteRepository service
 
 <div class="p-0">
     <div class="row m-0">
@@ -104,6 +105,12 @@
 
     protected override async Task OnInitializedAsync()
     {
+        string? userId = await service.GetUserIdentityAsync();
+        if (userId != null)
+        {
+            NavManager.NavigateTo("/", true);
+        }
+
         var users = await repo.GetUsersAsync();
         if (users != null)
             Users = users;

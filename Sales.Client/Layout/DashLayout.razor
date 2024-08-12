@@ -1,4 +1,8 @@
-﻿@inherits LayoutComponentBase
+﻿@using Repositories
+@using Library
+
+@inherits LayoutComponentBase
+@inject IAccountRepository repo
 
 <link href="css/dashboard.css" rel="stylesheet" />
 
@@ -20,7 +24,7 @@
                     @Localizer[nameof(Strings.DashMain)]
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link @ArabicLink collapsed" data-bs-target="#Categories" data-bs-toggle="collapse"
+                    <a href="#" class="sidebar-link collapsed @ArabicLink" data-bs-target="#Categories" data-bs-toggle="collapse"
                        aria-expanded="false">
                         <i class="fa-solid fa-file-lines @(AppServices.IsArabic ? "ps-2" : "pe-2")"></i>
                         @Localizer[nameof(Strings.Categories)]
@@ -39,7 +43,7 @@
                     </ul>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link @ArabicLink collapsed" data-bs-target="#Products" data-bs-toggle="collapse"
+                    <a href="#" class="sidebar-link collapsed @ArabicLink" data-bs-target="#Products" data-bs-toggle="collapse"
                        aria-expanded="false">
                         <i class="fa-solid fa-sliders @(AppServices.IsArabic ? "ps-2" : "pe-2")"></i>
                         @Localizer[nameof(Strings.Products)]
@@ -54,7 +58,7 @@
                 </li>
 
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link @ArabicLink collapsed" data-bs-target="#More" data-bs-toggle="collapse"
+                    <a href="#" class="sidebar-link collapsed @ArabicLink" data-bs-target="#More" data-bs-toggle="collapse"
                        aria-expanded="false">
                         <i class="fa-solid fa-share-nodes @(AppServices.IsArabic ? "ps-2" : "pe-2")"></i>
                         @Localizer[nameof(Strings.More)]
@@ -72,7 +76,7 @@
                     @Localizer[nameof(Strings.System)]
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link @ArabicLink collapsed" data-bs-target="#Settings" data-bs-toggle="collapse"
+                    <a href="#" class="sidebar-link collapsed @ArabicLink" data-bs-target="#Settings" data-bs-toggle="collapse"
                        aria-expanded="false">
                         <i class="fa fa-gear @(AppServices.IsArabic ? "ps-2" : "pe-2")"></i>
                         @Localizer[nameof(Strings.Settings)]
@@ -89,9 +93,18 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="MainSettings" class="sidebar-link item @ArabicLink">
-                                @Localizer[nameof(Strings.MainSettings)]
-                            </a>
+                            @if (MainSetting != null)
+                            {
+                                <a href="@($"mainsetting/edit/{MainSetting.Id}")" class="sidebar-link item @ArabicLink">
+                                    @Localizer[nameof(Strings.MainSettings)]
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="mainsetting/create" class="sidebar-link item @ArabicLink">
+                                    @Localizer[nameof(Strings.MainSettings)]
+                                </a>
+                            }
                         </li>
                     </ul>
                 </li>
@@ -146,8 +159,9 @@
     bool Toggle = false;
     string? ArabicList = null;
     string? ArabicLink = null;
+    MainSetting? MainSetting = null;
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
         if (AppServices.IsArabic)
         {
@@ -158,7 +172,14 @@
         {
             ArabicList = "sidebar-nav";
         }
-        base.OnInitialized();
+
+        var main = await repo.GetMainSettingAsync();
+        if (main != null)
+        {
+            MainSetting = main;
+        }
+
+        await base.OnInitializedAsync();
     }
 
     void OnToggle()

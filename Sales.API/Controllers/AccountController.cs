@@ -1,8 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Win32;
+﻿using Microsoft.AspNetCore.Mvc;
 using Sales.Library.Models;
-using Sales.Context.Services;
 using Sales.Context.Helpers;
 using Sales.Library;
 using Microsoft.AspNetCore.Authorization;
@@ -11,6 +8,7 @@ using System.Net.Mail;
 using FluentEmail.Smtp;
 using System.Text;
 using FluentEmail.Razor;
+using Sales.Context.Contracts;
 
 namespace Sales.API.Controllers
 {
@@ -20,11 +18,14 @@ namespace Sales.API.Controllers
     {
         private readonly IAccountService accountService;
         private readonly IConfiguration config;
+        private readonly IUserService userService;
 
-        public AccountController(IAccountService accountService, IConfiguration config)
+        public AccountController(IAccountService accountService, IConfiguration config, 
+            IUserService userService)
         {
             this.accountService = accountService;
             this.config = config;
+            this.userService = userService;
         }
 
         [HttpPost]
@@ -206,6 +207,19 @@ namespace Sales.API.Controllers
                 return Ok(mainSetting);
             }
 
+            return BadRequest();
+        }
+
+
+        [HttpGet]
+        [Route("IsUserExest/{id}")]
+        public async Task<IActionResult> IsUserExest(string id)
+        {
+            bool result = await userService.IsUserExestAsync(id);
+            if (result)
+            {
+                return Ok();
+            }
             return BadRequest();
         }
     }

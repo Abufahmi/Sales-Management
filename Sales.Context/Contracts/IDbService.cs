@@ -1,6 +1,6 @@
 ﻿using Sales.Library;
 
-namespace Sales.Context.Services
+namespace Sales.Context.Contracts
 {
     public interface IDbService
     {

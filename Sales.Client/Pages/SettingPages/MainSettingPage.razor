@@ -1,0 +1,66 @@
+﻿@page "/mainsetting/edit/{id:int}"
+@page "/mainsetting/create"
+@layout DashLayout
+@inherits Bases.SettingBases.MainSettingBase
+
+<PageTitle>@Localizer[nameof(Strings.SiteName)] | @Localizer[nameof(Strings.MainSettings)]</PageTitle>
+@if (Id == null)
+{
+    <DashCrumbComponent RouteLink="mainsetting/create" RouteName="@Localizer[nameof(Strings.CreateMainSetting)]" />
+}
+else
+{
+    <DashCrumbComponent RouteLink="@($"mainsetting/edit/{Id}")" RouteName="@Localizer[nameof(Strings.EditMainSetting)]" />
+}
+
+<div class="container mt-4">
+    @if (Message != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show my-3 d-inline-block" role="alert">
+            <strong>@Message</strong>
+            <button id="alert" type="button" class="btn-close" @onclick="DismissMessage"></button>
+        </div>
+    }
+    @if (Error != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show my-3 d-inline-block" role="alert">
+            <strong>@Error</strong>
+            <button id="alert" type="button" class="btn-close" @onclick="DismissMessage"></button>
+        </div>
+    }
+
+    <div class="col-sm-6 col-md-5 col-lg-4">
+        <EditForm Model=@MainSetting OnValidSubmit="@OnValidSubmit">
+            <DataAnnotationsValidator />
+
+            <div class="mb-3">
+                <label class="mb-1 text-secondary">
+                    <span>@Localizer[nameof(Strings.TokenExpireMinutes)]</span>
+                </label>
+                <InputNumber @bind-Value=MainSetting.TokenExpireMinutes class="form-control" />
+                <ValidationMessage For="@(()=> MainSetting.TokenExpireMinutes)" />
+            </div>
+            <div class="mb-3">
+                <label class="mb-1 text-secondary">
+                    <span>@Localizer[nameof(Strings.ItemPerPage)]</span>
+                </label>
+                <InputNumber @bind-Value=MainSetting.ItemPerPage class="form-control" />
+                <ValidationMessage For="@(()=> MainSetting.ItemPerPage)" />
+            </div>
+
+            <!-- Submit button -->
+            @if (Id == null)
+            {
+                <button type="submit" class="btn btn-outline-secondary w-100 mb-4" disabled="@IsBusy">
+                    @Localizer[nameof(Strings.Create)]
+                </button>
+            }
+            else
+            {
+                <button type="submit" class="btn btn-outline-secondary w-100 mb-4" disabled="@IsBusy">
+                    @Localizer[nameof(Strings.Edit)]
+                </button>
+            }
+        </EditForm>
+    </div>
+</div>

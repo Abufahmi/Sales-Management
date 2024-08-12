@@ -1,6 +1,6 @@
 ﻿using Sales.Library;
 
-namespace Sales.Context.Services
+namespace Sales.Context.Contracts
 {
     public interface IUserService
     {
@@ -8,6 +8,7 @@ namespace Sales.Context.Services
         Task<bool> DeleteUserByIdAsync(string id);
         Task<User?> GetUserByIdAsync(string id);
         Task<IEnumerable<User>?> GetUsersAsync();
+        Task<bool> IsUserExestAsync(string id);
         Task<bool> UpdateUserAsync(User user);
     }
 }

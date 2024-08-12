@@ -2,7 +2,7 @@
 using Sales.Library.Models;
 using static Sales.Context.Helpers.Responses;
 
-namespace Sales.Context.Services
+namespace Sales.Context.Contracts
 {
     public interface IAccountService
     {

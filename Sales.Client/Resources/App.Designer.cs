@@ -178,6 +178,15 @@ namespace Sales.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create main setting.
+        /// </summary>
+        public static string CreateMainSetting {
+            get {
+                return ResourceManager.GetString("CreateMainSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create New.
         /// </summary>
         public static string CreateNew {
@@ -264,6 +273,15 @@ namespace Sales.Client.Resources {
         public static string Edit {
             get {
                 return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit main setting.
+        /// </summary>
+        public static string EditMainSetting {
+            get {
+                return ResourceManager.GetString("EditMainSetting", resourceCulture);
             }
         }
         
@@ -381,6 +399,15 @@ namespace Sales.Client.Resources {
         public static string Image {
             get {
                 return ResourceManager.GetString("Image", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Items per page.
+        /// </summary>
+        public static string ItemPerPage {
+            get {
+                return ResourceManager.GetString("ItemPerPage", resourceCulture);
             }
         }
         
@@ -754,11 +781,29 @@ namespace Sales.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Token expiry time in minutes.
+        /// </summary>
+        public static string TokenExpireMinutes {
+            get {
+                return ResourceManager.GetString("TokenExpireMinutes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An unknown error has occurred. Please try again..
         /// </summary>
         public static string UnknowError {
             get {
                 return ResourceManager.GetString("UnknowError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data has been successfully modified.
+        /// </summary>
+        public static string UpdateSuccessMessage {
+            get {
+                return ResourceManager.GetString("UpdateSuccessMessage", resourceCulture);
             }
         }
         

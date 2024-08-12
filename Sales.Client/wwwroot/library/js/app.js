@@ -9,3 +9,7 @@ function openMessageComponent() {
     }
     return false;
 }
+
+function isOnline() {
+    return window.navigator.onLine;
+}

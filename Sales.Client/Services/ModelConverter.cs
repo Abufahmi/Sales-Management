@@ -5,6 +5,16 @@ namespace Sales.Client.Services
 {
     public class ModelConverter
     {
+        internal static MainSettingModel GetMainSettingModel(MainSetting mainSetting)
+        {
+            return new MainSettingModel
+            {
+                Id = mainSetting.Id,
+                ItemPerPage = mainSetting.ItemPerPage,
+                TokenExpireMinutes = mainSetting.TokenExpireMinutes,
+            };
+        }
+
         internal static UserModel GetUserModel(User user)
         {
             return new UserModel

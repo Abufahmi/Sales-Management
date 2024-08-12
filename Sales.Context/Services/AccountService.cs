@@ -4,6 +4,7 @@ using Sales.Library.Models;
 using Sales.Library;
 using static Sales.Context.Helpers.Responses;
 using Sales.Context.Helpers;
+using Sales.Context.Contracts;
 
 namespace Sales.Context.Services
 {

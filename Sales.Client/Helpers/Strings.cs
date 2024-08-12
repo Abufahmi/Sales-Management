@@ -91,5 +91,10 @@
         SelectRole,
         UserRoleExists,
         UserRolesExists,
+        TokenExpireMinutes,
+        ItemPerPage,
+        CreateMainSetting,
+        EditMainSetting,
+        UpdateSuccessMessage,
     }
 }

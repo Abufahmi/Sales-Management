@@ -123,6 +123,9 @@
   <data name="EmailAddressRequired" xml:space="preserve">
     <value>البريد الالكتروني مطلوب</value>
   </data>
+  <data name="ItemPerPageRequired" xml:space="preserve">
+    <value>عدد عناصر الاسطر بكل جدول مطلوب</value>
+  </data>
   <data name="PasswordConfirmRequired" xml:space="preserve">
     <value>تاكيد كلمة المرور مطلوب</value>
   </data>
@@ -137,6 +140,9 @@
   </data>
   <data name="RoleRequired" xml:space="preserve">
     <value>الصلاحية مطلوبة</value>
+  </data>
+  <data name="TokenExpireMinutesRequired" xml:space="preserve">
+    <value>انتهاء صلاحيته الرمز المميز بالدقائق مطلوب</value>
   </data>
   <data name="UserNameRequired" xml:space="preserve">
     <value>اسم المستخدم مطلوب</value>

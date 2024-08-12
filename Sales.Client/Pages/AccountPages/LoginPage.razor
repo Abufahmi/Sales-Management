@@ -3,6 +3,7 @@
 
 @page "/Login"
 @inject IAccountRepository repo
+@inject ISiteRepository service
 
 <div class="container">
     <div class="col-lg-4 col-md-6 col-sm-8 mx-auto bg-white p-4 mt-4 shadow">
@@ -68,6 +69,16 @@
     string? ErrorMessage = null;
     bool Disabled = true;
     LoginModel Login = new LoginModel();
+
+    protected override async Task OnInitializedAsync()
+    {
+        string? userId = await service.GetUserIdentityAsync();
+        if (userId != null)
+        {
+            NavManager.NavigateTo("/", true);
+        }
+        await base.OnInitializedAsync();
+    }
 
     async Task OnValidSubmit()
     {

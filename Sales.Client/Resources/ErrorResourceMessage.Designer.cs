@@ -79,6 +79,15 @@ namespace Sales.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Item per page is required.
+        /// </summary>
+        public static string ItemPerPageRequired {
+            get {
+                return ResourceManager.GetString("ItemPerPageRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password confirm is required.
         /// </summary>
         public static string PasswordConfirmRequired {
@@ -120,6 +129,15 @@ namespace Sales.Client.Resources {
         public static string RoleRequired {
             get {
                 return ResourceManager.GetString("RoleRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Token expiration in minutes is required.
+        /// </summary>
+        public static string TokenExpireMinutesRequired {
+            get {
+                return ResourceManager.GetString("TokenExpireMinutesRequired", resourceCulture);
             }
         }
         

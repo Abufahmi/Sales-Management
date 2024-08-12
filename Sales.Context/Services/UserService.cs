@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Sales.Context.Contracts;
 using Sales.Context.Data;
 using Sales.Context.Helpers;
 using Sales.Library;
@@ -61,6 +62,11 @@ namespace Sales.Context.Services
         public async Task<IEnumerable<User>?> GetUsersAsync()
         {
             return await db.Users.ToListAsync();
+        }
+
+        public async Task<bool> IsUserExestAsync(string id)
+        {
+            return await db.Users.AnyAsync(x => x.Id == id);
         }
 
         public async Task<bool> UpdateUserAsync(User user)

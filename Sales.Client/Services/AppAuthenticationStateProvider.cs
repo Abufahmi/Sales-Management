@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.JSInterop;
+using Sales.Client.Helpers;
 using Sales.Client.Models;
 using Sales.Library.Models;
 using System.IdentityModel.Tokens.Jwt;
@@ -9,11 +11,16 @@ namespace Sales.Client.Services
     public class AppAuthenticationStateProvider : AuthenticationStateProvider
     {
         private readonly LocalStorageService localStorageService;
+        private readonly ClientService clientService;
+        private readonly IJSRuntime Js;
         private readonly ClaimsPrincipal _anonymous = new ClaimsPrincipal(new ClaimsIdentity());
 
-        public AppAuthenticationStateProvider(LocalStorageService localStorageService)
+        public AppAuthenticationStateProvider(LocalStorageService localStorageService, 
+            ClientService clientService, IJSRuntime jSRuntime)
         {
             this.localStorageService = localStorageService;
+            this.clientService = clientService;
+            Js = jSRuntime;
         }
 
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
@@ -30,8 +37,32 @@ namespace Sales.Client.Services
             if (session == null)
                 return new AuthenticationState(_anonymous);
 
+            var online = await Js.InvokeAsync<bool>("isOnline");
+            if (online)
+            {
+                bool result = await IsUserExestAsync(session.UserId);
+                if (result == false)
+                {
+                    await DeleteAuthenticationStateAsync();
+                    return new AuthenticationState(_anonymous);
+                }
+            }
+
             ClaimsPrincipal claimsPrincipal = GetClaimsPrincipal(session);
             return new AuthenticationState(claimsPrincipal);
+        }
+
+        private async Task<bool> IsUserExestAsync(string? userId)
+        {
+            if (userId == null) return false;
+            var client = clientService.GetClient();
+            var responseMessage = await client
+                .GetAsync($"Account/IsUserExest/{userId}");
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            return false;
         }
 
         private ClaimsPrincipal GetClaimsPrincipal(Session session)

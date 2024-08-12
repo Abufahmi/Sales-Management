@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Sales.Context.Contracts;
 using Sales.Context.Helpers;
-using Sales.Context.Services;
 using Sales.Library;
 
 namespace Sales.API.Controllers
@@ -14,11 +13,14 @@ namespace Sales.API.Controllers
     {
         private readonly IUserService userService;
         private readonly IUserRoleService userRoleService;
+        private readonly IMainSettingService mainSettingService;
 
-        public SettingsController(IUserService userService, IUserRoleService userRoleService)
+        public SettingsController(IUserService userService, IUserRoleService userRoleService, 
+            IMainSettingService mainSettingService)
         {
             this.userService = userService;
             this.userRoleService = userRoleService;
+            this.mainSettingService = mainSettingService;
         }
 
         [HttpGet]
@@ -116,7 +118,7 @@ namespace Sales.API.Controllers
 
             return BadRequest();
         }
-        
+
         [HttpGet]
         [Route("GetUserRoleById/{id}")]
         public async Task<IActionResult> GetUserRoleById(string id)
@@ -130,7 +132,7 @@ namespace Sales.API.Controllers
 
             return NoContent();
         }
-        
+
         [HttpGet]
         [Route("GetRoles")]
         public async Task<IActionResult> GetRoles()
@@ -143,7 +145,7 @@ namespace Sales.API.Controllers
 
             return NoContent();
         }
-        
+
         [HttpGet]
         [Route("GetUsers")]
         public async Task<IActionResult> GetUsers()
@@ -156,12 +158,12 @@ namespace Sales.API.Controllers
 
             return NoContent();
         }
-        
+
         [HttpPut]
         [Route("UpdateUserRole")]
         public async Task<IActionResult> UpdateUserRole(UserRole userRole)
         {
-            if(userRole == null) return BadRequest();
+            if (userRole == null) return BadRequest();
             bool result = await userRoleService.UpdateUserRoleAsync(userRole);
             if (result)
             {
@@ -170,12 +172,12 @@ namespace Sales.API.Controllers
 
             return BadRequest();
         }
-        
+
         [HttpPost]
         [Route("CreateUserRole")]
         public async Task<IActionResult> CreateUserRole(UserRole userRole)
         {
-            if(userRole == null) return BadRequest();
+            if (userRole == null) return BadRequest();
             bool result = await userRoleService.CreateUserRoleAsync(userRole);
             if (result)
             {
@@ -183,6 +185,75 @@ namespace Sales.API.Controllers
             }
 
             return BadRequest();
+        }
+
+        [HttpGet]
+        [Route("GetMainSettingById/{id}")]
+        public async Task<IActionResult> GetMainSettingById(int id)
+        {
+            if (id == 0) return BadRequest();
+            MainSetting? main = await mainSettingService.GetMainSettingByIdAsync(id);
+            if (main != null)
+            {
+                return Ok(main);
+            }
+
+            return NotFound();
+        }
+        
+        [HttpGet]
+        [Route("GetMainSetting")]
+        public async Task<IActionResult> GetMainSetting()
+        {
+            MainSetting? main = await mainSettingService.GetMainSettingAsync();
+            if (main != null)
+            {
+                return Ok(main);
+            }
+
+            return NotFound();
+        }
+
+        [HttpPost]
+        [Route("CreateMainSetting")]
+        public async Task<IActionResult> CreateMainSetting(MainSetting mainSetting)
+        {
+            if (mainSetting == null) return BadRequest();
+            MainSetting? main = await mainSettingService.CreateMainSettingAsync(mainSetting);
+            if (main != null)
+            {
+                return Ok(main);
+            }
+            else
+            {
+                if (LibraryService.Error != null)
+                {
+                    return BadRequest(LibraryService.Error);
+                }
+            }
+
+            return NotFound();
+        }
+        
+        [HttpPut]
+        [Route("UpdateMainSetting")]
+        public async Task<IActionResult> UpdateMainSetting(MainSetting mainSetting)
+        {
+            if (mainSetting == null) return BadRequest();
+            MainSetting? main = await mainSettingService.UpdateMainSettingAsync(mainSetting);
+            if (main != null)
+            {
+                return Ok(main);
+            }
+            else
+            {
+                if (LibraryService.Error != null)
+                {
+                    return BadRequest(LibraryService.Error);
+                }
+            }
+
+            return NotFound();
         }
     }
 }

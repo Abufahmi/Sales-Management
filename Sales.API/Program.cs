@@ -6,6 +6,7 @@ using Sales.Context.Helpers;
 using Sales.Library.Models;
 using Sales.Context.Services;
 using System.Text;
+using Sales.Context.Contracts;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -63,6 +64,7 @@ builder.Services.AddTransient<IDbService, DbService>();
 builder.Services.AddTransient<IAccountService, AccountService>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IUserRoleService, UserRoleService>();
+builder.Services.AddTransient<IMainSettingService, MainSettingService>();
 builder.Services.AddTransient<Responses>();
 
 var app = builder.Build();

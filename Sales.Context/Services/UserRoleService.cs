@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Sales.Context.Contracts;
 using Sales.Context.Data;
 using Sales.Context.Helpers;
 using Sales.Library;
