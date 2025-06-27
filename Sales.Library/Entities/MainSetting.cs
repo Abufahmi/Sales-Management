@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Sales.Library
+namespace Sales.Library.Entities
 {
     public class MainSetting
     {

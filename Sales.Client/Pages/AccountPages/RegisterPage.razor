@@ -1,9 +1,11 @@
 ﻿@using Sales.Client.Models
 @using Sales.Client.Repositories
 @using Sales.Library
+@using Sales.Library.Contracts
+@using Sales.Library.Entities
 
 @page "/Register"
-@inject IAccountRepository repo
+@inject IAccountService repo
 @inject ISiteRepository service
 
 <div class="p-0">
@@ -25,7 +27,7 @@
                 <div class="text-center">
                     <img src="images/main/Register.png" class="img-fluid" style="max-width:125px" />
                     <h5 class="text-secondary">
-                        @Localizer[nameof(Strings.RegisterNewAccount)]
+                        @Localizer[nameof(Translate.RegisterNewAccount)]
                     </h5>
                 </div>
 
@@ -35,7 +37,7 @@
                     <!-- User name -->
                     <div class="mt-4 mb-3">
                         <label class="form-label">
-                            @Localizer[nameof(Strings.UserName)]
+                            @Localizer[nameof(Translate.UserName)]
                         </label>
                         <InputText @bind-Value="Register.UserName" class="form-control" @oninput="OnUserNameChange" />
                         <ValidationMessage class="lbl-error" For="()=> Register.UserName" />
@@ -48,7 +50,7 @@
                     <!-- Email Address -->
                     <div class="mb-3">
                         <label class="form-label">
-                            @Localizer[nameof(Strings.EmailAddress)]
+                            @Localizer[nameof(Translate.EmailAddress)]
                         </label>
                         <InputText type="email" @bind-Value="Register.Email" class="form-control" @oninput="OnEmailChange" />
                         <ValidationMessage class="lbl-error" For="()=> Register.Email" />
@@ -61,7 +63,7 @@
                     <!-- Password input -->
                     <div class="mb-3">
                         <label class="form-label">
-                            @Localizer[nameof(Strings.Password)]
+                            @Localizer[nameof(Translate.Password)]
                         </label>
                         <InputText type="password" class="form-control" @bind-Value="Register.Password" />
                         <ValidationMessage class="lbl-error" For="()=> Register.Password" />
@@ -70,7 +72,7 @@
                     <!-- Password Confirm input -->
                     <div class="mb-3">
                         <label class="form-label">
-                            @Localizer[nameof(Strings.PasswordConfirm)]
+                            @Localizer[nameof(Translate.PasswordConfirm)]
                         </label>
                         <InputText type="password" class="form-control" @bind-Value="Register.PasswordConfirm" />
                         <ValidationMessage class="lbl-error" For="()=> Register.PasswordConfirm" />
@@ -78,14 +80,14 @@
 
                     <!-- Submit button -->
                     <button type="submit" class="btn btn-primary w-100 mb-4">
-                        @Localizer[nameof(Strings.Register)]
+                        @Localizer[nameof(Translate.Register)]
                     </button>
 
                     <!-- Login -->
                     <div class="mb-3 text-center">
-                        <span class="text-secondary">@Localizer[nameof(Strings.HaveAccount)]</span>
+                        <span class="text-secondary">@Localizer[nameof(Translate.HaveAccount)]</span>
                         <a href="/Login" class="btn-link text-decoration-none">
-                            <span>@Localizer[nameof(Strings.Login)]</span>
+                            <span>@Localizer[nameof(Translate.Login)]</span>
                         </a>
                     </div>
 
@@ -124,7 +126,14 @@
             Register.PasswordConfirm == null || UserNameError != null || EmailError != null)
             return;
 
-        bool result = await repo.RegisterAsync(Register);
+        var register = new Library.Models.Register
+            {
+                Email = Register.Email,
+                Password = Register.Password,
+                UserName = Register.UserName,
+            };
+
+        bool result = await repo.RegisterAsync(register);
         if (result)
         {
             NavManager.NavigateTo("/Login", true);
@@ -137,7 +146,7 @@
             }
             else
             {
-                ErrorMessage = Localizer[nameof(Strings.UnknowError)]?.Value;
+                ErrorMessage = Localizer[nameof(Translate.UnknowError)]?.Value;
             }
         }
     }
@@ -156,7 +165,7 @@
             return;
 
         if (Users.Any(x => x.UserName!.ToLower() == txt.ToLower()))
-            UserNameError = Localizer[nameof(Strings.UserNameExists)]?.Value;
+            UserNameError = Localizer[nameof(Translate.UserNameExists)]?.Value;
     }
 
     void OnEmailChange(ChangeEventArgs args)
@@ -168,6 +177,6 @@
             return;
 
         if (Users.Any(x => x.Email!.ToLower() == txt.ToLower()))
-            EmailError = Localizer[nameof(Strings.EmailAddressExists)]?.Value;
+            EmailError = Localizer[nameof(Translate.EmailAddressExists)]?.Value;
     }
 }

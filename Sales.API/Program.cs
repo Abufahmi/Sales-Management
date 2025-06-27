@@ -65,6 +65,7 @@ builder.Services.AddTransient<IAccountService, AccountService>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IUserRoleService, UserRoleService>();
 builder.Services.AddTransient<IMainSettingService, MainSettingService>();
+builder.Services.AddTransient<ICategoryService, CategoryService>();
 builder.Services.AddTransient<Responses>();
 
 var app = builder.Build();
@@ -77,6 +78,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseStaticFiles();
 app.UseCors("SalesManagement");
 app.UseAuthentication();
 app.UseAuthorization();

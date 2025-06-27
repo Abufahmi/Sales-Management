@@ -2,7 +2,7 @@
 using Sales.Context.Contracts;
 using Sales.Context.Data;
 using Sales.Context.Helpers;
-using Sales.Library;
+using Sales.Library.Entities;
 
 namespace Sales.Context.Services
 {

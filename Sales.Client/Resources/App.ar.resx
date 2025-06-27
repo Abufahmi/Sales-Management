@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AccessDenied" xml:space="preserve">
+    <value>الدخول غير مسموح</value>
+  </data>
+  <data name="AccessRestricted" xml:space="preserve">
+    <value>الوصول إلى هذه الصفحة ممنوع</value>
+  </data>
   <data name="AccountRecoveryBody" xml:space="preserve">
     <value>لقد تلقينا منك طلب لاستعادة الحساب. يرجي استعمال الكود المولد ادناه لاستكمال عملية استعادة الحساب.</value>
   </data>
@@ -131,6 +137,9 @@
   </data>
   <data name="AccountRecoveryTip" xml:space="preserve">
     <value>الرجاء ادخال البريد الالكتروني الذي قمت بالتسجيل فيه</value>
+  </data>
+  <data name="AddCategory" xml:space="preserve">
+    <value>انشاء تصنيف</value>
   </data>
   <data name="AddUserRole" xml:space="preserve">
     <value>انشاء صلاحية مستخدم</value>
@@ -150,11 +159,23 @@
   <data name="CategoryList" xml:space="preserve">
     <value>قائمة التصنيفات الأساسية</value>
   </data>
+  <data name="CategoryName" xml:space="preserve">
+    <value>اسم التصنيف</value>
+  </data>
+  <data name="CategoryNameAlreadyExists" xml:space="preserve">
+    <value>اسم التصنيف موجود مسبقا</value>
+  </data>
+  <data name="CheckAdminIfMistake" xml:space="preserve">
+    <value>يرجى مراجعة مسؤول الموقع إذا كنت تعتقد أن هذا خطأ.</value>
+  </data>
   <data name="CopyRight" xml:space="preserve">
     <value>جميع الحقوق محفوظة</value>
   </data>
   <data name="Create" xml:space="preserve">
     <value>انشاء</value>
+  </data>
+  <data name="CreatedSuccessfully" xml:space="preserve">
+    <value>تم اضافة البيانات بنجاح</value>
   </data>
   <data name="CreateMainSetting" xml:space="preserve">
     <value>انشاء اعداد اساسي</value>
@@ -181,13 +202,16 @@
     <value>حذف</value>
   </data>
   <data name="DeleteMessage" xml:space="preserve">
-    <value>انت علي وشك حذف سطر من القائمة. عملية الحذف ستكون نهائية ولن تستطيع التراجع عنها. هل تريد الاستمرار؟</value>
+    <value>انت علي وشك حذف {0} عنصر من القائمة. عملية الحذف ستكون نهائية ولن تستطيع التراجع عنها. هل تريد الاستمرار؟</value>
   </data>
   <data name="DeletionAlert" xml:space="preserve">
     <value>تنبيه بالحذف</value>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>تعديل</value>
+  </data>
+  <data name="EditCategory" xml:space="preserve">
+    <value>تعديل تصنيف</value>
   </data>
   <data name="EditMainSetting" xml:space="preserve">
     <value>تعديل اعداد اساسي</value>
@@ -213,6 +237,21 @@
   <data name="en-US" xml:space="preserve">
     <value>الانجليزية</value>
   </data>
+  <data name="ErrorUploadingFile" xml:space="preserve">
+    <value>حصل خطأ غير معلوم في عملية رفع الملف. الرجاء المحاولة مجددا</value>
+  </data>
+  <data name="FileExists" xml:space="preserve">
+    <value>الملف موجود مسبقا. يرجي تغيير اسم الملف او اختيار آخر</value>
+  </data>
+  <data name="FileRequired" xml:space="preserve">
+    <value>الملف مطلوب</value>
+  </data>
+  <data name="FileRequiredError" xml:space="preserve">
+    <value>الملف المختار فارغ</value>
+  </data>
+  <data name="FileUploadExceeded" xml:space="preserve">
+    <value>لقد قمت بتجاوز الحد المسموح فيه لرفع الملفات وهو {0} ميجا بايت</value>
+  </data>
   <data name="ForgetPassword" xml:space="preserve">
     <value>نسيت كلمة المرور</value>
   </data>
@@ -222,11 +261,20 @@
   <data name="ForgetPasswordRecovery" xml:space="preserve">
     <value>طلب استعادة الحساب</value>
   </data>
+  <data name="GoToHomePage" xml:space="preserve">
+    <value>الذهاب للصفحة الرئيسية</value>
+  </data>
+  <data name="GoToPreviousPage" xml:space="preserve">
+    <value>الذهاب للصفحة السابقة</value>
+  </data>
   <data name="HaveAccount" xml:space="preserve">
     <value> لديك حساب؟</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>الرئيسية</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>المعرف</value>
   </data>
   <data name="Image" xml:space="preserve">
     <value>الصورة</value>
@@ -312,6 +360,9 @@
   <data name="RegisterNewAccount" xml:space="preserve">
     <value>تسجيل حساب جديد</value>
   </data>
+  <data name="Rename" xml:space="preserve">
+    <value>اعادة تسمية</value>
+  </data>
   <data name="ResetExpireAt" xml:space="preserve">
     <value>مدة صلاحية هذه الصفجة هي {0} دقائق.</value>
   </data>
@@ -363,6 +414,12 @@
   <data name="UnknowError" xml:space="preserve">
     <value>حدث خطأ غير معلوم. الرجاء المحاولة لاحقا.</value>
   </data>
+  <data name="UnknownError" xml:space="preserve">
+    <value>حصل خطأ غير معلوم. الرجاء المحاولة مجددا</value>
+  </data>
+  <data name="UpdatedSuccessfully" xml:space="preserve">
+    <value>تم تعديل البيانات بنجاح</value>
+  </data>
   <data name="UpdateSuccessMessage" xml:space="preserve">
     <value>تم تعديل البيانات بنجاح</value>
   </data>
@@ -404,5 +461,8 @@
   </data>
   <data name="WantContinue" xml:space="preserve">
     <value>هل تريد الاستمرار؟</value>
+  </data>
+  <data name="WriteFileNameWithoutExtension" xml:space="preserve">
+    <value>يرجى كتابة اسم الملف الجديد بدون امتداد</value>
   </data>
 </root>

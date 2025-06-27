@@ -1,9 +1,7 @@
-﻿
-namespace Sales.Client.Repositories
+﻿namespace Sales.Client.Repositories;
+
+public interface ISiteRepository
 {
-    public interface ISiteRepository
-    {
-        Task<int> GetItemPerPageAsync();
-        Task<string?> GetUserIdentityAsync();
-    }
+    Task<int> GetItemPerPageAsync();
+    Task<string?> GetUserIdentityAsync();
 }

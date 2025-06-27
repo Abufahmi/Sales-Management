@@ -2,14 +2,14 @@
 using Sales.Client.Helpers;
 using Sales.Client.Models;
 using Sales.Client.Services;
-using Sales.Library;
+using Sales.Library.Contracts;
+using Sales.Library.Entities;
 using Sales.Library.Models;
 using System.Net.Http.Json;
-using System.Reflection;
 
 namespace Sales.Client.Repositories
 {
-    public class AccountRepository : IAccountRepository
+    public class AccountRepository : IAccountService
     {
         private readonly ClientService clientService;
         private readonly AuthenticationStateProvider stateProvider;
@@ -139,16 +139,10 @@ namespace Sales.Client.Repositories
             return false;
         }
 
-        public async Task<bool> LoginAsync(LoginModel loginModel)
+        public async Task<bool> LoginAsync(Login login)
         {
             AppServices.Error = null;
             var httpClient = clientService.GetClient();
-            var login = new Login
-            {
-                UserName = loginModel.UserName,
-                Password = loginModel.Password,
-            };
-
             HttpResponseMessage result = await httpClient.PostAsJsonAsync("Account/Login", login);
             if (result.IsSuccessStatusCode)
             {
@@ -187,7 +181,7 @@ namespace Sales.Client.Repositories
             return false;
         }
 
-        public async Task<bool> RegisterAsync(RegisterModel register)
+        public async Task<bool> RegisterAsync(Register register)
         {
             if (register == null || register.Password == null || register.Email == null || register.Password.Length < 6)
                 return false;

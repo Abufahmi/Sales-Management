@@ -61,6 +61,24 @@ namespace Sales.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Access denied.
+        /// </summary>
+        public static string AccessDenied {
+            get {
+                return ResourceManager.GetString("AccessDenied", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Access to this page is prohibited.
+        /// </summary>
+        public static string AccessRestricted {
+            get {
+                return ResourceManager.GetString("AccessRestricted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to We have received a request from you to restore the account. Please use the code generated below to complete the account recovery process..
         /// </summary>
         public static string AccountRecoveryBody {
@@ -102,6 +120,15 @@ namespace Sales.Client.Resources {
         public static string AccountRecoveryTip {
             get {
                 return ResourceManager.GetString("AccountRecoveryTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create category.
+        /// </summary>
+        public static string AddCategory {
+            get {
+                return ResourceManager.GetString("AddCategory", resourceCulture);
             }
         }
         
@@ -160,6 +187,33 @@ namespace Sales.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Category Name.
+        /// </summary>
+        public static string CategoryName {
+            get {
+                return ResourceManager.GetString("CategoryName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Category name already exists.
+        /// </summary>
+        public static string CategoryNameAlreadyExists {
+            get {
+                return ResourceManager.GetString("CategoryNameAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please check with the webmaster if you think this is a bug..
+        /// </summary>
+        public static string CheckAdminIfMistake {
+            get {
+                return ResourceManager.GetString("CheckAdminIfMistake", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All Rights Reserved.
         /// </summary>
         public static string CopyRight {
@@ -174,6 +228,15 @@ namespace Sales.Client.Resources {
         public static string Create {
             get {
                 return ResourceManager.GetString("Create", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data created successfully..
+        /// </summary>
+        public static string CreatedSuccessfully {
+            get {
+                return ResourceManager.GetString("CreatedSuccessfully", resourceCulture);
             }
         }
         
@@ -250,7 +313,7 @@ namespace Sales.Client.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You are about to delete a record from the list. The deletion process will be final and you will not be able to undo it. Do you want to continue?.
+        ///   Looks up a localized string similar to You are about to delete a {0} record from the list. The deletion process will be final and you will not be able to undo it. Do you want to continue?.
         /// </summary>
         public static string DeleteMessage {
             get {
@@ -273,6 +336,15 @@ namespace Sales.Client.Resources {
         public static string Edit {
             get {
                 return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit category.
+        /// </summary>
+        public static string EditCategory {
+            get {
+                return ResourceManager.GetString("EditCategory", resourceCulture);
             }
         }
         
@@ -349,6 +421,51 @@ namespace Sales.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An unknown error occurred during the file upload process. Please try again..
+        /// </summary>
+        public static string ErrorUploadingFile {
+            get {
+                return ResourceManager.GetString("ErrorUploadingFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The file already exists. Please change the file name or select another one..
+        /// </summary>
+        public static string FileExists {
+            get {
+                return ResourceManager.GetString("FileExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File required.
+        /// </summary>
+        public static string FileRequired {
+            get {
+                return ResourceManager.GetString("FileRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File is empty or not selected..
+        /// </summary>
+        public static string FileRequiredError {
+            get {
+                return ResourceManager.GetString("FileRequiredError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have exceeded the file upload limit of {0} MB.
+        /// </summary>
+        public static string FileUploadExceeded {
+            get {
+                return ResourceManager.GetString("FileUploadExceeded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Forget Password.
         /// </summary>
         public static string ForgetPassword {
@@ -376,6 +493,24 @@ namespace Sales.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Go to home page.
+        /// </summary>
+        public static string GoToHomePage {
+            get {
+                return ResourceManager.GetString("GoToHomePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Go to previous page.
+        /// </summary>
+        public static string GoToPreviousPage {
+            get {
+                return ResourceManager.GetString("GoToPreviousPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Already have account?.
         /// </summary>
         public static string HaveAccount {
@@ -390,6 +525,15 @@ namespace Sales.Client.Resources {
         public static string Home {
             get {
                 return ResourceManager.GetString("Home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Id.
+        /// </summary>
+        public static string Id {
+            get {
+                return ResourceManager.GetString("Id", resourceCulture);
             }
         }
         
@@ -646,6 +790,15 @@ namespace Sales.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Re-name.
+        /// </summary>
+        public static string Rename {
+            get {
+                return ResourceManager.GetString("Rename", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The expired validation of this page is {0} minutes..
         /// </summary>
         public static string ResetExpireAt {
@@ -799,6 +952,24 @@ namespace Sales.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An unknown error occurred. Please try again..
+        /// </summary>
+        public static string UnknownError {
+            get {
+                return ResourceManager.GetString("UnknownError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data is updated successfully.
+        /// </summary>
+        public static string UpdatedSuccessfully {
+            get {
+                return ResourceManager.GetString("UpdatedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Data has been successfully modified.
         /// </summary>
         public static string UpdateSuccessMessage {
@@ -921,6 +1092,15 @@ namespace Sales.Client.Resources {
         public static string WantContinue {
             get {
                 return ResourceManager.GetString("WantContinue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please write new file name without extension.
+        /// </summary>
+        public static string WriteFileNameWithoutExtension {
+            get {
+                return ResourceManager.GetString("WriteFileNameWithoutExtension", resourceCulture);
             }
         }
     }

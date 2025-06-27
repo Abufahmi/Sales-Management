@@ -10,6 +10,7 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using Sales.Context.Contracts;
+using Sales.Library.Entities;
 
 namespace Sales.Context.Services
 {

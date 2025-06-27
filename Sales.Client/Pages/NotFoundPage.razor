@@ -1,0 +1,29 @@
+﻿@page "/not-found"
+
+<PageTitle>@Localizer[nameof(Translate.SiteName)] | @Localizer[nameof(Translate.NotFound)]</PageTitle>
+
+<div style="height:100vh; background-color:#333">
+    <div class="flex-center">
+        <img src="images/main/noitem.png" alt="No item" style="max-width: 250px;" />
+        <h1 class="text-light">@Localizer[nameof(Translate.NotFoundTip)]</h1>
+        <p class="text-light">@Localizer[nameof(Translate.NotFoundTip1)]</p>
+        <p class="text-light">@Localizer[nameof(Translate.NotFoundTip2)]</p>
+        <div class="text-center">
+            <a class="btn btn-secondary mt-3" href="/">
+                <i class="fa fa-home mx-1"></i>
+                <span>@Localizer[nameof(Translate.GoToHomePage)]</span>
+            </a>
+            <button type="button" class="btn btn-secondary mt-3 mx-2" @onclick="BackAsync">
+                <i class="fa fa-rotate-back mx-1"></i>
+                <span>@Localizer[nameof(Translate.GoToPreviousPage)]</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+@code {
+    private async Task BackAsync()
+    {
+        await Js.InvokeVoidAsync("history.back");
+    }
+}

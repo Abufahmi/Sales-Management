@@ -6,15 +6,15 @@
 
 @if (Id != null)
 {
-    <PageTitle>@Localizer[nameof(Strings.SiteName)] | @Localizer[nameof(Strings.EditUserRole)]</PageTitle>
-    <DashCrumbComponent RouteLink="UserRoles" RouteName="@Localizer[nameof(Strings.UserRoles)]"
-                        RouteLink1="/UserRole/Create" RouteName1="@Localizer[nameof(Strings.EditUserRole)]" />
+    <PageTitle>@Localizer[nameof(Translate.SiteName)] | @Localizer[nameof(Translate.EditUserRole)]</PageTitle>
+    <DashCrumbComponent RouteLink="UserRoles" RouteName="@Localizer[nameof(Translate.UserRoles)]"
+                        RouteLink1="/UserRole/Create" RouteName1="@Localizer[nameof(Translate.EditUserRole)]" />
 }
 else
 {
-    <PageTitle>@Localizer[nameof(Strings.SiteName)] | @Localizer[nameof(Strings.AddUserRole)]</PageTitle>
-    <DashCrumbComponent RouteLink="UserRoles" RouteName="@Localizer[nameof(Strings.UserRoles)]"
-                        RouteLink1="/UserRole/Create" RouteName1="@Localizer[nameof(Strings.AddUserRole)]" />
+    <PageTitle>@Localizer[nameof(Translate.SiteName)] | @Localizer[nameof(Translate.AddUserRole)]</PageTitle>
+    <DashCrumbComponent RouteLink="UserRoles" RouteName="@Localizer[nameof(Translate.UserRoles)]"
+                        RouteLink1="/UserRole/Create" RouteName1="@Localizer[nameof(Translate.AddUserRole)]" />
 }
 
 <div class="d-block">
@@ -43,7 +43,7 @@ else
 
         <div class="mb-3">
             <InputSelect @bind-Value="UserRoleModel.UserId" class="form-select">
-                <option value="-1">@Localizer[nameof(Strings.SelectUser)]</option>
+                <option value="-1">@Localizer[nameof(Translate.SelectUser)]</option>
                 @foreach (var user in Users)
                 {
                     <option value="@user.Id">@user.UserName</option>
@@ -53,7 +53,7 @@ else
         </div>
         <div class="mb-3">
             <InputSelect @bind-Value="UserRoleModel.RoleId" class="form-select">
-                <option value="-1">@Localizer[nameof(Strings.SelectRole)]</option>
+                <option value="-1">@Localizer[nameof(Translate.SelectRole)]</option>
                 @foreach (var role in Roles)
                 {
                     <option value="@role.Id">@role.RoleName</option>
@@ -66,13 +66,13 @@ else
         @if (Id == null)
         {
             <button type="submit" class="btn btn-outline-secondary w-100 mb-4" disabled="@IsBusy">
-                @Localizer[nameof(Strings.Create)]
+                @Localizer[nameof(Translate.Create)]
             </button>
         }
         else
         {
             <button type="submit" class="btn btn-outline-secondary w-100 mb-4" disabled="@IsBusy">
-                @Localizer[nameof(Strings.Edit)]
+                @Localizer[nameof(Translate.Edit)]
             </button>
         }
 

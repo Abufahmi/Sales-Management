@@ -5,19 +5,19 @@ namespace Sales.Client.Models.SettingModels
 {
     public class UserModel
     {
-        public string? Id { get; set; }
+        public string Id { get; set; } = string.Empty;
 
         [Required(ErrorMessageResourceName = nameof(ErrorResourceMessage.UserNameRequired),
             ErrorMessageResourceType = typeof(ErrorResourceMessage))]
-        public string? UserName { get; set; }
+        public string UserName { get; set; } = string.Empty;
 
         [Required(ErrorMessageResourceName = nameof(ErrorResourceMessage.EmailAddressRequired),
             ErrorMessageResourceType = typeof(ErrorResourceMessage))]
-        public string? Email { get; set; }
+        public string Email { get; set; } = string.Empty;
 
         [Required(ErrorMessageResourceName = nameof(ErrorResourceMessage.PasswordRequired),
             ErrorMessageResourceType = typeof(ErrorResourceMessage))]
-        public string? Password { get; set; }
+        public string Password { get; set; } = string.Empty;
 
         public string? PhoneNumber { get; set; }
 

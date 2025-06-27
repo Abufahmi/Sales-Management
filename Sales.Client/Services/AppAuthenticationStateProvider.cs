@@ -1,129 +1,118 @@
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.JSInterop;
-using Sales.Client.Helpers;
-using Sales.Client.Models;
 using Sales.Library.Models;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
-namespace Sales.Client.Services
+namespace Sales.Client.Services;
+
+public class AppAuthenticationStateProvider(
+    LocalStorageService localStorageService,
+    ClientService clientService, 
+    IJSRuntime js) : AuthenticationStateProvider
 {
-    public class AppAuthenticationStateProvider : AuthenticationStateProvider
+    private readonly ClaimsPrincipal _anonymous = new ClaimsPrincipal(new ClaimsIdentity());
+
+    public override async Task<AuthenticationState> GetAuthenticationStateAsync()
     {
-        private readonly LocalStorageService localStorageService;
-        private readonly ClientService clientService;
-        private readonly IJSRuntime Js;
-        private readonly ClaimsPrincipal _anonymous = new ClaimsPrincipal(new ClaimsIdentity());
+        var stringToken = await localStorageService.GetToken();
+        if (stringToken == null || string.IsNullOrEmpty(stringToken))
+            return new AuthenticationState(_anonymous);
 
-        public AppAuthenticationStateProvider(LocalStorageService localStorageService, 
-            ClientService clientService, IJSRuntime jSRuntime)
+        var deserializeToken = Serialization.DeSerializeJsonString<TokenModel>(stringToken);
+        if (deserializeToken == null)
+            return new AuthenticationState(_anonymous);
+
+        Session? session = GetSession(deserializeToken.Token);
+        if (session == null)
+            return new AuthenticationState(_anonymous);
+
+        var online = await js.InvokeAsync<bool>("isOnline");
+        if (online)
         {
-            this.localStorageService = localStorageService;
-            this.clientService = clientService;
-            Js = jSRuntime;
+            bool result = await IsUserExestAsync(session.UserId);
+            if (result == false)
+            {
+                await DeleteAuthenticationStateAsync();
+                return new AuthenticationState(_anonymous);
+            }
         }
 
-        public override async Task<AuthenticationState> GetAuthenticationStateAsync()
+        ClaimsPrincipal claimsPrincipal = GetClaimsPrincipal(session);
+        return new AuthenticationState(claimsPrincipal);
+    }
+
+    private async Task<bool> IsUserExestAsync(string? userId)
+    {
+        if (userId == null) return false;
+        var client = clientService.GetClient();
+        var responseMessage = await client
+            .GetAsync($"Account/IsUserExest/{userId}");
+        if (responseMessage.IsSuccessStatusCode)
         {
-            var stringToken = await localStorageService.GetToken();
-            if (stringToken == null || string.IsNullOrEmpty(stringToken))
-                return new AuthenticationState(_anonymous);
-
-            var deserializeToken = Serialization.DeSerializeJsonString<TokenModel>(stringToken);
-            if (deserializeToken == null)
-                return new AuthenticationState(_anonymous);
-
-            Session? session = GetSession(deserializeToken.Token);
-            if (session == null)
-                return new AuthenticationState(_anonymous);
-
-            var online = await Js.InvokeAsync<bool>("isOnline");
-            if (online)
-            {
-                bool result = await IsUserExestAsync(session.UserId);
-                if (result == false)
-                {
-                    await DeleteAuthenticationStateAsync();
-                    return new AuthenticationState(_anonymous);
-                }
-            }
-
-            ClaimsPrincipal claimsPrincipal = GetClaimsPrincipal(session);
-            return new AuthenticationState(claimsPrincipal);
+            return true;
         }
+        return false;
+    }
 
-        private async Task<bool> IsUserExestAsync(string? userId)
+    private ClaimsPrincipal GetClaimsPrincipal(Session session)
+    {
+        return new ClaimsPrincipal(new ClaimsIdentity(new List<Claim>
         {
-            if (userId == null) return false;
-            var client = clientService.GetClient();
-            var responseMessage = await client
-                .GetAsync($"Account/IsUserExest/{userId}");
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                return true;
-            }
+            new (ClaimTypes.NameIdentifier, session.UserId!),
+            new (ClaimTypes.Name, session.UserName!),
+            new (ClaimTypes.Email, session.Email!),
+            new (ClaimTypes.Role, session.RoleName!),
+        }, "JwtAuth"));
+    }
+
+    private Session? GetSession(string? token)
+    {
+        if (token == null || string.IsNullOrEmpty(token))
+            return null;
+
+        var handler = new JwtSecurityTokenHandler();
+        var deserializeToken = handler.ReadJwtToken(token);
+        var userId = deserializeToken.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
+        var userName = deserializeToken.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name);
+        var email = deserializeToken.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Email);
+        var role = deserializeToken.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Role);
+
+        if (userId == null || userName == null || email == null || role == null)
+            return null;
+
+        return new Session
+        {
+            UserId = userId.Value,
+            UserName = userName.Value,
+            Email = email.Value,
+            RoleName = role.Value,
+        };
+    }
+
+    public async Task<bool> CreateAuthenticationStateAsync(TokenModel tokenModel)
+    {
+        if (tokenModel == null || tokenModel.Token == null)
+        {
+            await DeleteAuthenticationStateAsync();
+            NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(_anonymous)));
             return false;
         }
 
-        private ClaimsPrincipal GetClaimsPrincipal(Session session)
-        {
-            return new ClaimsPrincipal(new ClaimsIdentity(new List<Claim>
-            {
-                new (ClaimTypes.NameIdentifier, session.UserId!),
-                new (ClaimTypes.Name, session.UserName!),
-                new (ClaimTypes.Email, session.Email!),
-                new (ClaimTypes.Role, session.RoleName!),
-            }, "JwtAuth"));
-        }
+        var serializeToken = Serialization.SerializeObj(tokenModel);
+        await localStorageService.SetToken(serializeToken);
+        Session? session = GetSession(tokenModel.Token);
+        if (session == null)
+            return false;
 
-        private Session? GetSession(string? token)
-        {
-            if (token == null || string.IsNullOrEmpty(token))
-                return null;
+        var claimsPrincipal = GetClaimsPrincipal(session);
+        NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(claimsPrincipal)));
+        return true;
+    }
 
-            var handler = new JwtSecurityTokenHandler();
-            var deserializeToken = handler.ReadJwtToken(token);
-            var userId = deserializeToken.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
-            var userName = deserializeToken.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name);
-            var email = deserializeToken.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Email);
-            var role = deserializeToken.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Role);
-
-            if (userId == null || userName == null || email == null || role == null)
-                return null;
-
-            return new Session
-            {
-                UserId = userId.Value,
-                UserName = userName.Value,
-                Email = email.Value,
-                RoleName = role.Value,
-            };
-        }
-
-        public async Task<bool> CreateAuthenticationStateAsync(TokenModel tokenModel)
-        {
-            if (tokenModel == null || tokenModel.Token == null)
-            {
-                await DeleteAuthenticationStateAsync();
-                NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(_anonymous)));
-                return false;
-            }
-
-            var serializeToken = Serialization.SerializeObj(tokenModel);
-            await localStorageService.SetToken(serializeToken);
-            Session? session = GetSession(tokenModel.Token);
-            if (session == null)
-                return false;
-
-            var claimsPrincipal = GetClaimsPrincipal(session);
-            NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(claimsPrincipal)));
-            return true;
-        }
-
-        public async Task DeleteAuthenticationStateAsync()
-        {
-            await localStorageService.RemoveToken();
-            NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(_anonymous)));
-        }
+    public async Task DeleteAuthenticationStateAsync()
+    {
+        await localStorageService.RemoveToken();
+        NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(_anonymous)));
     }
 }

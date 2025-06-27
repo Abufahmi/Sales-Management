@@ -1,4 +1,4 @@
-﻿using Sales.Library;
+﻿using Sales.Library.Entities;
 using Sales.Library.Models;
 using static Sales.Context.Helpers.Responses;
 

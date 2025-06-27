@@ -123,8 +123,14 @@
   <data name="EmailAddressRequired" xml:space="preserve">
     <value>البريد الالكتروني مطلوب</value>
   </data>
+  <data name="ImageRequired" xml:space="preserve">
+    <value>الصورة مطلوبة</value>
+  </data>
   <data name="ItemPerPageRequired" xml:space="preserve">
     <value>عدد عناصر الاسطر بكل جدول مطلوب</value>
+  </data>
+  <data name="NameRequired" xml:space="preserve">
+    <value>الاسم مطلوب</value>
   </data>
   <data name="PasswordConfirmRequired" xml:space="preserve">
     <value>تاكيد كلمة المرور مطلوب</value>

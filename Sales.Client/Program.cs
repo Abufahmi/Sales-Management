@@ -18,7 +18,7 @@ builder.Services.AddBlazoredLocalStorage();
 
 // In your Program.cs or Startup.cs
 builder.Services.AddHttpClient("ApiClient",
-    client => client.BaseAddress = new Uri(AppServices.BaseAddress))
+    client => client.BaseAddress = new Uri(AppServices.BaseApiAddress))
     .AddHttpMessageHandler<CustomHttpHandler>();
 
 

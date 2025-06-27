@@ -1,0 +1,24 @@
+﻿<PageTitle>@Localizer[nameof(Translate.SiteName)] | @Localizer[nameof(Translate.AccessDenied)]</PageTitle>
+
+<div style="height:100vh;background:#333;">
+    <div class="flex-center text-white">
+        <img src="images/main/lock.png" style="width: 90px;" />
+        <div class="text-center">
+            <h1>@Localizer[nameof(Translate.AccessRestricted)]</h1>
+            <h5>@Localizer[nameof(Translate.CheckAdminIfMistake)]</h5>
+        </div>
+        <div class="my-4">
+            <a class="btn btn-outline-secondary m-2" href="/">@Localizer[nameof(Translate.MainPage)]</a>
+            <button type="button" class="btn btn-outline-secondary m-2" @onclick="BackAsync">
+                @Localizer[nameof(Translate.GoToPreviousPage)]
+            </button>
+        </div>
+    </div>
+</div>
+
+@code {
+    private async Task BackAsync()
+    {
+        await Js.InvokeVoidAsync("history.back");
+    }
+}

@@ -3,12 +3,12 @@
 @inherits Bases.SettingBases.UserListBase
 @attribute [Authorize(Roles = nameof(AppServices.Admin))]
 
-<PageTitle>@Localizer[nameof(Strings.SiteName)] | @Localizer[nameof(Strings.UserList)]</PageTitle>
-<DashCrumbComponent RouteLink="Users" RouteName="@Localizer[nameof(Strings.UserList)]" />
+<PageTitle>@Localizer[nameof(Translate.SiteName)] | @Localizer[nameof(Translate.UserList)]</PageTitle>
+<DashCrumbComponent RouteLink="Users" RouteName="@Localizer[nameof(Translate.UserList)]" />
 
 <div class="d-block mt-4">
     <a href="user/create" class="btn btn-outline-success px-4 mb-3" style="min-width:150px">
-        @Localizer[nameof(Strings.CreateNew)]
+        @Localizer[nameof(Translate.CreateNew)]
     </a>
 </div>
 
@@ -16,29 +16,29 @@
 {
     <div class="col-lg-4 col-md-6 col-sm-12">
         <input type="search" class="form-control mb-3" @oninput="OnUserChanged"
-               placeholder="@Localizer[nameof(Strings.Search)]" />
+               placeholder="@Localizer[nameof(Translate.Search)]" />
     </div>
     <div class="table-responsive-lg">
         <QuickGrid Items="UserModels.AsQueryable()" Pagination="Pagination" Class="table">
-            <PropertyColumn Property="x=> x.UserName" Sortable="true" Title="@Localizer[nameof(Strings.UserName)]" />
-            <PropertyColumn Property="x=> x.Email" Sortable="true" Title="@Localizer[nameof(Strings.EmailAddress)]" />
-            <TemplateColumn Title="@Localizer[nameof(Strings.EmailConfirmed)]">
+            <PropertyColumn Property="x=> x.UserName" Sortable="true" Title="@Localizer[nameof(Translate.UserName)]" />
+            <PropertyColumn Property="x=> x.Email" Sortable="true" Title="@Localizer[nameof(Translate.EmailAddress)]" />
+            <TemplateColumn Title="@Localizer[nameof(Translate.EmailConfirmed)]">
                 <input type="checkbox" class="form-check-input" @bind="@context.EmailConfirmed" />
             </TemplateColumn>
-            <PropertyColumn Property="x=> x.PhoneNumber" Title="@Localizer[nameof(Strings.PhoneNumber)]" />
-            <TemplateColumn Title="@Localizer[nameof(Strings.PhoneConfirmed)]">
+            <PropertyColumn Property="x=> x.PhoneNumber" Title="@Localizer[nameof(Translate.PhoneNumber)]" />
+            <TemplateColumn Title="@Localizer[nameof(Translate.PhoneConfirmed)]">
                 <input type="checkbox" class="form-check-input" @bind="@context.PhoneConfirmed" />
             </TemplateColumn>
             <PropertyColumn Property="x=> x.CreatedDate" Format="yyyy-MM-dd" Sortable="true"
-                            Title="@Localizer[nameof(Strings.Date)]" />
+                            Title="@Localizer[nameof(Translate.Date)]" />
             <TemplateColumn>
-                <a href="@($"user/edit/{context.Id}")" title="@Localizer[nameof(Strings.Edit)]">
+                <a href="@($"user/edit/{context.Id}")" title="@Localizer[nameof(Translate.Edit)]">
                     <i class="fa fa-pen text-primary" />
                 </a>
             </TemplateColumn>
             <TemplateColumn>
                 <a @onclick="async()=> await DeleteConfirmAsync(context.Id)" 
-                   title="@Localizer[nameof(Strings.Delete)]">
+                   title="@Localizer[nameof(Translate.Delete)]">
                     <i class="fa fa-trash-alt fs-6 icon-delete" />
                 </a>
             </TemplateColumn>
@@ -59,8 +59,8 @@
     </div>
 
     <MessageComponent ApproveEvent="ApproveResultAsync"
-                      Title="@Localizer[nameof(Strings.DeletionAlert)]"
-                      Message="@Localizer[nameof(Strings.DeleteMessage)]" />
+                      Title="@Localizer[nameof(Translate.DeletionAlert)]"
+                      Message="@Localizer[nameof(Translate.DeleteMessage)]" />
 }
 else
 {
@@ -75,7 +75,7 @@ else
     else
     {
         <div class="text-center my-5">
-            <h5 class="text-secondary">@Localizer[nameof(Strings.NoData)]</h5>
+            <h5 class="text-secondary">@Localizer[nameof(Translate.NoData)]</h5>
         </div>
     }
 }

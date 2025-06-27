@@ -5,17 +5,17 @@
 @inherits Bases.SettingBases.UserBase
 @attribute [Authorize(Roles = nameof(AppServices.Admin))]
 
-<PageTitle>@Localizer[nameof(Strings.SiteName)] | @Localizer[nameof(Strings.CreateUser)]</PageTitle>
+<PageTitle>@Localizer[nameof(Translate.SiteName)] | @Localizer[nameof(Translate.CreateUser)]</PageTitle>
 @if (Id == null)
 {
-    <DashCrumbComponent RouteLink="Users" RouteName="@Localizer[nameof(Strings.Users)]"
-                        RouteLink1="user/create" RouteName1="@Localizer[nameof(Strings.CreateUser)]" />
+    <DashCrumbComponent RouteLink="Users" RouteName="@Localizer[nameof(Translate.Users)]"
+                        RouteLink1="user/create" RouteName1="@Localizer[nameof(Translate.CreateUser)]" />
 }
 
 else
 {
-    <DashCrumbComponent RouteLink="Users" RouteName="@Localizer[nameof(Strings.Users)]"
-                        RouteLink1="user/edit" RouteName1="@Localizer[nameof(Strings.EditUser)]" />
+    <DashCrumbComponent RouteLink="Users" RouteName="@Localizer[nameof(Translate.Users)]"
+                        RouteLink1="user/edit" RouteName1="@Localizer[nameof(Translate.EditUser)]" />
 }
 
 <div class="col-lg-4 col-md-6 col-sm-8">
@@ -42,7 +42,7 @@ else
         <!-- User name -->
         <div class="mt-4 mb-3">
             <label class="form-label">
-                @Localizer[nameof(Strings.UserName)]
+                @Localizer[nameof(Translate.UserName)]
             </label>
             <InputText @bind-Value="UserModel.UserName" class="form-control" @oninput="OnUserNameChange" />
             <ValidationMessage class="lbl-error" For="()=> UserModel.UserName" />
@@ -55,7 +55,7 @@ else
         <!-- Email Address -->
         <div class="mb-3">
             <label class="form-label">
-                @Localizer[nameof(Strings.EmailAddress)]
+                @Localizer[nameof(Translate.EmailAddress)]
             </label>
             <InputText type="email" @bind-Value="UserModel.Email" class="form-control" @oninput="OnEmailChange" />
             <ValidationMessage class="lbl-error" For="()=> UserModel.Email" />
@@ -68,7 +68,7 @@ else
         <!-- Password input -->
         <div class="mb-3">
             <label class="form-label">
-                @Localizer[nameof(Strings.Password)]
+                @Localizer[nameof(Translate.Password)]
             </label>
             <InputText type="password" class="form-control" @bind-Value="UserModel.Password" />
             <ValidationMessage class="lbl-error" For="()=> UserModel.Password" />
@@ -77,7 +77,7 @@ else
         <!-- PhoneNumber input -->
         <div class="mb-3">
             <label class="form-label">
-                @Localizer[nameof(Strings.PhoneNumber)]
+                @Localizer[nameof(Translate.PhoneNumber)]
             </label>
             <InputText class="form-control" @bind-Value="UserModel.PhoneNumber" />
         </div>
@@ -87,7 +87,7 @@ else
             <input type="checkbox" class="form-check-input @(AppServices.IsArabic ? "float-end" : "")"
                    @bind="UserModel.EmailConfirmed" id="EmailConfirmed">
             <label class="form-check-label @(AppServices.IsArabic ? "me-4" : "")" for="EmailConfirmed">
-                @Localizer[nameof(Strings.EmailConfirmed)]
+                @Localizer[nameof(Translate.EmailConfirmed)]
             </label>
         </div>
 
@@ -96,7 +96,7 @@ else
             <input type="checkbox" class="form-check-input @(AppServices.IsArabic ? "float-end" : "")"
                    @bind="UserModel.PhoneConfirmed" id="PhoneConfirmed">
             <label class="form-check-label @(AppServices.IsArabic ? "me-4" : "")" for="PhoneConfirmed">
-                @Localizer[nameof(Strings.PhoneConfirmed)]
+                @Localizer[nameof(Translate.PhoneConfirmed)]
             </label>
         </div>
 
@@ -104,13 +104,13 @@ else
         @if (Id == null)
         {
             <button type="submit" class="btn btn-outline-secondary w-100 mb-4" disabled="@IsBusy">
-                @Localizer[nameof(Strings.Create)]
+                @Localizer[nameof(Translate.Create)]
             </button>
         }
         else
         {
             <button type="submit" class="btn btn-outline-secondary w-100 mb-4" disabled="@IsBusy">
-                @Localizer[nameof(Strings.Edit)]
+                @Localizer[nameof(Translate.Edit)]
             </button>
         }
 

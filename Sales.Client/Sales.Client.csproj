@@ -13,14 +13,14 @@
 
   <ItemGroup>
     <PackageReference Include="Blazored.LocalStorage" Version="4.5.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="9.0.5" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.QuickGrid" Version="9.0.5" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="9.0.5" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="9.0.5" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.5" />
-    <PackageReference Include="Microsoft.Extensions.Localization" Version="9.0.5" />
-    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.11.0" />
-    <PackageReference Include="System.Text.Json" Version="9.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="9.0.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.QuickGrid" Version="9.0.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="9.0.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="9.0.6" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.6" />
+    <PackageReference Include="Microsoft.Extensions.Localization" Version="9.0.6" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.12.1" />
+    <PackageReference Include="System.Text.Json" Version="9.0.6" />
   </ItemGroup>
 
   <ItemGroup>

@@ -206,6 +206,11 @@ html[data-bs-theme="light"] .theme-toggle .fa-sun {
     display: none;
 }
 
+.dashOffset {
+    font-size: 17px;
+    color: #777;
+}
+
 .dashlink {
     font-size: 17px;
     color: #666;

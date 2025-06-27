@@ -3,14 +3,14 @@
 @layout DashLayout
 @inherits Bases.SettingBases.MainSettingBase
 
-<PageTitle>@Localizer[nameof(Strings.SiteName)] | @Localizer[nameof(Strings.MainSettings)]</PageTitle>
+<PageTitle>@Localizer[nameof(Translate.SiteName)] | @Localizer[nameof(Translate.MainSettings)]</PageTitle>
 @if (Id == null)
 {
-    <DashCrumbComponent RouteLink="mainsetting/create" RouteName="@Localizer[nameof(Strings.CreateMainSetting)]" />
+    <DashCrumbComponent RouteLink="mainsetting/create" RouteName="@Localizer[nameof(Translate.CreateMainSetting)]" />
 }
 else
 {
-    <DashCrumbComponent RouteLink="@($"mainsetting/edit/{Id}")" RouteName="@Localizer[nameof(Strings.EditMainSetting)]" />
+    <DashCrumbComponent RouteLink="@($"mainsetting/edit/{Id}")" RouteName="@Localizer[nameof(Translate.EditMainSetting)]" />
 }
 
 <div class="container mt-4">
@@ -35,14 +35,14 @@ else
 
             <div class="mb-3">
                 <label class="mb-1 text-secondary">
-                    <span>@Localizer[nameof(Strings.TokenExpireMinutes)]</span>
+                    <span>@Localizer[nameof(Translate.TokenExpireMinutes)]</span>
                 </label>
                 <InputNumber @bind-Value=MainSetting.TokenExpireMinutes class="form-control" />
                 <ValidationMessage For="@(()=> MainSetting.TokenExpireMinutes)" />
             </div>
             <div class="mb-3">
                 <label class="mb-1 text-secondary">
-                    <span>@Localizer[nameof(Strings.ItemPerPage)]</span>
+                    <span>@Localizer[nameof(Translate.ItemPerPage)]</span>
                 </label>
                 <InputNumber @bind-Value=MainSetting.ItemPerPage class="form-control" />
                 <ValidationMessage For="@(()=> MainSetting.ItemPerPage)" />
@@ -52,13 +52,13 @@ else
             @if (Id == null)
             {
                 <button type="submit" class="btn btn-outline-secondary w-100 mb-4" disabled="@IsBusy">
-                    @Localizer[nameof(Strings.Create)]
+                    @Localizer[nameof(Translate.Create)]
                 </button>
             }
             else
             {
                 <button type="submit" class="btn btn-outline-secondary w-100 mb-4" disabled="@IsBusy">
-                    @Localizer[nameof(Strings.Edit)]
+                    @Localizer[nameof(Translate.Edit)]
                 </button>
             }
         </EditForm>

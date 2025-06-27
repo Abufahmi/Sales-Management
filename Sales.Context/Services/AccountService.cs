@@ -5,6 +5,7 @@ using Sales.Library;
 using static Sales.Context.Helpers.Responses;
 using Sales.Context.Helpers;
 using Sales.Context.Contracts;
+using Sales.Library.Entities;
 
 namespace Sales.Context.Services
 {

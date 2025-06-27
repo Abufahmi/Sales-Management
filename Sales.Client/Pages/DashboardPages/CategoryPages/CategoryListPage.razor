@@ -1,0 +1,113 @@
+﻿@page "/categories"
+@layout DashLayout
+@attribute [Authorize(Roles = $"{nameof(AppServices.Admin)}, {nameof(AppServices.Visor)}")]
+
+<PageTitle>@Localizer[nameof(Translate.SiteName)] | @Localizer[nameof(Translate.Categories)]</PageTitle>
+<DashCrumbComponent RouteLink="categories" RouteName="@Localizer[nameof(Translate.CategoryList)]" />
+
+<div class="container-fluid my-3">
+    @if (ErrorMessage != null)
+    {
+        <div class="alert alert-danger alert-dismissible mt-3 fade show d-inline-block
+                                popup @(AppServices.IsArabic ? "text-right" : "text-left")" role="alert">
+            @ErrorMessage
+            <button type="button" class="btn-close"></button>
+        </div>
+    }
+
+    <div class="d-block mt-4">
+        <a href="category/create" class="btn btn-outline-success px-4 mb-3" style="min-width:150px">
+            @Localizer[nameof(Translate.CreateNew)]
+        </a>
+    </div>
+
+    @if (AllCategories.Count > 0)
+    {
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <input type="search" class="form-control mb-3" @oninput="OnChanged"
+                   placeholder="@Localizer[nameof(Translate.Search)]" />
+        </div>
+    }
+
+    @if (Categories != null && Categories.Count > 0)
+    {
+        <div class="table-responsive-lg">
+            <table class="table table-striped border rounded">
+                <thead>
+                    <tr>
+                        <th width="50">
+                            <InputCheckbox @bind-Value="IsAllSelected" class="form-check-input"
+                                           @oninput="OnSelectAllChanged" />
+                        </th>
+                        <th scope="col">@Localizer[nameof(Translate.Id)]</th>
+                        <th scope="col">@Localizer[nameof(Translate.CategoryName)]</th>
+                        <th scope="col">@Localizer[nameof(Translate.Image)]</th>
+                        <th width="50"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Categories)
+                    {
+                        <tr>
+                            <td>
+                                <InputCheckbox @bind-Value="item.IsSelected" class="form-check-input"
+                                               @oninput="OnSelectChanged" />
+                            </td>
+                            <td>@item.Id</td>
+                            <td>@item.Name</td>
+                            <td>
+                                @if (item.Image is not null && !string.IsNullOrEmpty(item.Image))
+                                {
+                                    <img src="@($"{AppServices.BaseAddress}images/collection/{item.Image}")"
+                                         alt="@item.Name" class="img-fluid"
+                                         style="width: 50px; height: 50px;" />
+                                }
+                            </td>
+                            <td>
+                                <a href="@($"category/edit/{item.Id}")" class="bg-transparent border-0 text-primary"
+                                   title="@Localizer[nameof(Translate.Edit)]">
+                                    <i class="fa fa-pencil"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <AuthorizeView Roles="@AppServices.Admin">
+                <Authorized>
+                    @if (Categories.Any(c => c.IsSelected == true))
+                    {
+                        <button type="button" class="btn btn-danger" style="min-width:150px" disabled="@IsBusy"
+                                data-bs-toggle="modal" data-bs-target="#messageModal">
+                            <i class="fa fa-trash-alt mx-1"></i>
+                            <span>@Localizer[nameof(Translate.Delete)]</span>
+                        </button>
+                    }
+                </Authorized>
+            </AuthorizeView>
+        </div>
+
+        <MessageComponent ApproveEvent="ApproveResultAsync"
+                          Title="@Localizer[nameof(Translate.DeletionAlert)]"
+                          Message="@string.Format(Localizer[nameof(Translate.DeleteMessage)].Value, 
+                                    Categories.Where(x=> x.IsSelected).Count())" />
+    }
+    else
+    {
+        if (IsBusy)
+        {
+            <div class="text-center">
+                <div class="spinner-border text-primary mt-5" style="width: 3rem; height: 3rem;" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="text-center my-5">
+                <h5 class="text-secondary">@Localizer[nameof(Translate.NoData)]</h5>
+            </div>
+        }
+    }
+
+</div>

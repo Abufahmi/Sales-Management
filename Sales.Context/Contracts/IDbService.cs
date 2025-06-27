@@ -1,4 +1,4 @@
-﻿using Sales.Library;
+﻿using Sales.Library.Entities;
 
 namespace Sales.Context.Contracts
 {

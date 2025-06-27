@@ -79,11 +79,29 @@ namespace Sales.Client.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Image required.
+        /// </summary>
+        public static string ImageRequired {
+            get {
+                return ResourceManager.GetString("ImageRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Item per page is required.
         /// </summary>
         public static string ItemPerPageRequired {
             get {
                 return ResourceManager.GetString("ItemPerPageRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name required.
+        /// </summary>
+        public static string NameRequired {
+            get {
+                return ResourceManager.GetString("NameRequired", resourceCulture);
             }
         }
         

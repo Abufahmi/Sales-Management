@@ -1,11 +1,12 @@
 ﻿@using Sales.Client.Repositories
 @using Sales.Client.Models
 @using Sales.Library.Models
+@using Sales.Library.Contracts
 
 @page "/ForgetPassword"
-@inject IAccountRepository repo
+@inject IAccountService repo
 
-<PageTitle>@Localizer[nameof(Strings.SiteName)] | @Localizer[nameof(Strings.AccountRecoveryRequest)]</PageTitle>
+<PageTitle>@Localizer[nameof(Translate.SiteName)] | @Localizer[nameof(Translate.AccountRecoveryRequest)]</PageTitle>
 <NavbarComponent />
 
 <div class="container">
@@ -20,8 +21,8 @@
         }
 
         <div class="alert alert-primary fade show popup my-5" role="alert">
-            <strong>@Localizer[nameof(Strings.AccountRecoveryRequest)]</strong>
-            <h6 class="mt-2">@Localizer[nameof(Strings.AccountRecoveryTip)]</h6>
+            <strong>@Localizer[nameof(Translate.AccountRecoveryRequest)]</strong>
+            <h6 class="mt-2">@Localizer[nameof(Translate.AccountRecoveryTip)]</h6>
         </div>
 
         <EditForm Model="ForgetPassword" OnValidSubmit="OnValidSubmit" FormName="ForgetPassword">
@@ -29,7 +30,7 @@
             <!-- Email Address -->
             <div class="mb-3">
                 <label class="form-label">
-                    @Localizer[nameof(Strings.EmailAddress)]
+                    @Localizer[nameof(Translate.EmailAddress)]
                 </label>
                 <InputText type="email" @bind-Value="ForgetPassword.Email" class="form-control" />
                 <ValidationMessage class="lbl-error" For="()=> ForgetPassword.Email" />
@@ -37,7 +38,7 @@
 
             <!-- Submit button -->
             <button type="submit" class="btn btn-outline-primary mb-4" disabled="@IsBusy">
-                @Localizer[nameof(Strings.AccountRecoveryRequest)]
+                @Localizer[nameof(Translate.AccountRecoveryRequest)]
             </button>
         </EditForm>
     </div>
@@ -52,9 +53,9 @@
     {
         var emailModel = new EmailModel
         {
-            Subject = Localizer[nameof(Strings.AccountRecoverySubject)].Value,
-            Body = Localizer[nameof(Strings.AccountRecoveryBody)].Value,
-            VerifyCode = Localizer[nameof(Strings.VerifyCode)].Value,
+            Subject = Localizer[nameof(Translate.AccountRecoverySubject)].Value,
+            Body = Localizer[nameof(Translate.AccountRecoveryBody)].Value,
+            VerifyCode = Localizer[nameof(Translate.VerifyCode)].Value,
         };
 
         ForgetPassword.EmailModel = emailModel;
@@ -80,7 +81,7 @@
             if (AppServices.Error != null)
                 ErrorMessage = AppServices.Error;
             else
-                ErrorMessage = Localizer[nameof(Strings.UnknowError)]?.Value;
+                ErrorMessage = Localizer[nameof(Translate.UnknowError)]?.Value;
         }
 
         IsBusy = false;

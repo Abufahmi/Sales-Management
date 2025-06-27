@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Sales.Library;
+using Sales.Library.Entities;
 
 namespace Sales.Context.Data
 {

@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Sales.Library.Models;
 using Sales.Context.Helpers;
-using Sales.Library;
 using Microsoft.AspNetCore.Authorization;
 using FluentEmail.Core;
 using System.Net.Mail;
@@ -9,6 +8,7 @@ using FluentEmail.Smtp;
 using System.Text;
 using FluentEmail.Razor;
 using Sales.Context.Contracts;
+using Sales.Library.Entities;
 
 namespace Sales.API.Controllers
 {

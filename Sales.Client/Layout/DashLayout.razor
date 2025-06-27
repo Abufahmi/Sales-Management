@@ -1,8 +1,10 @@
-﻿@using Repositories
-@using Library
+﻿@using Library
+@using Repositories
+@using Sales.Library.Contracts
+@using Sales.Library.Entities
 
 @inherits LayoutComponentBase
-@inject IAccountRepository repo
+@inject IAccountService repo
 
 <link href="css/dashboard.css" rel="stylesheet" />
 
@@ -11,98 +13,107 @@
         <!-- Content For Sidebar -->
         <div class="h-100">
             <div class="sidebar-logo">
-                <a href="/"> @Localizer[nameof(Strings.MainPage)]</a>
+                <a href="/"> @Localizer[nameof(Translate.MainPage)]</a>
             </div>
             <ul class="@ArabicList">
                 <li class="sidebar-item">
                     <a href="/Dashboard" class="sidebar-link">
                         <i class="fa-solid fa-list @(AppServices.IsArabic ? "ps-2" : "pe-2")"></i>
-                        @Localizer[nameof(Strings.Dashboard)]
+                        @Localizer[nameof(Translate.Dashboard)]
                     </a>
                 </li>
                 <li class="sidebar-header">
-                    @Localizer[nameof(Strings.DashMain)]
+                    @Localizer[nameof(Translate.DashMain)]
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link collapsed @ArabicLink" data-bs-target="#Categories" data-bs-toggle="collapse"
+                    <a href="#" class="sidebar-link collapsed @ArabicLink" data-bs-target="#Categories"
+                       data-bs-toggle="collapse"
                        aria-expanded="false">
                         <i class="fa-solid fa-file-lines @(AppServices.IsArabic ? "ps-2" : "pe-2")"></i>
-                        @Localizer[nameof(Strings.Categories)]
+                        @Localizer[nameof(Translate.Categories)]
                     </a>
-                    <ul id="Categories" class="sidebar-dropdown list-unstyled collapse @ArabicList" data-bs-parent="#sidebar">
+                    <ul id="Categories" class="sidebar-dropdown list-unstyled collapse @ArabicList"
+                        data-bs-parent="#sidebar">
                         <li class="sidebar-item">
-                            <a href="Categories" class="sidebar-link item @ArabicLink">
-                                @Localizer[nameof(Strings.CategoryList)]
+                            <a href="categories" class="sidebar-link item @ArabicLink">
+                                @Localizer[nameof(Translate.CategoryList)]
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="SubCategories" class="sidebar-link item @ArabicLink">
-                                @Localizer[nameof(Strings.SubCategoryList)]
+                            <a href="sub-categories" class="sidebar-link item @ArabicLink">
+                                @Localizer[nameof(Translate.SubCategoryList)]
                             </a>
                         </li>
                     </ul>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link collapsed @ArabicLink" data-bs-target="#Products" data-bs-toggle="collapse"
+                    <a href="#" class="sidebar-link collapsed @ArabicLink" data-bs-target="#Products"
+                       data-bs-toggle="collapse"
                        aria-expanded="false">
                         <i class="fa-solid fa-sliders @(AppServices.IsArabic ? "ps-2" : "pe-2")"></i>
-                        @Localizer[nameof(Strings.Products)]
+                        @Localizer[nameof(Translate.Products)]
                     </a>
-                    <ul id="Products" class="sidebar-dropdown list-unstyled collapse @ArabicList" data-bs-parent="#sidebar">
+                    <ul id="Products" class="sidebar-dropdown list-unstyled collapse @ArabicList"
+                        data-bs-parent="#sidebar">
                         <li class="sidebar-item">
                             <a href="Products" class="sidebar-link item @ArabicLink">
-                                @Localizer[nameof(Strings.ProductList)]
+                                @Localizer[nameof(Translate.ProductList)]
                             </a>
                         </li>
                     </ul>
                 </li>
 
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link collapsed @ArabicLink" data-bs-target="#More" data-bs-toggle="collapse"
+                    <a href="#" class="sidebar-link collapsed @ArabicLink" data-bs-target="#More"
+                       data-bs-toggle="collapse"
                        aria-expanded="false">
                         <i class="fa-solid fa-share-nodes @(AppServices.IsArabic ? "ps-2" : "pe-2")"></i>
-                        @Localizer[nameof(Strings.More)]
+                        @Localizer[nameof(Translate.More)]
                     </a>
-                    <ul id="More" class="sidebar-dropdown list-unstyled collapse @ArabicList" data-bs-parent="#sidebar">
+                    <ul id="More" class="sidebar-dropdown list-unstyled collapse @ArabicList"
+                        data-bs-parent="#sidebar">
                         <li class="sidebar-item">
                             <a href="Notifications" class="sidebar-link item @ArabicLink">
-                                @Localizer[nameof(Strings.NotificationList)]
+                                @Localizer[nameof(Translate.NotificationList)]
                             </a>
                         </li>
                     </ul>
                 </li>
 
                 <li class="sidebar-header">
-                    @Localizer[nameof(Strings.System)]
+                    @Localizer[nameof(Translate.System)]
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link collapsed @ArabicLink" data-bs-target="#Settings" data-bs-toggle="collapse"
+                    <a href="#" class="sidebar-link collapsed @ArabicLink" data-bs-target="#Settings"
+                       data-bs-toggle="collapse"
                        aria-expanded="false">
                         <i class="fa fa-gear @(AppServices.IsArabic ? "ps-2" : "pe-2")"></i>
-                        @Localizer[nameof(Strings.Settings)]
+                        @Localizer[nameof(Translate.Settings)]
                     </a>
-                    <ul id="Settings" class="sidebar-dropdown list-unstyled collapse @ArabicList" data-bs-parent="#sidebar">
+                    <ul id="Settings" class="sidebar-dropdown list-unstyled collapse @ArabicList"
+                        data-bs-parent="#sidebar">
                         <li class="sidebar-item">
                             <a href="Users" class="sidebar-link item @ArabicLink">
-                                @Localizer[nameof(Strings.UserList)]
+                                @Localizer[nameof(Translate.UserList)]
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a href="UserRoles" class="sidebar-link item @ArabicLink">
-                                @Localizer[nameof(Strings.UserRoleList)]
+                                @Localizer[nameof(Translate.UserRoleList)]
                             </a>
                         </li>
                         <li class="sidebar-item">
                             @if (MainSetting != null)
                             {
-                                <a href="@($"mainsetting/edit/{MainSetting.Id}")" class="sidebar-link item @ArabicLink">
-                                    @Localizer[nameof(Strings.MainSettings)]
+                                <a href="@($"mainsetting/edit/{MainSetting.Id}")"
+                                   class="sidebar-link item @ArabicLink">
+                                    @Localizer[nameof(Translate.MainSettings)]
                                 </a>
                             }
                             else
                             {
                                 <a href="mainsetting/create" class="sidebar-link item @ArabicLink">
-                                    @Localizer[nameof(Strings.MainSettings)]
+                                    @Localizer[nameof(Translate.MainSettings)]
                                 </a>
                             }
                         </li>
@@ -123,14 +134,16 @@
                         <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
                             <img src="images/main/user.png" class="avatar img-fluid rounded" alt="">
                         </a>
-                        <div class="dropdown-menu @AppServices.Direction @(AppServices.IsArabic ? "dropdown-menu-start" : "dropdown-menu-end")">
+                        <div class="dropdown-menu @AppServices.Direction
+                            @(AppServices.IsArabic ? "dropdown-menu-start" : "dropdown-menu-end")">
                             <a class="dropdown-item" href="/Notifications">
                                 <i class="fa-regular fa-bell"></i>
-                                <span>@Localizer[nameof(Strings.Notifications)]</span>
+                                <span>@Localizer[nameof(Translate.Notifications)]</span>
                             </a>
-                            <a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                            <a href="#" class="dropdown-item" data-bs-toggle="modal"
+                               data-bs-target="#logoutModal">
                                 <i class="fa fa-sign-in-alt"></i>
-                                <span>@Localizer[nameof(Strings.Logout)]</span>
+                                <span>@Localizer[nameof(Translate.Logout)]</span>
                             </a>
                         </div>
                     </li>
@@ -146,7 +159,10 @@
         <footer class="footer">
             <div class="container-fluid text-muted p-2 border-top">
                 <div class="copyright my-auto">
-                    @Localizer[nameof(Strings.CopyRight)] © @DateTime.Now.Year <a href="/">@Localizer[nameof(Strings.SiteName)]</a>
+                    @Localizer[nameof(Translate.CopyRight)] © @DateTime.Now.Year
+                    <a href="/">
+                        @Localizer[nameof(Translate.SiteName)]
+                    </a>
                 </div>
             </div>
         </footer>

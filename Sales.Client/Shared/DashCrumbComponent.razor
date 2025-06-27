@@ -1,6 +1,6 @@
 ﻿<div class="cromb d-inline">
     <a href="Dashboard" class="d-inline-block dashlink @(AppServices.IsArabic ? "ms-1" : "me-1")">
-        @Localizer[nameof(Strings.Dashboard)]
+        @Localizer[nameof(Translate.Dashboard)]
     </a>
     @if (RouteName != null && RouteLink != null)
     {
@@ -23,6 +23,11 @@
             @RouteName2
         </a>
     }
+    @if (PageOffset != null)
+    {
+        <div class="greater d-inline-block">@Greater</div>
+        <span class="dashOffset">@PageOffset</span>
+    }
 </div>
 
 @code {
@@ -32,5 +37,6 @@
     [Parameter] public string? RouteLink1 { get; set; }
     [Parameter] public string? RouteName2 { get; set; }
     [Parameter] public string? RouteLink2 { get; set; }
+    [Parameter] public string? PageOffset { get; set; }
     string? Greater = ">";
 }

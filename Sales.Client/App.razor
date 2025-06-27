@@ -3,7 +3,7 @@
         <Found Context="routeData">
             <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
                 <NotAuthorized>
-                    <p>You are not authorized to access this resource.</p>
+                    <AccessDeniedComponent />
                 </NotAuthorized>
                 <Authorizing>
                     <p>Please wait while we check your authorization status.</p>
@@ -12,7 +12,7 @@
             <FocusOnNavigate RouteData="@routeData" Selector="h1" />
         </Found>
         <NotFound>
-            <PageTitle>@Localizer[nameof(Strings.NotFound)]</PageTitle>
+            <PageTitle>@Localizer[nameof(Translate.NotFound)]</PageTitle>
             <LayoutView Layout="@typeof(MainLayout)">
                 <NotFoundComponent />
             </LayoutView>

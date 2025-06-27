@@ -1,8 +1,9 @@
-﻿@using Sales.Client.Models
+﻿@using Sales.Library.Contracts
+@using Sales.Client.Models
 @using Sales.Client.Repositories
 
 @page "/Login"
-@inject IAccountRepository repo
+@inject IAccountService repo
 @inject ISiteRepository service
 
 <div class="container">
@@ -26,7 +27,7 @@
             <!-- User name -->
             <div class="mb-4">
                 <label class="form-label">
-                    @Localizer[nameof(Strings.UserNameOrEmail)]
+                    @Localizer[nameof(Translate.UserNameOrEmail)]
                 </label>
                 <InputText type="text" @bind-Value="Login.UserName" @oninput="UserNameChange" class="form-control" />
                 <ValidationMessage For="()=> Login.UserName" />
@@ -35,7 +36,7 @@
             <!-- Password input -->
             <div class="mb-4">
                 <label class="form-label">
-                    @Localizer[nameof(Strings.Password)]
+                    @Localizer[nameof(Translate.Password)]
                 </label>
                 <InputText type="password" class="form-control" @oninput="PasswordChange" @bind-Value="Login.Password" />
                 <ValidationMessage For="()=> Login.Password" />
@@ -43,22 +44,22 @@
 
             <!-- Submit button -->
             <button type="submit" class="btn btn-primary w-100 mb-4" disabled="@Disabled">
-                @Localizer[nameof(Strings.Login)]
+                @Localizer[nameof(Translate.Login)]
             </button>
 
             <!-- Register -->
             <div class="mb-2 mb-3 text-center">
-                <span class="text-secondary">@Localizer[nameof(Strings.NoAccount)]</span>
+                <span class="text-secondary">@Localizer[nameof(Translate.NoAccount)]</span>
                 <a href="/Register" class="btn-link text-decoration-none">
-                    <span>@Localizer[nameof(Strings.Register)]</span>
+                    <span>@Localizer[nameof(Translate.Register)]</span>
                 </a>
             </div>
 
             <!-- Forget password -->
             <div class="mb-2 mb-3 text-center">
-                <span class="text-secondary">@Localizer[nameof(Strings.ForgetPassword)]</span>
+                <span class="text-secondary">@Localizer[nameof(Translate.ForgetPassword)]</span>
                 <a href="/ForgetPassword" class="btn-link text-decoration-none">
-                    <span>@Localizer[nameof(Strings.ForgetPasswordRecovery)]</span>
+                    <span>@Localizer[nameof(Translate.ForgetPasswordRecovery)]</span>
                 </a>
             </div>
         </EditForm>
@@ -85,7 +86,13 @@
         if (Login == null || Login.UserName == null || Login.Password == null || Login.Password.Length < 6)
             return;
 
-        bool result = await repo.LoginAsync(Login);
+        var login = new Library.Models.Login
+        {
+            UserName = Login.UserName,
+            Password = Login.Password,
+        };
+
+        bool result = await repo.LoginAsync(login);
         if (result)
         {
             NavManager.NavigateTo("/", true);
@@ -98,7 +105,7 @@
             }
             else
             {
-                ErrorMessage = Localizer[nameof(Strings.UnknowError)]?.Value;
+                ErrorMessage = Localizer[nameof(Translate.UnknowError)]?.Value;
             }
         }
     }

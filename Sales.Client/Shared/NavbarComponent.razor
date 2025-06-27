@@ -1,6 +1,6 @@
 ﻿<nav class="navbar navbar-expand-md bg-body-tertiary p-2" data-bs-theme="dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/">@Localizer[nameof(Strings.SiteName)]</a>
+        <a class="navbar-brand" href="/">@Localizer[nameof(Translate.SiteName)]</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -9,12 +9,12 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/">@Localizer[nameof(Strings.Home)]</a>
+                    <a class="nav-link active" aria-current="page" href="/">@Localizer[nameof(Translate.Home)]</a>
                 </li>
                 <AuthorizeView>
                     <NotAuthorized>
                         <li class="nav-item">
-                            <a class="nav-link" href="/Login">@Localizer[nameof(Strings.Login)]</a>
+                            <a class="nav-link" href="/Login">@Localizer[nameof(Translate.Login)]</a>
                         </li>
                     </NotAuthorized>
                     <Authorized>
@@ -28,19 +28,19 @@
                                 <li>
                                     <a class="dropdown-item" href="/Profile">
                                         <i class="fa-regular fa-user"></i>
-                                        <span>@Localizer[nameof(Strings.Profile)]</span>
+                                        <span>@Localizer[nameof(Translate.Profile)]</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a class="dropdown-item" href="/Notifications">
                                         <i class="fa-regular fa-bell"></i>
-                                        <span>@Localizer[nameof(Strings.Notifications)]</span>
+                                        <span>@Localizer[nameof(Translate.Notifications)]</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#logoutModal">
                                         <i class="fa fa-sign-in-alt"></i>
-                                        <span>@Localizer[nameof(Strings.Logout)]</span>
+                                        <span>@Localizer[nameof(Translate.Logout)]</span>
                                     </a>
                                 </li>
                             </ul>
@@ -50,14 +50,14 @@
                 <AuthorizeView Roles="@nameof(AppServices.Admin)">
                     <Authorized>
                         <li class="nav-item">
-                            <a class="nav-link" href="/Dashboard">@Localizer[nameof(Strings.Dashboard)]</a>
+                            <a class="nav-link" href="/Dashboard">@Localizer[nameof(Translate.Dashboard)]</a>
                         </li>
                     </Authorized>
                 </AuthorizeView>
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown"
                        aria-expanded="false">
-                        @Localizer[nameof(Strings.SelectLanguage)]
+                        @Localizer[nameof(Translate.SelectLanguage)]
                     </a>
                     <ul class="dropdown-menu p-0 m-0">
                         <CultureComponent />

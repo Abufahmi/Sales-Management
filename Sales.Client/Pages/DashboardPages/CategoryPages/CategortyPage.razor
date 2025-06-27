@@ -1,0 +1,103 @@
+﻿@page "/category/create"
+@page "/category/edit/{id:int}"
+@layout DashLayout
+@attribute [Authorize(Roles = $"{nameof(AppServices.Admin)}, {nameof(AppServices.Visor)}")]
+
+<PageTitle>@Localizer[nameof(Translate.SiteName)] | @Title</PageTitle>
+<DashCrumbComponent RouteLink="categories" RouteName="@Localizer[nameof(Translate.CategoryList)]"
+                    PageOffset="@Title" />
+
+<div class="container-fluid">
+    <div class="mt-3">
+        @if (ErrorMessage != null)
+        {
+            <div class="alert alert-danger alert-dismissible mt-3 fade show d-inline-block
+                                    popup @(AppServices.IsArabic ? "text-right" : "text-left")"
+                 @onclick="HideMessage" role="alert">
+                @ErrorMessage
+                <button type="button" class="btn-close"></button>
+            </div>
+        }
+
+        @if (SuccessMessage != null)
+        {
+            <div class="alert alert-success alert-dismissible mt-3 fade show d-inline-block
+                                popup @(AppServices.IsArabic ? "text-right" : "text-left")"
+                 @onclick="HideMessage" role="alert">
+                @SuccessMessage
+                <button type="button" class="btn-close"></button>
+            </div>
+        }
+    </div>
+
+    <EditForm Model="Model" OnValidSubmit="OnValidSubmitAsync" FormName="CategoryForm">
+        <DataAnnotationsValidator />
+
+        <div class="col-xl-4 col-lg-5 col-md-7 col-sm-12">
+            <div class="mt-4 mb-3">
+                <label class="form-label">
+                    @Localizer[nameof(Translate.CategoryName)]
+                </label>
+                <InputText @bind-Value="Model.Name" class="form-control" @oninput="OnNameChange" />
+                <ValidationMessage class="lbl-error" For="() => Model.Name" />
+                @if (NameError != null)
+                {
+                    <span class="lbl-error">@NameError</span>
+                }
+            </div>
+        </div>
+        <div class="col-xl-8 col-lg-9 col-md-12 col-sm-12">
+            <div class="row">
+                <label class="form-label">
+                    @Localizer[nameof(Translate.Image)]
+                </label>
+                <div class="col-xl-8 col-lg-7 col-md-6 col-sm-12">
+                    <div class="mb-3">
+                        <InputFile @bind-Value="Model.Image" accept="image/*" class="form-control" OnChange="OnLoadFileAsync"
+                                   @oncancel="OnCancel" />
+
+                        <ValidationMessage class="lbl-error" For="() => Model.Image" />
+                        @if (FileError != null)
+                        {
+                            <span class="lbl-error">@FileError</span>
+                        }
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-5 col-md-6 col-sm-12">
+                    @if (Model.Image is not null && Model.Image.Length > 0)
+                    {
+                        <img src="@($"{AppServices.BaseAddress}images/collection/{Model.Image}")"
+                             alt="@Localizer[nameof(Translate.Image)]"
+                             id="image"
+                             class="img-thumbnail" style="max-width: 100%; max-height: 200px;" />
+                    }
+                    else
+                    {
+                        <img src="images/main/no-image.jpg" alt="@Localizer[nameof(Translate.Image)]"
+                             id="image"
+                             class="img-thumbnail" style="max-width: 100%; max-height: 200px;" />
+                    }
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-12 mt-3">
+            <button type="submit" class="btn btn-outline-dark" style="min-width:200px" disabled="@IsBusy">
+                @if (IsBusy)
+                {
+                    <span class="spinner-border spinner-border-sm mx-2" role="status" aria-hidden="true"></span>
+                }
+
+                @if (Id > 0)
+                {
+                    @Localizer[nameof(Translate.Edit)]
+                }
+                else
+                {
+                    @Localizer[nameof(Translate.Create)]
+                }
+            </button>
+        </div>
+    </EditForm>
+</div>

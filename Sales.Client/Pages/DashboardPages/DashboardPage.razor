@@ -1,11 +1,11 @@
-﻿@using Repositories
+﻿@using Library.Contracts
 
 @page "/Dashboard"
 @layout DashLayout
 @attribute [Authorize(Roles = nameof(AppServices.Admin))]
-@inject IAccountRepository repo
+@inject IAccountService repo
 
-<PageTitle>@Localizer[nameof(Strings.SiteName)] | @Localizer[nameof(Strings.Dashboard)]</PageTitle>
+<PageTitle>@Localizer[nameof(Translate.SiteName)] | @Localizer[nameof(Translate.Dashboard)]</PageTitle>
 <DashCrumbComponent />
 
 @code {

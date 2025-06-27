@@ -12,20 +12,20 @@ using Sales.Context.Data;
 namespace Sales.Context.Migrations
 {
     [DbContext(typeof(ApplicationDb))]
-    [Migration("20240708194850_AlterMainSettings")]
-    partial class AlterMainSettings
+    [Migration("20250527175258_CreateTables")]
+    partial class CreateTables
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.6")
+                .HasAnnotation("ProductVersion", "9.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Sales.Library.Category", b =>
+            modelBuilder.Entity("Sales.Library.Entities.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -34,6 +34,7 @@ namespace Sales.Context.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Image")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -45,7 +46,7 @@ namespace Sales.Context.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("Sales.Library.MainSetting", b =>
+            modelBuilder.Entity("Sales.Library.Entities.MainSetting", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -64,13 +65,12 @@ namespace Sales.Context.Migrations
                     b.ToTable("MainSettings");
                 });
 
-            modelBuilder.Entity("Sales.Library.Notification", b =>
+            modelBuilder.Entity("Sales.Library.Entities.Notification", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<DateTime?>("CreatedDate")
-                        .IsRequired()
+                    b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Message")
@@ -88,7 +88,7 @@ namespace Sales.Context.Migrations
                     b.ToTable("Notifications");
                 });
 
-            modelBuilder.Entity("Sales.Library.Product", b =>
+            modelBuilder.Entity("Sales.Library.Entities.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -124,7 +124,7 @@ namespace Sales.Context.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("Sales.Library.Role", b =>
+            modelBuilder.Entity("Sales.Library.Entities.Role", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -138,7 +138,7 @@ namespace Sales.Context.Migrations
                     b.ToTable("Roles");
                 });
 
-            modelBuilder.Entity("Sales.Library.SubCategory", b =>
+            modelBuilder.Entity("Sales.Library.Entities.SubCategory", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -160,7 +160,7 @@ namespace Sales.Context.Migrations
                     b.ToTable("SubCategories");
                 });
 
-            modelBuilder.Entity("Sales.Library.User", b =>
+            modelBuilder.Entity("Sales.Library.Entities.User", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -197,7 +197,7 @@ namespace Sales.Context.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Sales.Library.UserLogin", b =>
+            modelBuilder.Entity("Sales.Library.Entities.UserLogin", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -223,7 +223,7 @@ namespace Sales.Context.Migrations
                     b.ToTable("UserLogins");
                 });
 
-            modelBuilder.Entity("Sales.Library.UserRole", b =>
+            modelBuilder.Entity("Sales.Library.Entities.UserRole", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -245,7 +245,7 @@ namespace Sales.Context.Migrations
                     b.ToTable("UserRoles");
                 });
 
-            modelBuilder.Entity("Sales.Library.Verification", b =>
+            modelBuilder.Entity("Sales.Library.Entities.Verification", b =>
                 {
                     b.Property<string>("Token")
                         .HasColumnType("nvarchar(450)");
@@ -268,9 +268,9 @@ namespace Sales.Context.Migrations
                     b.ToTable("Verifications");
                 });
 
-            modelBuilder.Entity("Sales.Library.Notification", b =>
+            modelBuilder.Entity("Sales.Library.Entities.Notification", b =>
                 {
-                    b.HasOne("Sales.Library.User", "User")
+                    b.HasOne("Sales.Library.Entities.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -279,9 +279,9 @@ namespace Sales.Context.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Sales.Library.Product", b =>
+            modelBuilder.Entity("Sales.Library.Entities.Product", b =>
                 {
-                    b.HasOne("Sales.Library.SubCategory", "SubCategory")
+                    b.HasOne("Sales.Library.Entities.SubCategory", "SubCategory")
                         .WithMany()
                         .HasForeignKey("SubCategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -290,9 +290,9 @@ namespace Sales.Context.Migrations
                     b.Navigation("SubCategory");
                 });
 
-            modelBuilder.Entity("Sales.Library.SubCategory", b =>
+            modelBuilder.Entity("Sales.Library.Entities.SubCategory", b =>
                 {
-                    b.HasOne("Sales.Library.Category", "Category")
+                    b.HasOne("Sales.Library.Entities.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -301,9 +301,9 @@ namespace Sales.Context.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("Sales.Library.UserLogin", b =>
+            modelBuilder.Entity("Sales.Library.Entities.UserLogin", b =>
                 {
-                    b.HasOne("Sales.Library.User", "User")
+                    b.HasOne("Sales.Library.Entities.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -312,15 +312,15 @@ namespace Sales.Context.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Sales.Library.UserRole", b =>
+            modelBuilder.Entity("Sales.Library.Entities.UserRole", b =>
                 {
-                    b.HasOne("Sales.Library.Role", "Role")
+                    b.HasOne("Sales.Library.Entities.Role", "Role")
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Sales.Library.User", "User")
+                    b.HasOne("Sales.Library.Entities.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -331,9 +331,9 @@ namespace Sales.Context.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Sales.Library.Verification", b =>
+            modelBuilder.Entity("Sales.Library.Entities.Verification", b =>
                 {
-                    b.HasOne("Sales.Library.User", "User")
+                    b.HasOne("Sales.Library.Entities.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

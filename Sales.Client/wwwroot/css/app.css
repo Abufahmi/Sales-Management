@@ -154,6 +154,14 @@ code {
         transition: all 0.2ms ease;
     }
 
+.flex-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
 @media (max-width: 768px) {
     .container-img {
         display: none;

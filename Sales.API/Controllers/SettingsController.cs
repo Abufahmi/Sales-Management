@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Sales.Context.Contracts;
 using Sales.Context.Helpers;
-using Sales.Library;
+using Sales.Library.Entities;
 
 namespace Sales.API.Controllers
 {

@@ -1,89 +1,116 @@
-﻿using Sales.Client.Models.SettingModels;
-using Sales.Library;
+﻿using Sales.Client.Models;
+using Sales.Client.Models.SettingModels;
+using Sales.Library.Entities;
 
-namespace Sales.Client.Services
+namespace Sales.Client.Services;
+
+public class ModelConverter
 {
-    public class ModelConverter
+    internal static List<CategoryModel> GetCategoryListModels(List<Category> categires)
     {
-        internal static MainSettingModel GetMainSettingModel(MainSetting mainSetting)
+        var list = new List<CategoryModel>();
+        foreach (var category in categires)
         {
-            return new MainSettingModel
+            list.Add(new CategoryModel
             {
-                Id = mainSetting.Id,
-                ItemPerPage = mainSetting.ItemPerPage,
-                TokenExpireMinutes = mainSetting.TokenExpireMinutes,
-            };
+                Id = category.Id,
+                Name = category.Name,
+                Image = category.Image,
+                IsSelected = false,
+            });
         }
+        return list;
+    }
 
-        internal static UserModel GetUserModel(User user)
+    internal static CategoryModel GetCategoryModel(Category category)
+    {
+        return new CategoryModel
         {
-            return new UserModel
+            Id = category.Id,
+            Name = category.Name,
+            Image = category.Image,
+            IsSelected = false,
+        };
+    }
+
+    internal static MainSettingModel GetMainSettingModel(MainSetting mainSetting)
+    {
+        return new MainSettingModel
+        {
+            Id = mainSetting.Id,
+            ItemPerPage = mainSetting.ItemPerPage,
+            TokenExpireMinutes = mainSetting.TokenExpireMinutes,
+        };
+    }
+
+    internal static UserModel GetUserModel(User user)
+    {
+        return new UserModel
+        {
+            Id = user.Id,
+            UserName = user.UserName,
+            Email = user.Email,
+            Password = user.Password,
+            PhoneNumber = user.PhoneNumber,
+            EmailConfirmed = user.EmailConfirmed,
+            PhoneConfirmed = user.PhoneConfirmed,
+            CreatedDate = user.CreatedDate,
+            Image = user.Image,
+            IsSelected = false,
+        };
+    }
+
+    internal static List<UserModel>? GetUserModels(List<User> users)
+    {
+        var models = new List<UserModel>();
+        foreach (var item in users)
+        {
+            if (item == null) continue;
+            var model = new UserModel
             {
-                Id = user.Id,
-                UserName = user.UserName,
-                Email = user.Email,
-                Password = user.Password,
-                PhoneNumber = user.PhoneNumber,
-                EmailConfirmed = user.EmailConfirmed,
-                PhoneConfirmed = user.PhoneConfirmed,
-                CreatedDate = user.CreatedDate,
-                Image = user.Image,
+                Id = item.Id,
+                UserName = item.UserName,
+                Email = item.Email,
+                Password = item.Password,
+                PhoneNumber = item.PhoneNumber,
+                EmailConfirmed = item.EmailConfirmed,
+                PhoneConfirmed = item.PhoneConfirmed,
+                CreatedDate = item.CreatedDate,
+                Image = item.Image,
                 IsSelected = false,
             };
+            models.Add(model);
         }
+        return models;
+    }
 
-        internal static List<UserModel>? GetUserModels(List<User> users)
+    internal static UserRoleModel GetUserRoleModel(UserRole userRole)
+    {
+        return new UserRoleModel
         {
-            var models = new List<UserModel>();
-            foreach (var item in users)
-            {
-                if (item == null) continue;
-                var model = new UserModel
-                {
-                    Id = item.Id,
-                    UserName = item.UserName,
-                    Email = item.Email,
-                    Password = item.Password,
-                    PhoneNumber = item.PhoneNumber,
-                    EmailConfirmed = item.EmailConfirmed,
-                    PhoneConfirmed = item.PhoneConfirmed,
-                    CreatedDate = item.CreatedDate,
-                    Image = item.Image,
-                    IsSelected = false,
-                };
-                models.Add(model);
-            }
-            return models;
-        }
+            Id = userRole.Id,
+            User = userRole.User,
+            Role = userRole.Role,
+            RoleId = userRole.RoleId,
+            UserId = userRole.UserId,
+        };
+    }
 
-        internal static UserRoleModel GetUserRoleModel(UserRole userRole)
+    internal static List<UserRoleModel>? GetUserRoleModels(List<UserRole> userRoles)
+    {
+        var roles = new List<UserRoleModel>();
+        foreach (var item in userRoles)
         {
-            return new UserRoleModel
+            var model = new UserRoleModel
             {
-                Id = userRole.Id,
-                User = userRole.User,
-                Role = userRole.Role,
-                RoleId = userRole.RoleId,
-                UserId = userRole.UserId,
+                Id = item.Id,
+                User = item.User,
+                Role = item.Role,
+                RoleId = item.RoleId,
+                UserId = item.UserId,
             };
+            roles.Add(model);
         }
-
-        internal static List<UserRoleModel>? GetUserRoleModels(List<UserRole> userRoles)
-        {
-           var roles = new List<UserRoleModel>();
-            foreach(var item in userRoles)
-            {
-                var model = new UserRoleModel
-                {
-                    Id = item.Id,
-                    User = item.User,
-                    Role = item.Role,
-                    RoleId = item.RoleId,
-                    UserId = item.UserId,
-                };
-                roles.Add(model);
-            }
-            return roles;
-        }
+        return roles;
     }
 }
